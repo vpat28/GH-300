@@ -71,6 +71,7 @@ PY
   "multi": false,
   "topic": "Prompt engineering & context",
   "explanation": "Zero-shot prompting gives the model the task with no worked examples.",
+  "corrected": "Optional. Present when this repo changed the answer key or the question text.",
   "review": "Optional. Present only when the stored answer is disputed."
 }
 ```
@@ -88,9 +89,18 @@ PY
 - `explanation` — optional. Shown in practice mode under the verdict on **both**
   correct and incorrect answers, and again in the answer review. Omit the field
   rather than setting `""`; the build rejects an empty string.
+- `corrected` — optional. **Provenance marker: present whenever this repo
+  changed the answer key or the question text from what the bank shipped.** It
+  says what was changed and why, renders as an "Answer corrected" block in the
+  accent color wherever the explanation renders, and must never be deleted to
+  tidy up — it is the audit trail for edits that were not in the source
+  material. Same empty-string rule.
 - `review` — optional. Present only when the stored answer is doubtful. Renders
   as a "Needs review" caution block wherever the explanation renders. Same
   empty-string rule.
+
+`corrected` and `review` mean opposite things: `corrected` says "this was wrong
+and has been fixed", `review` says "this looks wrong and has *not* been fixed".
 
 The file is written as `json.dumps(qs, indent=1, ensure_ascii=False) + "\n"`.
 
@@ -189,7 +199,10 @@ safe.
 
 ⚠️ It rebuilds a fresh object from a fixed key list, so **any key not listed
 there is silently dropped.** Adding a field to the schema means adding it to
-`prep` too, or it will exist in the JSON and never reach the screen.
+`prep` too, or it will exist in the JSON and never reach the screen. The list is
+currently `q, topic, choices, correct, multi, explanation, review, corrected` —
+`corrected` was added later and needed exactly this, plus a render branch in
+both `render()` and the results review.
 
 ### Other key functions
 
@@ -320,6 +333,13 @@ These are cosmetic and were left alone; the answer keys are what matter.
   [Microsoft Learn study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)
   is the authority on scope; the Copilot product documentation is the authority
   on behavior. What was done:
+
+  **Every edit is marked in the data.** All 25 changed questions carry a
+  `corrected` field naming what was changed and why, which the app shows as an
+  "Answer corrected" block next to the explanation. Nothing was altered
+  silently, and a reader can always see where this repo departs from the source
+  material. The six dropped questions are listed below rather than in the data,
+  since there is no record left to attach a field to.
 
   - **19 keys corrected.** Eleven were corrupt multi-answer keys — every option
     marked correct, or two keyed options contradicting each other — collapsed to

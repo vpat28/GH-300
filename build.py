@@ -123,7 +123,7 @@ def validate(qs):
             problems.append(f"{where}: correct answer repeated")
         if len(ch) > 10:
             problems.append(f"{where}: more than 10 choices (the app labels A-J)")
-        for field in ("explanation", "review"):
+        for field in ("explanation", "review", "corrected"):
             val = q.get(field)
             if val is None:
                 continue
@@ -238,7 +238,7 @@ def normalize(qs):
         q["multi"] = len(q["correct"]) > 1
         if not q.get("topic"):
             q["topic"] = auto_topic(q)
-        for field in ("explanation", "review"):
+        for field in ("explanation", "review", "corrected"):
             if isinstance(q.get(field), str):
                 q[field] = q[field].strip()
     return qs
@@ -351,8 +351,10 @@ def main():
     counts = collections.Counter(q["topic"] for q in qs)
     explained = sum(1 for q in qs if q.get("explanation"))
     flagged = sum(1 for q in qs if q.get("review"))
+    corrected = sum(1 for q in qs if q.get("corrected"))
     print(f"\n{len(qs)} questions ({before} before) · {sum(q['multi'] for q in qs)} multi-answer"
-          f" · {explained} with explanations · {flagged} flagged for review")
+          f" · {explained} with explanations · {flagged} flagged for review"
+          f" · {corrected} with corrected answers")
     for t, n in counts.most_common():
         print(f"   {n:4}  {t}")
 
