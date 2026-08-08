@@ -280,7 +280,7 @@ it as community-quality material.
 **The explanations have been replaced.** As shipped, every one was a mechanical
 restatement of the stored answer key — "This answer is correct because it
 identifies …", "Together, the selected answers identify …" — generated from the
-answer, and therefore worthless as confirmation of it. All 305 were rewritten
+answer, and therefore worthless as confirmation of it. All of them were rewritten
 against primary sources (see below). The answer keys themselves were **not**
 touched, so an explanation and its key can still disagree; where they do, the
 question carries a `review` flag saying so.
@@ -307,36 +307,43 @@ These are cosmetic and were left alone; the answer keys are what matter.
   - "How is GitHub Copilot Individual billed?" appeared twice with identical
     choices and the same answer; the copy with the malformed
     "((Choose two.).)." tail was dropped.
-- **All 305 explanations were rewritten** against primary sources: the Microsoft
+- **Every explanation was rewritten** against primary sources: the Microsoft
   Learn GH-300 study guide, the GitHub Copilot documentation (plans, content
   exclusion, code referencing, prompt engineering, code review, CLI, the
   responsible-use application cards), the Copilot REST API reference, and the
   Microsoft Learn responsible AI module. Each says *why* the keyed answer is
   right and, where it earns its place, why the tempting distractor is wrong.
   Question text, choices, and `correct` arrays were **not** modified.
-- **33 answers are flagged, not corrected.** Rewriting the explanations meant
-  reading every item against the documentation, which surfaced far more bad keys
-  than the first pass found. They fall into four groups:
-  - **Corrupt multi-answer keys** — every option keyed correct, or two keyed
-    options that contradict each other (e.g. "GitHub Copilot can generate:"
-    keys both "Only comments" and "code, comments, and documentation").
-  - **Keys that contradict the documentation** — the refactoring and "not a
-    feature" items found earlier, plus items keying a plan or behavior the docs
-    assign elsewhere.
-  - **Questions built on features that do not exist** — `.copilotignore`
-    (content exclusions are configured in settings), a `/define` chat command, a
-    "GitHub Productivity API", a "GitHub Copilot for Azure DevOps" plan,
-    fabricated REST endpoint paths.
-  - **Internal contradictions** — two items ask the same question with the same
-    options and key different answers; another keys Enterprise as the plan that
-    collects prompts while a second item keys Enterprise as one that excludes
-    them.
+- **33 bad answer keys were found, and 31 of them resolved.** Rewriting the
+  explanations meant reading every item against the documentation, which
+  surfaced far more bad keys than the duplicate audit had. The
+  [Microsoft Learn study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)
+  is the authority on scope; the Copilot product documentation is the authority
+  on behavior. What was done:
 
-  Nothing was silently corrected. The flags render as "Needs review" blocks in
-  practice mode and each one names the specific problem, so a reader with the
-  official study guide can resolve it and delete the flag. **A flagged question
-  still grades against its stored key** — the app does not know the key is
-  suspect.
+  - **19 keys corrected.** Eleven were corrupt multi-answer keys — every option
+    marked correct, or two keyed options contradicting each other — collapsed to
+    the defensible answer. (This is why the multi-answer count dropped from 57
+    to 46; those were never real multi-answer questions.) The other eight
+    contradicted the documentation: Copilot *does* suggest deprecated functions,
+    it does *not* identify sensitive data, prompt collection is an
+    individual-plan setting, and so on.
+  - **6 questions edited.** Two had the wrong answer count in the stem. Three
+    were built on `.copilotignore`, which is not a feature, and were rewritten
+    to name content exclusions and their path patterns; one of those also stated
+    its limitation backwards. One named a "GitHub Copilot for Azure DevOps"
+    plan, corrected to Copilot Business.
+  - **6 questions dropped** as unanswerable, leaving 299: one with no question
+    text at all, one asking which item is *not* a Copilot feature where all four
+    listed are features, and four where no option was correct (few-shot
+    prompting, a chat slash command, Copilot Individual billing, and a
+    "GitHub Productivity API" that does not exist).
+  - **2 left flagged.** Both have a defensible keyed answer wrapped in wrong
+    wording: one invents a Copilot "private mode", the other garbles the REST
+    endpoint paths. Correcting them would mean rewriting the options into a
+    different question, so they carry `review` notes instead. **A flagged
+    question still grades against its stored key** — the app does not know the
+    key is suspect.
 
 **Duplicates that were kept.** `--dupes` reports around 390 candidate pairs.
 Most are an artifact of the `answer` signal: dozens of plan questions have
