@@ -29,7 +29,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify clearly defining the problem or task; and using meaningful variable names; and providing examples of desired output.",
+  "explanation": "Three things reliably improve suggestions: state the problem clearly, name things descriptively so the surrounding code carries meaning, and show an example of the output you want. Personal information does not belong in comments, and .gitignore has no bearing on what Copilot reads.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -57,7 +57,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify implementing safeguards to detect and avoid suggesting verbatim snippets from public code; and filtering out suggestions that match code from public repositories.",
+  "explanation": "The public code filter compares a candidate suggestion, together with roughly 150 characters of surrounding code, against an index of public code on GitHub. When the policy is set to block, matching suggestions are discarded before you see them; when it is set to allow, they are shown with references to the matching repositories and licenses. The model is not trained only on private repositories, and your private code is not stored to build future suggestions.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -84,7 +84,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies neighboring or related files within a project.",
+  "explanation": "Context comes from the code being worked on and its neighbors: the current file around the cursor, other open tabs, related files, and the paths involved. Commit frequency, the version control integration, and editor theming are not inputs to the prompt.",
   "topic": "Data handling & architecture"
  },
  {
@@ -111,7 +111,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by using chat history to offer personalized code snippets based on previous prompts.",
+  "explanation": "Copilot Chat treats earlier turns in the thread as part of the context it assembles for the next request, so answers build on what you already asked and on code already discussed. That is why GitHub advises starting a new thread when you switch tasks: stale history pulls suggestions toward the previous problem.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -138,7 +138,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies improves suggestions by considering both the prefix and suffix of the code filling in the middle part more accurately.",
+  "explanation": "Fill-in-the-middle gives the model both what comes before the cursor and what comes after, rather than only the preceding text. That matters when you are editing inside an existing function, because the code following the cursor constrains what a correct completion looks like.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -165,7 +165,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot may suggest deprecated syntax or features if they are present in its training data.",
+  "explanation": "The model reproduces what is common in its training data, and deprecated APIs are plentiful there. Copilot has no mechanism that recognizes deprecation or rewrites suggestions to current standards, so checking against current documentation is part of reviewing a suggestion.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -193,7 +193,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify compatibility with user specific settings; and suggestions matching public code. Optional based on settings.",
+  "explanation": "Before a suggestion reaches you it passes post-processing in the Copilot proxy: content filters screen for harmful or offensive output, the response is checked against your configured settings, and, when the public code filter is enabled, suggestions matching public code on GitHub are blocked or annotated with references. The public code check is policy-dependent, which is why it is described as optional.",
   "topic": "Testing & code quality"
  },
  {
@@ -220,7 +220,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies suggest code snippets that reflect the most common practices in the training data.",
+  "explanation": "A model trained on large volumes of public code reproduces what is common in that code. That makes suggestions idiomatic and familiar, but it also means they reflect prevailing practice, including outdated or insecure patterns, rather than the newest or best approach.",
   "topic": "Data handling & architecture"
  },
  {
@@ -247,7 +247,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it enriches the input prompt with additional context before passing it to the language model.",
+  "explanation": "Pre-processing is where your typed question becomes a usable prompt: the service combines it with context such as the open file, the selection, the repository, and the chat history before sending it to the model. Formatting the answer and filtering the response happen afterwards, in post-processing.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -274,34 +274,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to monitor administrator activities and actions within the organization.",
-  "topic": "Plans, policies & administration"
- },
- {
-  "q": "If you are working on open-source projects, GitHub Copilot individual can be paid uh through an invoice or a credit card.",
-  "choices": [
-   {
-    "label": "A",
-    "text": "through an invoice or a credit card."
-   },
-   {
-    "label": "B",
-    "text": "through an Azure subscription."
-   },
-   {
-    "label": "C",
-    "text": "based on the payment method in your user profile."
-   },
-   {
-    "label": "D",
-    "text": "not applicable Copilot individual is a free service for all open-source projects."
-   }
-  ],
-  "correct": [
-   "D"
-  ],
-  "multi": false,
-  "explanation": "This answer is correct because it identifies not applicable Copilot individual is a free service for all open-source projects.",
+  "explanation": "The audit log records administrative events: who changed Copilot policies, who was granted or removed a seat, when content exclusions were edited. It is an accountability record of configuration and access changes, not a feed of the suggestions developers received.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -334,7 +307,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify code snippets,; and design patterns,; and documentation.",
+  "explanation": "A knowledge base indexes text and code that lives in your repositories: documentation, markdown, code, and the patterns described in them. It cannot answer from compiled binaries or images, because there is nothing textual to index.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -362,7 +335,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify engage with chat participants such as @workspace to incorporate collaborative context into the responses; and utilize chat variables like #file and #editor to anchor the conversation within the specific context of the files or editors in use.",
+  "explanation": "Two supported mechanisms: chat participants such as @workspace scope the question to the whole project rather than the open file, and chat variables such as #file and #editor pin the conversation to specific files or the current editor contents. Copilot cannot reach into repositories you have not given it, and it cannot infer intent you have not expressed.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -389,7 +362,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies apply prompt engineering techniques to be more specific.",
+  "explanation": "Chat responses improve when the prompt does: be specific about the task, the constraints, and the success criteria, and iterate when the first answer misses. Concurrency limits and memory optimizations in your code have nothing to do with response quality.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -401,7 +374,7 @@
    },
    {
     "label": "B",
-    "text": "GitHub Copilot for Azure DevOps."
+    "text": "GitHub Copilot Business."
    },
    {
     "label": "C",
@@ -416,8 +389,9 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot for Azure DevOps.",
-  "topic": "Plans, policies & administration"
+  "explanation": "Copilot works with repositories hosted outside GitHub, so an organization on another platform can license seats without adopting GitHub Enterprise. What it does not get are the features that depend on GitHub itself, such as pull request summaries and knowledge bases.",
+  "topic": "Plans, policies & administration",
+  "corrected": "Option B was changed from \"GitHub Copilot for Azure DevOps\", which is not a plan GitHub sells, to \"GitHub Copilot Business\", which is the plan that answers the question."
  },
  {
   "q": "What is zero-shot prompting?",
@@ -447,7 +421,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies only giving GitHub Copilot a question as a prompt and no examples.",
+  "explanation": "Zero-shot prompting means stating the task with no worked examples and letting the model infer the shape of the answer. Few-shot prompting is the contrast: you include one or more examples of the input and output you want.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -475,7 +449,7 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify a chat; and inline suggestions.",
+  "explanation": "Inline suggestions and Copilot Chat are the features that travel to every supported IDE. Knowledge bases and pull request summaries depend on GitHub.com, so they are not available inside the editor.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -503,7 +477,7 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify explain code and suggest improvements; and generate unit tests.",
+  "explanation": "Chat in the IDE works on the code you have open: explaining it, suggesting improvements, and generating unit tests. Questions about releases, commits, and project planning depend on repository and organization context that lives on GitHub.com.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -530,7 +504,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies responses use practices and patterns in your repositories.",
+  "explanation": "A custom model is fine-tuned on your organization's repositories, so suggestions follow your internal libraries, naming conventions, and patterns rather than generic public ones. It does not change where inference runs, and it certainly does not make output correct by construction.",
   "topic": "Data handling & architecture"
  },
  {
@@ -558,7 +532,7 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify list all GitHub Copilot seat assignments for an organization; and get a summary of GitHub Copilot usage for organization members.",
+  "explanation": "The organization endpoints expose administrative data: the list of Copilot seat assignments, and aggregated usage and engagement summaries for members. They deliberately do not expose the content of any individual's suggestions.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -585,7 +559,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot may not always produce optimized or best practice code for refactoring.",
+  "explanation": "Refactoring suggestions come from patterns in training data, not from analysis of your architecture, so what comes back can be merely different rather than better, and it may not match your project's conventions or the current best practice. Copilot also does not see the whole project, so it cannot reason about every caller of the code it is changing.",
   "topic": "Developer productivity"
  },
  {
@@ -617,7 +591,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify you can use keyboard shortcuts to accept the next word in a suggestion; and alternative code suggestions can be shown in a new tab.",
+  "explanation": "Two accurate statements about completions: keyboard shortcuts let you accept a suggestion partially, word by word, rather than all or nothing, and alternative suggestions can be opened in a separate completions panel. Suggestions are not limited to single lines, and they carry no guarantee of compiling or of being free of vulnerabilities.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -644,7 +618,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies through the share feedback button in the Copilot chat panel.",
+  "explanation": "Copilot Chat has a feedback control in the chat panel itself, which is the documented route because it can attach the relevant session context. GitHub also asks that safety issues be reported to its Copilot safety address.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -671,7 +645,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can suggest design patterns and best practices relevant to the project.",
+  "explanation": "In design work Copilot is useful as a well-read assistant: ask it about applicable design patterns, trade-offs, or conventions for the stack you are using, and evaluate what it offers. It does not own the design, and project and version control administration are outside what it does.",
   "topic": "Developer productivity"
  },
  {
@@ -703,7 +677,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify the API can track the number of code suggestions accepted and used in the organization; and the API can provide Copilot chat specific suggestions acceptance metrics.",
+  "explanation": "The metrics API reports engagement: how many suggestions were shown and accepted, broken down by dimensions such as language and editor, with separate figures for chat. It measures usage, not code quality or style compliance, and it changes nothing in your code.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -730,11 +704,11 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies configure the policies in the organization settings.",
+  "explanation": "Copilot policies for a Business or Enterprise plan are set centrally in organization settings, and enterprise-level policy overrides organization-level settings where the enterprise owner has enforced a value. There is no policy file committed to a repository for this.",
   "topic": "Plans, policies & administration"
  },
  {
-  "q": "What reasons could apply if code suggestions are not working in your editor? Choose three.",
+  "q": "What reasons could apply if code suggestions are not working in your editor? Choose four.",
   "choices": [
    {
     "label": "A",
@@ -760,11 +734,13 @@
   "correct": [
    "A",
    "B",
-   "D"
+   "D",
+   "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify you do not have an active internet connection; and your programming language is not supported; and you do not have a valid GitHub Copilot license.",
-  "topic": "Copilot in the IDE & CLI"
+  "explanation": "Four independent causes: no network connection, since inference happens in the cloud; a language or file type Copilot does not support; no valid Copilot entitlement; and an active content exclusion covering the file, which disables suggestions there by design. A .gitignore entry is not among them, because Copilot reads what is open in your editor regardless of what Git tracks.",
+  "topic": "Copilot in the IDE & CLI",
+  "corrected": "Stem changed from \"Choose three\" to \"Choose four\" and option E added to the key. An active content exclusion is a genuine fourth cause."
  },
  {
   "q": "In what ways can GitHub Copilot support a developer during the code refactoring process? Each correct answer presents part of the solution. Choose two.",
@@ -791,7 +767,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify by providing suggestions for improving code readability and maintainability based on best practices; and by offering code transformation examples that enhance performance and reduce complexity.",
+  "explanation": "Refactoring is where Copilot's pattern knowledge pays off directly: it can propose clearer naming and structure for readability and maintainability, and show transformations that simplify or speed up a piece of code. It does not certify regulatory compliance, and it does not autonomously rewrite a codebase.",
   "topic": "Developer productivity"
  },
  {
@@ -818,7 +794,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies provide examples of expected input and output within the prompt.",
+  "explanation": "Showing Copilot a sample input and the output you expect removes ambiguity about format, edge cases, and intent far more effectively than prose alone; unit tests work well as examples. Very short prompts and omitting the language leave the model guessing.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -845,7 +821,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies regularly review and refactor the code suggested by Copilot.",
+  "explanation": "Copilot output is a draft. The practice that protects quality is treating it as one: read it, refactor it into your project's conventions, and test it. Turning off inline suggestions or avoiding hard problems gives up the benefit rather than managing the risk.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -873,7 +849,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify organization settings Copilot policies; and enterprise settings Copilot policies.",
+  "explanation": "Duplication detection is the \"Suggestions matching public code\" policy, and for managed seats it is set in Copilot policies under organization settings, or under enterprise settings when the enterprise owner sets it for everyone. Enterprise policy wins: if the enterprise has enforced a value, an organization cannot override it. There is no repository-level control for this setting.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -901,7 +877,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot business; and gitHub Copilot enterprise.",
+  "explanation": "On the managed plans, Business and Enterprise, prompts and suggestions are excluded from model training by default, which is one of the main reasons organizations buy them. On the individual plan, that use is governed by a user setting.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -928,7 +904,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enhances the performance of the selected code by analyzing its runtime complexity.",
+  "explanation": "/optimize asks Copilot to analyze the selected code for inefficiency, algorithmic complexity and wasteful operations, and to propose a faster version. It reasons about the code rather than formatting it or translating it to another language.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -955,7 +931,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies information from the IDE like open tabs, cursor location, selected code.",
+  "explanation": "The extension builds context from what the IDE can tell it: the file and cursor position, the text around the cursor, any selection, and other open tabs and related files. It does not read the entire repository or its submodules.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -982,7 +958,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies the GitHub Copilot icon in the status bar of the editor will display a message.",
+  "explanation": "The Copilot icon in the editor status bar is the indicator. When the file you are working in is covered by a content exclusion, the icon changes state and its message tells you Copilot is disabled for that file, which is how you distinguish an exclusion from Copilot simply having nothing to suggest.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -1009,7 +985,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies ensuring code security prevents unauthorized access and potential data breaches.",
+  "explanation": "Generated code carries the same risks as any other code: if it is insecure, it becomes an entry point for unauthorized access and data exposure once it ships. That is why the responsible use guidance pairs generation with review and secure coding practice rather than treating AI output as pre-vetted.",
   "topic": "General"
  },
  {
@@ -1036,7 +1012,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use the GitHub Copilot settings in the user interface to exclude files.",
+  "explanation": "Content exclusions are configured in settings, at repository, organization, or enterprise level, by listing the paths Copilot must not read. The feature requires a Business or Enterprise plan. Renaming files and editing .gitignore have no effect on what Copilot reads from your editor.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -1063,7 +1039,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use the emojis in the Copilot chat interface.",
+  "explanation": "In the GitHub Mobile chat interface, feedback is given inline with the response, using the reaction controls attached to the answer. The point is that feedback is attached to a specific response, which is what makes it useful.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -1090,7 +1066,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies fairness.",
+  "explanation": "Fairness is the Microsoft and GitHub responsible AI principle that AI systems should treat all people fairly, giving similarly situated people consistent outcomes. Privacy and security covers data protection, reliability and safety covers consistent and predictable behavior, and inclusiveness covers accessibility and reach.",
   "topic": "Responsible AI"
  },
  {
@@ -1117,7 +1093,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use diverse data, fairness metrics, and human oversight.",
+  "explanation": "Bias is reduced by a combination of measures, not one: training on diverse and balanced data, testing with fairness metrics across demographic segments, and keeping humans in the loop to review and override unfair outputs. Simply collecting more data or making the model faster does nothing about bias, and can amplify whatever skew the data already has.",
   "topic": "Responsible AI"
  },
  {
@@ -1144,7 +1120,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot's reliance on pattern-based responses without verifying computation accuracy.",
+  "explanation": "Copilot predicts plausible continuations from patterns; it does not evaluate expressions or verify results. Mathematical code can therefore look right and be numerically wrong, so anything computational needs independent checking against known values.",
   "topic": "General"
  },
  {
@@ -1171,7 +1147,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies changes to content exclusion settings.",
+  "explanation": "Audit log entries cover administrative actions, including changes to content exclusion settings and policy or seat changes. The log does not record individual suggestions, blocked matches, or which chat responses were accepted.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -1198,7 +1174,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to detect and block suggestions that match public code snippets on GitHub if they contain about 150 characters.",
+  "explanation": "The filter exists to stop Copilot from handing you code that reproduces public code on GitHub. It compares the suggestion plus about 150 characters of surrounding context against the public code index, and blocks the suggestion when the policy is set to block. It is an intellectual property control, not a style or code-duplication linter.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -1225,7 +1201,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies microsoft Azure.",
+  "explanation": "The Copilot proxy service runs on Microsoft Azure. It sits between the IDE and the model, assembling the prompt, applying filters such as the public code and toxicity checks, and post-processing the response before it reaches you.",
   "topic": "Data handling & architecture"
  },
  {
@@ -1253,7 +1229,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify suggest ways to enhance the maintainability of this code segment; and show me how to improve the readability of this function.",
+  "explanation": "Useful refactoring prompts are scoped and concrete: ask about the maintainability of a specific segment, or the readability of a particular function, so Copilot has something bounded to reason about. \"Refactor my whole application\" exceeds what it can see, and predicting future trends is not something a model trained on past code can do.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -1280,7 +1256,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies reviewing and validating the generated output for accuracy and completeness.",
+  "explanation": "Explanations are generated text, produced by the same probabilistic process as code suggestions, so they can be confidently wrong or incomplete. Validating an explanation against the code itself is the necessary step, particularly when you are relying on it to understand unfamiliar code.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -1307,7 +1283,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by suggesting entire lines or blocks of code based on context.",
+  "explanation": "Copilot completes at the granularity of lines and whole blocks, drawing on the surrounding code, comments, and related files. That is what separates it from classic IntelliSense, which completes identifiers from a symbol table rather than generating new code.",
   "topic": "General"
  },
  {
@@ -1334,7 +1310,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies creating and configuring knowledge bases in GitHub Copilot Enterprise.",
+  "explanation": "Knowledge bases are the Copilot Enterprise feature for grounding answers in your own material: an organization owner selects repositories containing documentation and standards, and Copilot Chat can then answer from that indexed content.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -1358,11 +1334,12 @@
    }
   ],
   "correct": [
-   "D"
+   "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies describe the project's architecture -use the Copilot generate command -accept the generated suggestion.",
-  "topic": "Copilot in the IDE & CLI"
+  "explanation": "In the CLI, you describe what you want in natural language and Copilot proposes a command, which you review before running. The flow is a suggest command followed by your description, then selecting or revising what comes back; nothing is executed without your confirmation.",
+  "topic": "Copilot in the IDE & CLI",
+  "corrected": "Key changed from D to B. D described a \"Copilot generate\" command that does not exist; B matches the documented CLI flow, where you describe what you want and review the suggested command."
  },
  {
   "q": "Which of the following describes role prompting?",
@@ -1388,7 +1365,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies describing in your prompt what your role is to get a better suggestion.",
+  "explanation": "Role prompting sets the perspective you want the answer written from, for example asking Copilot to respond as a security reviewer or as a backend engineer. Framing the role shifts which concerns the response emphasizes.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -1416,35 +1393,8 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify create a documentation file for the newly created codebase; and a developer is added to a new project and would like to understand the current software code.",
+  "explanation": "Chat is strongest where the work is reading and writing text about code: generating documentation for a codebase, and explaining unfamiliar code to someone new to a project. Release management and project planning happen in other tools.",
   "topic": "Chat, agents & MCP"
- },
- {
-  "q": "A developer is added to a new project and would like to understand the current software code. What is few-shot prompting?",
-  "choices": [
-   {
-    "label": "A",
-    "text": "Telling GitHub Copilot to try multiple times to answer the prompt."
-   },
-   {
-    "label": "B",
-    "text": "Telling GitHub Copilot to iterate several times on the answer before returning it to you."
-   },
-   {
-    "label": "C",
-    "text": "Telling GitHub Copilot from which sources it should base the response on."
-   },
-   {
-    "label": "D",
-    "text": "Telling GitHub Copilot about the mechanism you want it to use and how to incorporate that into the response."
-   }
-  ],
-  "correct": [
-   "D"
-  ],
-  "multi": false,
-  "explanation": "This answer is correct because it identifies telling GitHub Copilot about the mechanism you want it to use and how to incorporate that into the response.",
-  "topic": "Prompt engineering & context"
  },
  {
   "q": "What specific function does the fix command perform?",
@@ -1470,7 +1420,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies proposes changes for detected issues, suggesting corrections for syntax errors and programming mistakes.",
+  "explanation": "The /fix command asks Copilot to diagnose a problem in the selected code and propose a corrected version, typically for syntax errors, obvious logic mistakes, and error messages. It suggests a change for you to review rather than running static analysis or executing anything.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -1497,7 +1447,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies the training data might contain biases or inconsistencies.",
+  "explanation": "Generative models learn statistical patterns from their training data, so whatever bias, inconsistency, or plain error is present in that data can surface in the output. Inaccuracy is a property of how the model works, not a symptom of load or an outage.",
   "topic": "Data handling & architecture"
  },
  {
@@ -1524,11 +1474,11 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies asking questions about project-specific code behavior right.",
+  "explanation": "Chat's natural fit is answering questions about the code in front of you, where your repository context is exactly what makes the answer useful. Administrative work such as access control and audit log review happens in GitHub's settings interfaces, not in chat.",
   "topic": "Chat, agents & MCP"
  },
  {
-  "q": "What are two techniques that can be used to improve prompts to GitHub Copilot? ((Select two.).).",
+  "q": "What are three techniques that can be used to improve prompts to GitHub Copilot? (Select three.)",
   "choices": [
    {
     "label": "A",
@@ -1553,8 +1503,9 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify provide links to supporting documentation; and provide specific success criteria; and provide insight on where to get the content from to get a response.",
-  "topic": "Prompt engineering & context"
+  "explanation": "Prompts improve when you narrow what a good answer looks like: state explicit success criteria, and point Copilot at the material it should work from, such as supporting documentation or the specific files and functions involved. Dumping in everything about every file is the opposite of helpful, because irrelevant context competes for a limited context window.",
+  "topic": "Prompt engineering & context",
+  "corrected": "Stem changed from \"select two\" to \"select three\" to match the three keyed options."
  },
  {
   "q": "What GitHub Copilot configuration needs to be enabled to protect against IP infringements?",
@@ -1580,7 +1531,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies blocking public code matches.",
+  "explanation": "Setting \"Suggestions matching public code\" to block is the control: suggestions that match public code on GitHub, checked with about 150 characters of surrounding context, are discarded before you see them. It is also the setting tied to GitHub's IP indemnity commitment on the paid plans.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -1604,12 +1555,12 @@
    }
   ],
   "correct": [
-   "A"
+   "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can fix syntax errors without user input.",
+  "explanation": "Copilot's real contribution to refactoring is suggesting improvements for you to evaluate: clearer structure, simpler control flow, better names, and transformations that reduce complexity. It proposes; you review, test, and decide.",
   "topic": "Developer productivity",
-  "review": "The stored answer is A, \"fix syntax errors without user input\". Option C, \"suggest refactoring improvements for better code quality\", is what GitHub's documentation actually describes for refactoring. The bundled explanation only restates the answer key, so it is not independent confirmation — check this one against the study guide."
+  "corrected": "Key changed from A to C. A claimed Copilot fixes syntax errors without user input; C matches what GitHub's documentation describes for refactoring."
  },
  {
   "q": "You're introducing a new team member to GitHub Copilot. They ask you about the different ways to interact with or trigger Copilot's suggestions. Which of the following methods are valid ways to use or activate GitHub Copilot? ((Select 4.).).",
@@ -1642,7 +1593,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify typing comments or partial code lines to receive inline suggestions; and opening the Copilot chat pane to ask natural language queries; and triggering multiple suggestions using keyboard shortcuts; and using GitHub Copilot CLI for command-line code assistance.",
+  "explanation": "Four valid entry points: inline suggestions triggered by comments or partial code, the chat pane for natural language questions, keyboard shortcuts for cycling alternative suggestions, and the CLI for terminal work. Copilot does not deploy anything.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -1669,7 +1620,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies implementing a human code review process to ensure accountability and security checks alongside Copilot-generated code.",
+  "explanation": "Responsible operation keeps a human accountable for what ships. Copilot output is a suggestion, not a verified change, so it belongs in the normal review and security-check path. Committing straight to production, removing manual intervention, or trusting Copilot to write your tests unreviewed all remove the human accountability the responsible AI principles require.",
   "topic": "Responsible AI"
  },
  {
@@ -1696,7 +1647,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it's an AI-powered coding assistant to augment a developer's capabilities.",
+  "explanation": "Copilot is an AI coding assistant that augments a developer inside their existing editor. It is not a repository management tool, a CI/CD system, or a collaboration platform; those are other parts of GitHub.",
   "topic": "General"
  },
  {
@@ -1723,7 +1674,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot might not fully understand the context and dependencies within a large codebase.",
+  "explanation": "The constraint is the context window. Copilot sees the current file, related open files, and a bounded amount of additional context, not the full dependency graph, so it cannot know every caller, override, or downstream assumption in a large codebase. That is why its suggestions can be locally sensible and globally wrong.",
   "topic": "Developer productivity"
  },
  {
@@ -1750,7 +1701,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies creates unit tests for the selected code.",
+  "explanation": "The /tests slash command asks Copilot Chat to write unit tests for the code you have selected or have open. It generates test code; it does not execute your test suite, and running the tests is still your job.",
   "topic": "Testing & code quality"
  },
  {
@@ -1778,7 +1729,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify suggestions may sometimes be outdated or include security vulnerabilities; and it requires an internet connection to function.",
+  "explanation": "Two real limitations: suggestions come from patterns in training data, so they can be outdated or contain security weaknesses, and Copilot sends context to a hosted model, so it needs network connectivity. It works across many languages and many IDEs, so the other two options are false.",
   "topic": "Testing & code quality"
  },
  {
@@ -1806,7 +1757,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify if the user is in an organization that has content exclusions configured; and if the content exclusion settings changed in the last 30 minutes or before that.",
+  "explanation": "Two things to check. Content exclusions are configured by organization owners, enterprise owners, or repository administrators, so confirm the user is actually covered by a configuration. Then check the timing: changes take up to about 30 minutes to reach IDEs, so a recent edit may simply not have propagated yet.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -1839,7 +1790,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify repositories; and files; and folders.",
+  "explanation": "Exclusions are expressed as paths, so you can exclude specific files, whole folders, and entire repositories, using fnmatch-style patterns in the exclusion configuration. Gists are not covered.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -1866,7 +1817,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot can now use related files for context, not just the current file.",
+  "explanation": "Copilot builds context from more than the file under the cursor: neighboring and related open files, the active selection, and repository context all feed the prompt. That is why closing irrelevant tabs and opening the files you want considered changes the quality of suggestions.",
   "topic": "Testing & code quality"
  },
  {
@@ -1893,7 +1844,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it combines its training data set, code in user repositories, and external sources like Bing to generate responses.",
+  "explanation": "Copilot Chat composes an answer from several sources: the model's training, the context it can see in your repositories and open files, and, where web search is enabled, external results. Answering from training data alone would leave it unable to reason about your specific code.",
   "topic": "Data handling & architecture"
  },
  {
@@ -1920,7 +1871,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by providing templates and code snippets that help in documenting requirements.",
+  "explanation": "During requirements work Copilot is useful for the writing rather than the deciding: it can draft documentation structure, templates, and example snippets that help you capture requirements. Deciding what the requirements are, and resolving conflicts between stakeholders, stays with people.",
   "topic": "Developer productivity"
  },
  {
@@ -1947,7 +1898,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies if the contents of an excluded file are referenced in code that is not excluded, for example function calls.",
+  "explanation": "Exclusions stop Copilot from reading the excluded file directly, but they cannot erase its influence entirely. If non-excluded code calls a function, imports a type, or otherwise reflects what is in the excluded file, that information is in the context Copilot legitimately sees. GitHub documents this: semantic information supplied indirectly by the IDE, such as type definitions and build configuration, can still reach the model.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -1975,7 +1926,7 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot may introduce security vulnerabilities by suggesting code with known exploits; and gitHub Copilot's suggestions may not always reflect best practices or the latest coding standards.",
+  "explanation": "Two risks are well documented. Generated code can carry security weaknesses, because the model reproduces patterns from its training data including insecure ones, and it can reflect outdated practices or standards rather than current ones. Both are why human review is required before generated code ships.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -2003,7 +1954,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify ability to handle complex code structures; and limited training data.",
+  "explanation": "Two real limitations: performance degrades on large or intricate code structures that exceed what the context window can hold, and quality tracks how well represented a language or framework was in the training data. The distractors state the opposite of both, claiming uniform language support and freedom from bias.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2030,7 +1981,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Enterprise.",
+  "explanation": "Enterprise-scale identity management, single sign-on with your identity provider and centralized governance over which organizations get Copilot, sits with Copilot Enterprise on GitHub Enterprise Cloud. The individual plan has no central user management at all.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2057,7 +2008,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use the Audit Log section in the organization's GitHub settings.",
+  "explanation": "Copilot administrative events appear in the audit log for the organization, reached through the organization's settings. The Security tab covers code and secret scanning alerts, which are unrelated.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2081,12 +2032,12 @@
    }
   ],
   "correct": [
-   "B",
-   "A"
+   "B"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify aI algorithms are incapable of perpetuating existing biases; and aI systems can sometimes make decisions that are difficult to interpret.",
-  "topic": "Responsible AI"
+  "multi": false,
+  "explanation": "Opacity is a genuine risk: model outputs are probabilistic and their reasoning is not directly inspectable, which is why transparency and human review matter. Note that AI does not remove the need for privacy regulation, and generative models can and do reproduce bias present in their training data.",
+  "topic": "Responsible AI",
+  "corrected": "Key reduced from A and B to B alone. A asserted that AI is incapable of perpetuating bias, which is both false and not a risk."
  },
  {
   "q": "Which of the following plans can best accommodate this requirement?",
@@ -2112,7 +2063,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot for Enterprise.",
+  "explanation": "Enterprise is the plan for organizations that need the GitHub.com-side features and the strongest governance: knowledge bases, pull request summaries, centralized policy, and enterprise compliance controls, on top of everything Business provides.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2139,7 +2090,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot primarily suggests basic unit tests that focus on core functionalities, often requiring additional input from developers for comprehensive coverage.",
+  "explanation": "Copilot is good at the straightforward cases: happy paths and obvious branches derived from the function signature. Coverage of edge cases, error paths, and multi-component integration scenarios generally needs you to describe them, which is why generated tests are a starting point rather than a finished suite.",
   "topic": "Testing & code quality"
  },
  {
@@ -2166,38 +2117,8 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Duplication Detection Filter.",
+  "explanation": "The organization-level control is the duplication detection policy, also called \"Suggestions matching public code\". Set it to block and suggestions matching public code on GitHub, checked with about 150 characters of surrounding context, are discarded before the developer sees them.",
   "topic": "Chat, agents & MCP"
- },
- {
-  "q": "(Each answer presents part of the solution. Choose two.).",
-  "choices": [
-   {
-    "label": "A",
-    "text": "Real-time user input helps generate context-aware code suggestions."
-   },
-   {
-    "label": "B",
-    "text": "Prompt data is used internally by GitHub for improving the search engine."
-   },
-   {
-    "label": "C",
-    "text": "Prompt data is used to train machine learning models for better code suggestions."
-   },
-   {
-    "label": "D",
-    "text": "Prompt data is stored unencrypted for faster processing."
-   }
-  ],
-  "correct": [
-   "A",
-   "C",
-   "B",
-   "D"
-  ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify real-time user input helps generate context-aware code suggestions; and prompt data is used internally by GitHub for improving the search engine; and prompt data is used to train machine learning models for better code suggestions; and prompt data is stored unencrypted for faster processing.",
-  "topic": "Data handling & architecture"
  },
  {
   "q": "When using GitHub Copilot to identify missing tests in your codebase, which of the following is the most important factor to consider?",
@@ -2220,12 +2141,12 @@
    }
   ],
   "correct": [
-   "C",
-   "A"
+   "C"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify having a high test coverage percentage in the codebase; and ensuring that the correct context is available to GitHub Copilot.",
-  "topic": "Testing & code quality"
+  "multi": false,
+  "explanation": "Copilot can only reason about what is in its context window. To find the tests you are missing, it needs the code under test and the existing tests visible, so the relevant files should be open or referenced. Coverage percentage tells you that a gap exists but does not help Copilot find it.",
+  "topic": "Testing & code quality",
+  "corrected": "Key reduced from A and C to C alone. A high coverage percentage is an outcome, not a factor that helps Copilot find gaps."
  },
  {
   "q": "A team is using GitHub Copilot Individual in their daily development activities. They need to exclude specific files from being used to inform code completion suggestions. How can they achieve this?",
@@ -2255,7 +2176,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies upgrade to Copilot Business.",
+  "explanation": "Content exclusions are a Business and Enterprise capability, so an individual subscriber cannot configure them at all; moving to a managed plan is what unlocks the feature. Nothing in .gitignore or a chat variable restricts what Copilot reads.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2282,7 +2203,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can suggest modern programming patterns based on your code.",
+  "explanation": "For modernization work, Copilot's value is proposing current patterns and idioms in place of dated ones, in code you then evaluate. It does not perform architectural migration to cloud-native platforms on its own, and it cannot know standards that are not yet in its training data.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2309,7 +2230,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it is an enterprise feature.",
+  "explanation": "Knowledge bases are a Copilot Enterprise feature. An organization owner selects which repositories are indexed, so it is neither automatic across all repositories nor applicable to every file type.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2341,7 +2262,7 @@
    "A"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify by adding comments to your code and triggering a suggestion; and by highlighting the code you want to fix, right-clicking, and selecting Refactor using GitHub Copilot.",
+  "explanation": "Two paths to a refactoring suggestion in the editor: describe the change in a comment and let the inline suggestion follow it, or select the code and use the Copilot action from the editor context menu. Both keep you in the file rather than switching to a chat panel.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2368,7 +2289,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to serve as multi-line comments for guiding Copilot.",
+  "explanation": "A docstring is a structured, multi-line description of what a function does, its parameters, and its return value, placed right where Copilot reads context. Writing it first gives the model an explicit specification to generate against, which is one of the most reliable ways to steer a completion.",
   "topic": "Developer productivity"
  },
  {
@@ -2395,7 +2316,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies running code suggestions through filters designed to detect public code.",
+  "explanation": "The check happens in the Copilot proxy as part of post-processing: the generated suggestion is run through a filter that compares it, with about 150 characters of surrounding context, against an index of public code on GitHub. It is a lookup against that index rather than an inspection of your browsing history or a judgment about your code's structure.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -2422,7 +2343,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by using specific prompt examples in your chat request.",
+  "explanation": "Examples are the mechanism. Include a representative test from your codebase, or describe the conventions explicitly, in the chat request, and Copilot follows that pattern. There is no configuration setting or slash command that teaches it your house testing standards, though repository instructions files can carry conventions persistently.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2449,7 +2370,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies chat History provides context to GitHub Copilot, improving the relevance and accuracy of its code suggestions.",
+  "explanation": "Chat history is part of the context Copilot assembles for the next response, which makes follow-up answers more relevant to the task in hand. It is not used to retrain the model in real time, and it is not shared with other users.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -2476,7 +2397,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies install GitHub CLI, run gh extension install GitHub/ghcopilot, and authenticate using gh auth login.",
+  "explanation": "The gh CLI route installs Copilot as an extension: install GitHub CLI, add the Copilot extension with gh extension install github/gh-copilot, and authenticate with gh auth login. Note that the current standalone Copilot CLI is installed instead with npm install -g @github/copilot.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2504,7 +2425,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify creation of a unit test scenario for newly developed Python code; and explain a legacy COBOL code and translate the code to another language like Python.",
+  "explanation": "Chat is effective where the task is bounded and centers on code comprehension or generation: writing unit tests for a specific function, and explaining or translating unfamiliar legacy code. End-to-end performance testing and turning business documents into technical specifications require system and organizational knowledge it does not have.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2531,7 +2452,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies context-aware code suggestions while typing.",
+  "explanation": "An individual seat gets the core developer experience: context-aware completions as you type, and chat. Organization policy, audit logs, knowledge bases, and enterprise integrations belong to the managed plans.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2558,7 +2479,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by opening the completions panel in your editor.",
+  "explanation": "The completions panel shows several alternative suggestions at once, so you can compare them instead of cycling one at a time. Asking for alternatives in a comment does not produce them.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2585,7 +2506,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by using chat capabilities in Neovim.",
+  "explanation": "Copilot runs in a range of editors through official extensions, including Neovim, where chat and completions are available. It is used inside your editor or terminal rather than from a debugger watch window or a standalone website.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2612,8 +2533,8 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies transparency.",
-  "topic": "Copilot in the IDE & CLI"
+  "explanation": "Transparency is the responsible AI principle that AI systems should be understandable: their behavior, capabilities, and limitations can be explained, logged, and audited. Fairness concerns equal treatment, inclusiveness concerns reach and accessibility, and accountability places responsibility with people.",
+  "topic": "Responsible AI"
  },
  {
   "q": "How is GitHub Copilot Individual billed? Each correct answer presents part of the solution. Choose two.",
@@ -2640,7 +2561,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify monthly as a subscription; and annually as a subscription.",
+  "explanation": "The individual plan is a flat per-user subscription billed either monthly or annually, with the annual option cheaper per month. It is not metered by usage, and it is not free for all open source work.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2667,7 +2588,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies suggestions matching public code to blocked.",
+  "explanation": "GitHub's IP indemnity commitment on paid plans is conditional on having the public code filter turned on, that is, \"Suggestions matching public code\" set to blocked. There is no separate license-checking feature to enable.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2694,7 +2615,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by suggesting assertions based on the code's context and semantics.",
+  "explanation": "Copilot can read a function and propose assertions that reflect what the code appears to guarantee, which is a useful prompt for thinking about correctness. It does not run anything: verifying that the function works is still done by executing the tests yourself.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2721,7 +2642,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies content exclusions can be worked around as it is only available for Git repositories.",
+  "explanation": "Content exclusions operate on paths inside Git repositories, so material reached another way slips past them: symbolic links and files on remote filesystems are not covered, and semantic information the IDE supplies indirectly can still influence suggestions. Repository administrators and organization owners can both manage exclusions, and the feature belongs to the Business and Enterprise plans, not the individual one.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -2748,7 +2669,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Enterprise.",
+  "explanation": "Knowledge bases are exclusive to Copilot Enterprise. Business provides centralized management, policy, and content exclusions, but not the indexed organizational knowledge that Chat can answer from.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -2775,7 +2696,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies up to 30 minutes.",
+  "explanation": "Changes to content exclusions take up to about 30 minutes to reach IDEs. If an exclusion appears not to be working, that propagation delay is the first thing to rule out, though restarting the editor or reloading the Copilot session can pick the change up sooner.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -2803,7 +2724,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify utilizing GitHub Copilot's ability to create fictitious information from patterns in data; and leveraging GitHub Copilot's suggestions to create data based on API documentation in the repository.",
+  "explanation": "Two practical routes: ask Copilot to invent plausible records that follow the shape and patterns of your existing data, and point it at API documentation or schemas in the repository so the generated data matches the real contract. Copilot cannot connect to your databases or provision storage; it only writes code and text.",
   "topic": "Developer productivity"
  },
  {
@@ -2830,7 +2751,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies training AI data and algorithms to be free from biases will ensure fairness.",
+  "explanation": "Fairness is built in at the data and model level: train on diverse, balanced data, test for bias across groups, and correct the model when a group is treated differently. Accessibility belongs to the inclusiveness principle, and larger datasets do not help if the data is skewed.",
   "topic": "Responsible AI"
  },
  {
@@ -2858,7 +2779,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify code suggestions; and a chat.",
+  "explanation": "In the IDE extensions, an individual seat provides code suggestions and Copilot Chat. Knowledge bases and pull request analysis are GitHub.com features tied to the Enterprise plan, so they do not appear in the editor.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -2882,11 +2803,12 @@
    }
   ],
   "correct": [
-   "C"
+   "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Enterprise.",
-  "topic": "Plans, policies & administration"
+  "explanation": "Whether prompts and suggestions may be retained and used to improve the product is a setting on the individual plan, where the user chooses. On Business and Enterprise, that use is excluded by default, which is what organizations rely on.",
+  "topic": "Plans, policies & administration",
+  "corrected": "Key changed from Enterprise to Individual. Business and Enterprise exclude prompts and suggestions from training by default; retention for product improvement is an individual-plan setting. The stored key also contradicted another question in this bank."
  },
  {
   "q": "How can GitHub Copilot aid developers in writing documentation for their code?",
@@ -2912,7 +2834,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can suggest summaries or descriptions based on the code's functionality.",
+  "explanation": "Copilot reads the code and drafts summaries, docstrings, and comments describing what it does. Treat the draft as a starting point: it describes what the code appears to do, which is not always what it is meant to do, and it works in whatever format your file uses rather than only markdown.",
   "topic": "Developer productivity"
  },
  {
@@ -2940,7 +2862,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify the excluded content is not directly available to GitHub Copilot to use as context; and gitHub Copilot suggestions are no longer available in the excluded files.",
+  "explanation": "Two effects follow from an exclusion: Copilot offers no completions in the excluded files themselves, and the excluded content is not used as context for suggestions elsewhere. The exclusion is about what Copilot may read and where it may suggest, not about your debugger or your editor's statistics.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -2968,7 +2890,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot chat can provide guidance and support for common coding tasks and challenges in the targeted programming language; and gitHub Copilot can convert comments into code to grasp the syntax and nuances of a new programming language.",
+  "explanation": "Two ways it accelerates learning: chat explains idioms, errors, and conventions in the target language on demand, and writing an intent as a comment and letting Copilot produce the code shows you the syntax for something you already understand conceptually. There is no /understand command.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -2995,7 +2917,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it increases productivity by automating repetitive coding tasks.",
+  "explanation": "The documented benefit is productivity: Copilot handles repetitive and boilerplate work so developers spend more time on design and problem solving. It does not remove third-party dependency vulnerabilities, does not run your test pipeline, and does not replace developers, whose review remains required.",
   "topic": "Testing & code quality"
  },
  {
@@ -3022,7 +2944,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by answering questions about the code and generating explanations.",
+  "explanation": "Chat's core comprehension use case is answering questions about code: what a function does, why an error occurs, how a module fits together, in natural language against the code in context. Linting, diagramming, and automatic refactoring are different tools.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -3050,7 +2972,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify by opening the relevant tabs in your IDE; and by adding relevant code snippets to your prompt.",
+  "explanation": "Two things you control directly: open the files you want considered, since open tabs feed the context window, and put the relevant code straight into your prompt. Copilot has no .gitconfig-based mechanism for context, and pasting bare file paths does not make it read those files.",
   "topic": "Data handling & architecture"
  },
  {
@@ -3078,7 +3000,7 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify usage analytics; and the default execution confirmation.",
+  "explanation": "The CLI has its own configuration, covering whether usage analytics are sent and whether it asks for confirmation before executing a suggested command. It does not set your editor or redefine GitHub CLI subcommands.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3105,7 +3027,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot allows developers to stay in their IDE.",
+  "explanation": "The productivity gain is staying in one place: ask a question, get an explanation, generate a test, and keep working without switching to a browser and losing your place. GitHub lists reduced context switching as a documented benefit.",
   "topic": "Data handling & architecture"
  },
  {
@@ -3132,7 +3054,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, by using GitHub Copilot for business, they can integrate GitHub Copilot with non-GitHub hosted repositories.",
+  "explanation": "Copilot licenses are not tied to where your code is hosted: Business seats work for teams whose repositories live on other platforms. The features they lose are the ones that depend on GitHub.com, not the core completions and chat.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -3159,7 +3081,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot may return output that reflects bias or inaccurate info because of its training data.",
+  "explanation": "The core limitation of any LLM-based tool is that output reflects the training data, so it can be wrong, out of date, or biased while still looking confident. That is why the objective domains pair the productivity benefits with mandatory human validation.",
   "topic": "Data handling & architecture"
  },
  {
@@ -3186,7 +3108,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot analyzes comments and context to generate real-time code suggestions tailored for your requirements.",
+  "explanation": "Copilot reads the comments and code around your cursor and generates a suggestion for that specific situation in real time. It is not inserting stored templates, and it is not limited to patterns already present in the current file.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3213,7 +3135,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to log the activities of users, including who enabled or disabled Copilot and when, across the organization.",
+  "explanation": "The audit log answers \"who did what, and when\" at the administrative level across the organization: policy changes, seats granted or revoked, exclusions edited. It is a governance record rather than a productivity or debugging tool.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -3237,12 +3159,13 @@
    }
   ],
   "correct": [
-   "B",
+   "A",
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify prompts and suggestions retained for 28 days; and user engagement data kept for 2 years.",
-  "topic": "Data handling & architecture"
+  "explanation": "On Copilot Business and Enterprise, prompts and the suggestions returned are not retained: they are used to serve the request and discarded, which is the commitment organizations rely on. User engagement data, the telemetry about how features are used, is kept separately for around two years.",
+  "topic": "Data handling & architecture",
+  "corrected": "Key changed from B and C to A and C. On Business and Enterprise, prompts and suggestions are not retained; the 28-day figure did not match GitHub's documented position."
  },
  {
   "q": "How does GitHub Copilot enterprise assist in code reviews during the pull request process? Select two.",
@@ -3269,7 +3192,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify it generates a prose summary and a bulleted list of key changes for pull requests; and it can answer questions about the change set of the pull request.",
+  "explanation": "On the pull request itself, Copilot Enterprise generates a prose summary with a bulleted list of the key changes, and can answer questions about the change set in context. It does not merge anything, and it cannot certify that the changes are correct.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -3296,7 +3219,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies because GitHub Copilot's generated test cases may not cover all possible scenarios.",
+  "explanation": "Generated tests reflect what the model inferred from the code in context, which typically means the common paths. Edge cases, error handling, and integration behavior are routinely missed, so a passing generated suite can create false confidence unless a human checks what it does not cover.",
   "topic": "Testing & code quality"
  },
  {
@@ -3324,7 +3247,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify hate speech or discriminatory language, e. g., racial slurs, offensive stereotypes; and sexually suggestive or explicit content.",
+  "explanation": "The toxicity and content filters target harmful language, hate speech, slurs, discriminatory content, and sexually explicit material, in both prompts and responses. They are safety filters, not correctness checks: buggy code and blunt opinions in comments are not what they screen for.",
   "topic": "Data handling & architecture"
  },
  {
@@ -3356,7 +3279,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify generate suggestions; and capturing the user's context.",
+  "explanation": "The suggestion lifecycle starts with the client capturing your context, the code around the cursor and related files, which the proxy assembles into a prompt. The model then generates candidate suggestions, which are filtered and post-processed before display. Retraining is not part of serving a suggestion.",
   "topic": "Data handling & architecture"
  },
  {
@@ -3383,7 +3306,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gH Copilot explain, GH Copilot suggest, GH Copilot extension list.",
+  "explanation": "The gh CLI extension exposes gh copilot suggest, which proposes a command from a natural language description, and gh copilot explain, which explains a command you do not recognize. Extensions themselves are listed with gh extension list.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3415,7 +3338,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify add teams to the Copilot subscription for an organization; and remove teams from the Copilot subscription for an organization.",
+  "explanation": "Team membership in the Copilot subscription is managed through the selected_teams endpoints, with POST adding teams and DELETE removing them. Plan tier changes and seat migration between organizations are not operations these endpoints perform.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -3442,7 +3365,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by annotating the given suggestions with known vulnerability patterns.",
+  "explanation": "Copilot can call out recognizable insecure patterns in code it is looking at and suggest safer alternatives. It is not a scanner: it does not systematically analyze the repository or produce vulnerability reports, so code scanning tools remain necessary.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -3475,7 +3398,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify ensuring transparency in AI decision-making; and prioritizing user privacy and security; and promoting fairness and minimizing bias in AI models.",
+  "explanation": "Transparency (decisions are understandable), privacy and security (data is protected and consented), and fairness (bias is measured and minimized) are three of the six Microsoft and GitHub responsible AI principles. Prioritizing speed over security and skipping human review are the opposite of responsible practice.",
   "topic": "Responsible AI"
  },
  {
@@ -3506,7 +3429,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Individual.",
+  "explanation": "An independent contractor with no organizational governance requirements needs a single seat, which is what the individual plan provides. The managed plans exist for central seat management, policy, and content exclusions, none of which applies to one person.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -3533,7 +3456,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by suggesting code snippets that can be reused across different parts of the project.",
+  "explanation": "Boilerplate is exactly the case Copilot handles well, because it is repetitive and highly patterned. Once a pattern exists in your project, Copilot picks it up from context and offers consistent versions of it wherever you need them, saving the retyping without touching code you did not ask about.",
   "topic": "Developer productivity"
  },
  {
@@ -3565,7 +3488,7 @@
    "B"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gHCS GitHub Copilot suggest; and ghce — GitHub Copilot explain.",
+  "explanation": "The CLI can install shell aliases for its two main verbs: ghcs for suggest and ghce for explain. They exist because the full commands are long enough to discourage casual use in a terminal session.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3592,35 +3515,8 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies no, but it can assist in writing major parts of an app.",
+  "explanation": "Copilot generates substantial pieces of an application, whole functions, classes, and modules, from context and prompts, but it works turn by turn under your direction rather than delivering a finished application. Even the coding agent, which works autonomously on a task, produces a pull request for human review.",
   "topic": "Developer productivity"
- },
- {
-  "q": "When using GitHub Copilot chat, which of the following / commands can be used to ask for additional information or clarification about an unfamiliar function in the code?",
-  "choices": [
-   {
-    "label": "A",
-    "text": "/ define."
-   },
-   {
-    "label": "B",
-    "text": "/ clarify function."
-   },
-   {
-    "label": "C",
-    "text": "/ debug."
-   },
-   {
-    "label": "D",
-    "text": "/ trace."
-   }
-  ],
-  "correct": [
-   "A"
-  ],
-  "multi": false,
-  "explanation": "This answer is correct because it identifies / define.",
-  "topic": "Chat, agents & MCP"
  },
  {
   "q": "You are tasked with implementing GitHub Copilot in your organization for developers to generate code. Your team is concerned about the ethical implications of using AI in code generation, particularly around bias and unintended consequences in the output. What steps should you take to ensure that GitHub Copilot is used?",
@@ -3643,11 +3539,12 @@
    }
   ],
   "correct": [
-   "A"
+   "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies allow Copilot to generate any code automatically, assuming that the AI system has already been trained to be free of bias.",
-  "topic": "Responsible AI"
+  "explanation": "Responsible adoption means reviewing generated code for bias and watching how it handles sensitive attributes such as gender, race, or age. No model is guaranteed free of bias, so assuming it is and auto-accepting output is exactly the failure mode the principles warn about; waiting for user complaints is a reactive control, not a preventive one.",
+  "topic": "Responsible AI",
+  "corrected": "Key changed from A to B. A instructed the reader to auto-accept output assuming the model is bias-free. A near-identical question in this bank keys B."
  },
  {
   "q": "What is responsible AI?",
@@ -3673,7 +3570,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies aI that adheres to ethical guidelines and fairness.",
+  "explanation": "Responsible AI is AI built and operated against ethical guidelines: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability. It is not a claim that the system is always right, and it explicitly requires human accountability rather than autonomy.",
   "topic": "Responsible AI"
  },
  {
@@ -3700,7 +3597,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies bias elimination.",
+  "explanation": "Detecting and minimizing bias is central to the fairness principle, which requires that AI systems treat similarly situated people consistently. Profitability, market position, and raw speed are business goals, not responsible AI criteria.",
   "topic": "Responsible AI"
  },
  {
@@ -3727,7 +3624,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies transparent and explainable.",
+  "explanation": "The transparency principle requires AI systems to be understandable: their capabilities and limitations are stated honestly, and their behavior can be logged, audited, and explained. That is what makes accountability possible.",
   "topic": "Responsible AI"
  },
  {
@@ -3754,7 +3651,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies exclusivity.",
+  "explanation": "Exclusivity is the opposite of inclusiveness, the principle that AI systems should empower everyone regardless of ability, language, or geography. Fairness, accountability, and transparency are all genuine responsible AI principles.",
   "topic": "Responsible AI"
  },
  {
@@ -3781,7 +3678,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies continuous monitoring and updating.",
+  "explanation": "Accountability requires ongoing ownership: monitor the system in production, watch for drift and emerging harms, and update it. A model that is deployed and then left static is not being held accountable for its real-world behavior.",
   "topic": "Responsible AI"
  },
  {
@@ -3808,7 +3705,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to avoid bias and discrimination.",
+  "explanation": "Fairness exists to prevent AI from producing discriminatory outcomes, particularly where models are trained on historical data that already encodes bias. Speed and profitability are unrelated to the principle.",
   "topic": "Responsible AI"
  },
  {
@@ -3835,7 +3732,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it ensures decisions are understandable.",
+  "explanation": "Transparency means the system's behavior and its limits can be understood, documented, and audited. That understanding is what builds trust and makes it possible to hold people accountable for the system, so it increases trust rather than decreasing it.",
   "topic": "Responsible AI"
  },
  {
@@ -3862,7 +3759,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies visual Studio Code, Visual Studio, and JetBrains IDEs.",
+  "explanation": "Copilot is supported across Visual Studio Code, Visual Studio, JetBrains IDEs, Neovim, Xcode, and others through official extensions. Restricting it to any one editor would be inaccurate.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3889,7 +3786,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by analyzing the context of your code and using machine learning models.",
+  "explanation": "Copilot assembles the context around your cursor, including comments and related files, and a machine learning model predicts the most likely continuation. It is generation from learned patterns, not template expansion or a search over Stack Overflow.",
   "topic": "General"
  },
  {
@@ -3916,7 +3813,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies multiple languages including Python, JavaScript, and TypeScript.",
+  "explanation": "Copilot works across many languages and file types, with Python, JavaScript, and TypeScript among the strongest because they are heavily represented in the training data. Quality varies with that representation rather than support being restricted to a fixed list.",
   "topic": "General"
  },
  {
@@ -3943,7 +3840,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies machine learning models.",
+  "explanation": "Context awareness comes from a machine learning model that conditions on the surrounding code, comments, and related files to predict the continuation. Static analysis inspects code structurally and does not generate anything.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -3970,7 +3867,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies both personal and professional projects.",
+  "explanation": "There is no restriction on the kind of project. Personal, commercial, open source, and proprietary work are all in scope; what varies is the plan you use and the policies your organization applies, such as content exclusions and the public code filter.",
   "topic": "General"
  },
  {
@@ -3997,7 +3894,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by accepting or rejecting suggestions and providing feedback.",
+  "explanation": "The strongest signal is behavioral: accepting or rejecting a suggestion is recorded as engagement data, and the extensions also offer explicit feedback controls on suggestions and chat responses.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4024,7 +3921,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies accelerating coding by generating code snippets.",
+  "explanation": "Copilot's core value is speed on routine work: it generates snippets, boilerplate, and completions in place so you write less of the mechanical code yourself. Reviewing what it produces is still required.",
   "topic": "Testing & code quality"
  },
  {
@@ -4051,36 +3948,8 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies providing context-based code suggestions and completions.",
+  "explanation": "Copilot generates suggestions from the context around your work, the current file, related open files, and your prompt, and offers them as completions you accept or reject. It assists within your editing loop rather than delivering finished projects on its own.",
   "topic": "Testing & code quality"
- },
- {
-  "q": "Which of the following is not a feature of GitHub Copilot?",
-  "choices": [
-   {
-    "label": "A",
-    "text": "Code completion."
-   },
-   {
-    "label": "B",
-    "text": "Code review."
-   },
-   {
-    "label": "C",
-    "text": "Contextual suggestions."
-   },
-   {
-    "label": "D",
-    "text": "Documentation generation."
-   }
-  ],
-  "correct": [
-   "B"
-  ],
-  "multi": false,
-  "explanation": "This answer is correct because it identifies code review.",
-  "topic": "Chat, agents & MCP",
-  "review": "This item counts code review as something GitHub Copilot cannot do. Copilot code review is a shipping feature and appears in the published GH-300 skills measured, so the stored answer looks stale."
  },
  {
   "q": "GitHub Copilot can generate:",
@@ -4103,12 +3972,12 @@
    }
   ],
   "correct": [
-   "B",
-   "A"
+   "B"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify only comments; and code snippets, comments, and documentation.",
-  "topic": "Developer productivity"
+  "multi": false,
+  "explanation": "Copilot generates code, comments, and documentation such as docstrings, along with commit messages and pull request summaries. It is not restricted to any one of those categories.",
+  "topic": "Developer productivity",
+  "corrected": "Key reduced from A and B to B alone. The two keyed options contradicted each other: \"only comments\" against \"code, comments, and documentation\"."
  },
  {
   "q": "Can GitHub Copilot be used for pair programming?",
@@ -4134,7 +4003,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, it can assist in pair programming sessions.",
+  "explanation": "Copilot is frequently described as an AI pair programmer: it proposes, you evaluate, and the back and forth resembles pair programming. It is not a substitute for a human partner, and it does not provide shared editing sessions.",
   "topic": "General"
  },
  {
@@ -4161,7 +4030,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies periodically based on improvements and feedback.",
+  "explanation": "GitHub updates the underlying models periodically as better ones become available, rather than on a fixed schedule. This is why Copilot's familiarity with very recent libraries and APIs lags behind their release.",
   "topic": "General"
  },
  {
@@ -4188,7 +4057,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies both writing tests and code refactoring.",
+  "explanation": "Both are core use cases in the developer productivity domain: Copilot can generate test cases for existing code and suggest refactorings that improve structure and readability. Documentation is another, not the only one.",
   "topic": "Developer productivity"
  },
  {
@@ -4215,7 +4084,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies openAI in collaboration with GitHub.",
+  "explanation": "Copilot was developed by GitHub together with OpenAI, whose Codex model powered the original release. Note that this bank also contains a version of this question keyed to \"Microsoft and OpenAI\", which is defensible only in the sense that GitHub is owned by Microsoft.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -4242,7 +4111,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to assist developers by providing code suggestions.",
+  "explanation": "Copilot is designed to assist developers with suggestions they evaluate and accept, not to replace them. The human stays responsible for correctness, security, and whether the code ships.",
   "topic": "Testing & code quality"
  },
  {
@@ -4269,7 +4138,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by disabling it in the project settings.",
+  "explanation": "Copilot can be turned off for a workspace or project through editor settings, without uninstalling it or affecting your other projects. VS Code also supports disabling it per language.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4296,7 +4165,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies report it through the feedback option in the editor.",
+  "explanation": "Copilot extensions include a feedback mechanism in the editor, and the responsible-use documentation asks users to report problems, with safety issues going to GitHub's Copilot safety address. Reporting is what feeds real limitations back into the product.",
   "topic": "Testing & code quality"
  },
  {
@@ -4323,7 +4192,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies adjusting settings in the editor.",
+  "explanation": "Customization happens through editor settings, which control where Copilot is enabled, per-language behavior, and how suggestions appear, and through repository instructions files that carry conventions. The model itself is not user-modifiable.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4347,11 +4216,12 @@
    }
   ],
   "correct": [
-   "B"
+   "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it avoids suggesting deprecated functions and offers alternatives.",
-  "topic": "General"
+  "explanation": "Copilot generates from patterns in its training data, and deprecated APIs are abundant in that data, so it will sometimes suggest them. Checking suggestions against current library documentation is part of reviewing them.",
+  "topic": "General",
+  "corrected": "Key changed from B to A. Copilot does suggest deprecated APIs, because they are well represented in its training data; it has no mechanism that detects deprecation."
  },
  {
   "q": "GitHub Copilot's code suggestions are based on:",
@@ -4377,7 +4247,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies publicly available code and user data.",
+  "explanation": "Suggestions come from a model trained on publicly available code, conditioned at request time on your local context, the open files and the code around the cursor. Private repository content is not part of the trained model.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4404,7 +4274,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies tab.",
+  "explanation": "Tab accepts the inline suggestion in VS Code. Alt or Option with bracket keys cycles alternatives, and Ctrl+Enter opens the completions panel with several suggestions at once.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4431,7 +4301,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies tab.",
+  "explanation": "Tab accepts the displayed suggestion. Escape dismisses it, and word-by-word acceptance is available through a separate shortcut when you want only part of what is offered.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4458,7 +4328,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies neural Networks.",
+  "explanation": "Copilot is built on transformer-based neural networks, the architecture behind large language models. Decision trees, support vector machines, and nearest-neighbor methods are classical machine learning techniques, not the basis for code generation at this scale.",
   "topic": "Data handling & architecture"
  },
  {
@@ -4485,7 +4355,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies public code repositories and other open-source projects.",
+  "explanation": "The models were trained on publicly available code and text, principally public repositories and open-source projects. Private repository content is not used to train the general models.",
   "topic": "Data handling & architecture"
  },
  {
@@ -4512,7 +4382,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by anonymizing and aggregating data.",
+  "explanation": "GitHub's privacy commitments cover telemetry and operational data, which is minimized, aggregated, and de-identified where possible, and transmission is encrypted. The controls that actually keep specific code away from Copilot are the setting for whether prompts and suggestions may be used for product improvement, and content exclusions.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -4539,7 +4409,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies they can opt out of data sharing.",
+  "explanation": "Users have a setting controlling whether their prompts and suggestions may be retained and used to improve the product, and can turn it off. On Business and Enterprise plans, prompts and suggestions are excluded from model training by default, and administrators control the policy centrally.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -4566,7 +4436,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies periodically, based on new public code contributions.",
+  "explanation": "Copilot's knowledge changes when GitHub ships updated models, which happens periodically rather than continuously. This is why suggestions can lag behind very recent library releases, and why the code referencing index is also documented as updating only every few months.",
   "topic": "Data handling & architecture"
  },
  {
@@ -4593,7 +4463,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies publicly available code repositories.",
+  "explanation": "Training data comes from publicly available code repositories. Users' private code is not part of that corpus, which is the answer to the most common question organizations ask before adopting the tool.",
   "topic": "Data handling & architecture"
  },
  {
@@ -4620,7 +4490,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies using it to improve suggestions and then deleting it.",
+  "explanation": "Data sent for a suggestion is used to produce that suggestion and is not kept indefinitely; engagement telemetry is retained separately under its own policy. The controls that matter to users are the setting for whether prompts and suggestions may be used for product improvement, and content exclusions.",
   "topic": "Data handling & architecture"
  },
  {
@@ -4647,7 +4517,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, through GitHub's privacy policy and settings.",
+  "explanation": "GitHub documents what Copilot collects and how it is used in its privacy statement and Copilot data-handling documentation, and exposes user-facing controls in account settings, including the setting for whether prompts and suggestions may be used for product improvement. Transparency about data use is part of the privacy and security principle.",
   "topic": "Responsible AI"
  },
  {
@@ -4674,7 +4544,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies machine learning models analyzing the context of the code.",
+  "explanation": "A machine learning model generates each suggestion by predicting the most likely continuation of the context it is given. Nothing is retrieved from a curated snippet library or template set, which is why the same prompt can produce different results.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4698,11 +4568,12 @@
    }
   ],
   "correct": [
-   "A"
+   "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it anonymizes and encrypts all sensitive data.",
-  "topic": "Privacy & content exclusions"
+  "explanation": "Copilot does not reliably detect what is sensitive in your code. Everything in the context window is fair game for prompt building, which is exactly why content exclusions exist: they are the mechanism for keeping specific files and directories out of Copilot's reach. Treat secrets in a repository as visible to Copilot unless you have excluded them.",
+  "topic": "Privacy & content exclusions",
+  "corrected": "Key changed from A to B. Copilot does not identify or anonymize sensitive data in your code, which is precisely why content exclusions exist as a separate control."
  },
  {
   "q": "What is prompt engineering in the context of GitHub Copilot?",
@@ -4728,7 +4599,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies crafting inputs to get desired code suggestions from Copilot.",
+  "explanation": "Prompt engineering is the practice of shaping your input, the task statement, the context you expose, and any examples, so the model produces the output you actually want. It is a skill applied to model inputs, not to user interface copy or surveys.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -4755,7 +4626,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies providing clear and specific instructions.",
+  "explanation": "Specific, unambiguous instructions produce better suggestions: name the function, the types, the framework, and the behavior you expect. Vague or generic wording forces the model to guess, and it guesses from the most common pattern in its training data rather than your intent.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -4782,7 +4653,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies using clear, concise, and context-rich prompts.",
+  "explanation": "The reliable practice is prompts that are specific and carry the context needed, the language, the framework, the inputs and outputs, without padding. Length is not the goal; relevant detail is, and removing comments removes context the model uses.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -4809,7 +4680,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it helps Copilot generate relevant and accurate suggestions.",
+  "explanation": "Copilot builds its prompt from context: the code around your cursor, other open files, the active selection, and chat history. The more relevant that context is, the closer the suggestion lands to what your project actually needs, which is also why closing irrelevant files improves results.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -4836,7 +4707,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies create a function that sorts an array of integers in ascending order.",
+  "explanation": "A good prompt names the task, the inputs, and the expected behavior. \"Create a function that sorts an array of integers in ascending order\" specifies the operation, the data type, and the ordering, so there is little left to guess. \"Write some code\" gives the model nothing to work with.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -4860,12 +4731,12 @@
    }
   ],
   "correct": [
-   "A",
-   "B"
+   "A"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify specific task description and relevant context; and only the task description.",
-  "topic": "Prompt engineering & context"
+  "multi": false,
+  "explanation": "The strongest prompts pair a specific task description with the context needed to fulfill it: language, framework, data shapes, constraints, and any examples. The task alone leaves the model to infer everything else.",
+  "topic": "Prompt engineering & context",
+  "corrected": "Key reduced from A and B to A alone. The two keyed options contradicted each other: task description plus context against task description only."
  },
  {
   "q": "How can a developer improve the quality of code suggestions from GitHub Copilot?",
@@ -4891,7 +4762,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by refining the prompt with more details and context.",
+  "explanation": "Suggestion quality tracks prompt quality. Adding specifics, the language, the framework, the expected inputs and outputs, examples, and the edge cases you care about, narrows what the model has to guess at. Iterating on a weak prompt is the documented remedy for a weak suggestion.",
   "topic": "Testing & code quality"
  },
  {
@@ -4918,7 +4789,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies all of the above.",
+  "explanation": "All three are documented use cases: drafting documentation, generating code, and helping diagnose and fix bugs through chat and the /fix command. The developer productivity objective covers this whole range.",
   "topic": "Developer productivity"
  },
  {
@@ -4945,7 +4816,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies reducing time spent on repetitive coding tasks.",
+  "explanation": "The measurable benefit is time returned on repetitive work, boilerplate, scaffolding, routine tests, and format conversions, which leaves more attention for design and correctness. Copilot supplements developers rather than replacing them.",
   "topic": "Developer productivity"
  },
  {
@@ -4972,7 +4843,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by identifying potential issues and suggesting improvements.",
+  "explanation": "AI review adds a fast first pass that flags likely problems and proposes improvements, which a human reviewer then judges. Copilot code review works this way, leaving approval and merge decisions with people.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -4999,7 +4870,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies all of the above.",
+  "explanation": "AI assists across the development cycle: generating code, writing tests, refactoring, documenting, explaining unfamiliar code, and modernizing legacy code. The GH-300 objective domain covering developer productivity treats all of these as in scope.",
   "topic": "Testing & code quality"
  },
  {
@@ -5026,7 +4897,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies providing suggestions and automating repetitive tasks.",
+  "explanation": "AI assistance works by proposing options and taking over mechanical work, with a developer deciding what to accept. It requires input to be useful and produces suggestions rather than finished, unreviewed applications.",
   "topic": "Developer productivity"
  },
  {
@@ -5053,7 +4924,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies writing boilerplate code automatically.",
+  "explanation": "Generating boilerplate automatically is the clearest productivity gain: highly patterned code that must exist but takes thought away from the actual problem. The other options describe things that would make development worse, not better.",
   "topic": "Developer productivity"
  },
  {
@@ -5080,7 +4951,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies both novice and experienced developers.",
+  "explanation": "Both groups benefit, for different reasons. Experienced developers save time on mechanical work they already know how to write; newer developers use suggestions and explanations to learn unfamiliar languages, frameworks, and idioms faster. GitHub explicitly lists accelerated learning as a use case.",
   "topic": "Developer productivity"
  },
  {
@@ -5107,7 +4978,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by generating test cases based on code.",
+  "explanation": "Copilot can read a function and propose test cases for it, either through the /tests command in chat or from a prompt describing what to cover. What it produces still needs review, because generated tests tend to cover the obvious paths.",
   "topic": "Testing & code quality"
  },
  {
@@ -5134,7 +5005,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies increased test coverage.",
+  "explanation": "Generating tests lowers the effort of writing them, so more of the code ends up covered, particularly the routine cases that developers skip when writing tests by hand. Accuracy and edge case coverage still depend on your review.",
   "topic": "Testing & code quality"
  },
  {
@@ -5161,7 +5032,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies generating boilerplate test code.",
+  "explanation": "Copilot is good at generating the scaffolding of a test suite: fixtures, setup, and the obvious cases derived from the function under test, following the framework already used in your project. Extending that to edge cases and integration scenarios is where your input is needed.",
   "topic": "Developer productivity"
  },
  {
@@ -5188,7 +5059,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies protecting user data and ensuring it is not misused.",
+  "explanation": "The privacy question with any AI coding tool is what leaves your machine, who retains it, and for how long. GitHub's controls for this are the setting governing use of prompts and suggestions for product improvement, and content exclusions for keeping specified paths out of context entirely.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -5215,7 +5086,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies microsoft and OpenAI.",
+  "explanation": "Copilot was built by GitHub in collaboration with OpenAI, whose Codex model powered the original release; GitHub is owned by Microsoft. Today Copilot offers a catalog of models from several vendors.",
   "topic": "General"
  },
  {
@@ -5242,7 +5113,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies codex.",
+  "explanation": "Copilot originally shipped on Codex, an OpenAI model derived from GPT-3 and specialized for code. Note that current Copilot lets you choose among several newer models from multiple vendors, so Codex is the historical answer rather than a description of today's model catalog.",
   "topic": "Data handling & architecture"
  },
  {
@@ -5269,7 +5140,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies multiple programming languages.",
+  "explanation": "Copilot supports a broad range of programming and markup languages rather than a fixed short list. Suggestion quality is better for languages well represented in the training data and weaker for niche ones.",
   "topic": "General"
  },
  {
@@ -5296,7 +5167,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it analyzes context and comments in the editor.",
+  "explanation": "Copilot builds a prompt from context, the code around the cursor, comments, other open and related files, then a model predicts what should come next. It is a probabilistic generation from learned patterns, not retrieval of stored snippets from repositories.",
   "topic": "Developer productivity"
  },
  {
@@ -5323,7 +5194,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies visual Studio Code and JetBrains IDEs.",
+  "explanation": "Visual Studio Code and JetBrains IDEs are among the officially supported environments, along with Visual Studio, Neovim, and Xcode. Support is delivered through GitHub's official extensions for those editors.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5350,7 +5221,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies install an extension and sign in to GitHub.",
+  "explanation": "Activation is two steps: install the GitHub Copilot extension from the marketplace, then sign in to the GitHub account that holds your Copilot entitlement. Editing settings.json by hand is not required.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5377,7 +5248,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies to assist in writing code efficiently.",
+  "explanation": "Copilot exists to help developers write code faster inside their normal workflow. Version control and test automation are separate parts of the toolchain, and the tool is explicitly positioned as assistance rather than replacement.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5404,7 +5275,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies modify the Copilot settings in VS Code.",
+  "explanation": "VS Code settings let you enable or disable Copilot per language, so you can keep it active for your main languages while turning it off for markdown or configuration files. Removing the extension entirely is unnecessary.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5431,7 +5302,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies paid subscriptions, Copilot Individual, Copilot Business.",
+  "explanation": "Copilot is a paid product across the individual and organizational tiers, with a limited free tier and free access for verified students, teachers, and maintainers of popular open source projects. It is neither free for everyone nor restricted to enterprises.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -5455,14 +5326,12 @@
    }
   ],
   "correct": [
-   "A",
-   "B",
-   "C",
-   "D"
+   "A"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify yes, it can generate test cases based on function signatures; and no, it only writes implementation code; and only for JavaScript and Python; and no, it doesn't support testing frameworks.",
-  "topic": "Testing & code quality"
+  "multi": false,
+  "explanation": "Copilot can generate unit tests, and a function signature plus a descriptive name is often enough context for it to propose reasonable cases. It is not restricted to particular languages, and it works with common test frameworks by following the patterns already present in your project.",
+  "topic": "Testing & code quality",
+  "corrected": "Key reduced from all four options to A alone. The four stored answers contradicted each other."
  },
  {
   "q": "Does GitHub Copilot work offline?",
@@ -5488,7 +5357,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies no, it requires an internet connection.",
+  "explanation": "Copilot needs a network connection: prompts are sent to a cloud service for inference and suggestions come back over the network. Nothing runs locally on your machine, so it is unusable offline.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5515,7 +5384,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it warns users about common security risks.",
+  "explanation": "Copilot can point out common security risks and suggest safer patterns when asked, and Copilot code review will flag some vulnerability classes. It is not a security scanner: it does not analyze your codebase systematically and does not fix issues on its own, so dedicated tooling such as code scanning remains necessary.",
   "topic": "Testing & code quality"
  },
  {
@@ -5542,7 +5411,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies ctrl + Shift + P, then search for GitHub Copilot.",
+  "explanation": "In VS Code you reach everything Copilot exposes through the command palette, Ctrl+Shift+P or Cmd+Shift+P, then typing GitHub Copilot to see its commands and status entries. Copilot has no separate terminal configuration command in the editor.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5569,7 +5438,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies clear, descriptive comments explaining the function.",
+  "explanation": "Comments are prompt material. A clear comment describing what a function should do, its parameters, and its expected return gives Copilot a specific target, which is why descriptive comments produce noticeably better completions than empty or vague ones.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -5596,7 +5465,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, based on context and comments.",
+  "explanation": "Given enough context, a descriptive name, a docstring, existing patterns in the file, Copilot will generate complete classes and methods, not just line completions. The quality depends on how much of the intent you have made explicit.",
   "topic": "Developer productivity"
  },
  {
@@ -5623,7 +5492,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies it does not store or share user code.",
+  "explanation": "Code sent for a suggestion is used to serve that request; it is not retained to train the shared models and is not surfaced to other users. Note that context does leave your machine to reach the model, so \"nothing is transmitted\" would be the wrong reassurance to give.",
   "topic": "General"
  },
  {
@@ -5650,7 +5519,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies uninstall the extension or disable it in Settings.",
+  "explanation": "Copilot is disabled the same way as any extension: turn it off in the extensions view or in settings, either globally or for a workspace, or uninstall it. Signing out of GitHub is not the intended mechanism.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5677,7 +5546,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, it can generate docstrings and comments.",
+  "explanation": "Copilot generates docstrings and comments from the code they describe, in any language it supports and in any IDE where it runs. Review them: they describe what the code appears to do, which may differ from what it should do.",
   "topic": "Developer productivity"
  },
  {
@@ -5704,7 +5573,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, under certain conditions.",
+  "explanation": "Copilot is free for verified students, teachers, and maintainers of popular open source projects, and there is also a no-cost Copilot Free tier with limited monthly usage. Everyone else pays for a plan.",
   "topic": "General"
  },
  {
@@ -5731,7 +5600,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies from publicly available code and documentation.",
+  "explanation": "The model was trained on publicly available code and text. It does not learn from your keystrokes as you type, query Stack Overflow at suggestion time, or run training locally; the knowledge is baked into the model and refreshed when GitHub ships new models.",
   "topic": "Developer productivity"
  },
  {
@@ -5755,14 +5624,12 @@
    }
   ],
   "correct": [
-   "A",
-   "B",
-   "C",
-   "D"
+   "A"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify copilot does not apply a license to generated code; and mIT license; and apache license; and new General Public License.",
-  "topic": "Plans, policies & administration"
+  "multi": false,
+  "explanation": "GitHub does not assert a license over the code Copilot generates or claim ownership of it; your rights to the output are addressed in the customer terms. This is also why the public code filter matters: a suggestion that matches licensed public code carries that code's licensing questions with it.",
+  "topic": "Plans, policies & administration",
+  "corrected": "Key reduced from all four options to A alone. GitHub does not apply a license to generated code; the other three named specific open source licenses."
  },
  {
   "q": "Can GitHub Copilot help with debugging?",
@@ -5788,7 +5655,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, it suggests fixes for common issues.",
+  "explanation": "Copilot Chat can explain an error, propose likely causes, and suggest fixes for common problems, and /fix is built for exactly that. It reasons over the code in context rather than executing your program, so its diagnosis needs verifying.",
   "topic": "Testing & code quality"
  },
  {
@@ -5812,14 +5679,12 @@
    }
   ],
   "correct": [
-   "A",
-   "B",
-   "C",
-   "D"
+   "A"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify it avoids suggesting offensive or harmful code; and it filters out all security vulnerabilities; and it prevents all unethical uses of AI; and it automatically reports bad code to GitHub.",
-  "topic": "Responsible AI"
+  "multi": false,
+  "explanation": "Copilot applies filters to reduce offensive or harmful output, and a public code filter that can block suggestions matching public code. It is important to understand the limits of that: the filters are mitigations, not guarantees. Copilot does not catch every security vulnerability, cannot prevent misuse, and does not report your code to GitHub for policing.",
+  "topic": "Responsible AI",
+  "corrected": "Key reduced from all four options to A alone. Copilot does not filter out all vulnerabilities, cannot prevent all misuse, and does not report code to GitHub."
  },
  {
   "q": "Can GitHub Copilot auto-complete SQL queries?",
@@ -5845,7 +5710,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, if enough context is provided.",
+  "explanation": "SQL is well represented in the training data, so Copilot completes queries readily, especially when your schema, table definitions, or nearby queries are in context. Without that context it will guess at column and table names.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5872,7 +5737,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies machine learning from user interactions.",
+  "explanation": "Aggregate signals from how developers actually use the product, which suggestions get accepted, edited, or discarded, feed model and product improvement, subject to the policies governing use of prompts and suggestions. Direct feedback and reviews contribute, but the systematic input is that usage data.",
   "topic": "Data handling & architecture"
  },
  {
@@ -5899,7 +5764,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, for iOS and Android development.",
+  "explanation": "Mobile development is well supported: Swift and Objective-C for iOS, Kotlin and Java for Android, and cross-platform frameworks, in the IDEs those platforms use, including Xcode and JetBrains tools.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5926,7 +5791,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use the Report option in the extension.",
+  "explanation": "The extensions include reporting controls on suggestions and chat responses, which is the route that carries the relevant context back to GitHub. Safety concerns have a dedicated GitHub address for reports.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -5953,7 +5818,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies yes, it can help write GitHub Actions workflows.",
+  "explanation": "Copilot helps write workflow files like any other code, generating YAML for jobs, steps, and triggers from a description. It assists with authoring the automation; it is not itself part of the CI/CD execution.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -5980,7 +5845,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot provides inline code suggestions. Copilot Chat offers interactive assistance.",
+  "explanation": "Copilot completions are inline: they appear as you type and you accept or reject them. Copilot Chat is conversational: you ask questions, get explanations, and iterate. Both draw on the same context but serve different interaction models, and Chat is available in many IDEs and on GitHub.com.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -6007,7 +5872,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies write a JavaScript function named add that takes two parameters, adds them, and returns the sum.",
+  "explanation": "The best prompt pins down every dimension the model would otherwise guess: the language (JavaScript, not Python), the function name, the number of parameters, the operation, and the return value. The other options omit the language or the signature, or are too vague to constrain the output.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -6031,11 +5896,12 @@
    }
   ],
   "correct": [
-   "A"
+   "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies ask Copilot to generate unit tests for the isadult() method, assuming it will be sufficient to verify the method without integration testing.",
-  "topic": "Testing & code quality"
+  "explanation": "An integration test has to exercise the components together. The useful instruction asks Copilot to test how isAdult() behaves inside the real workflow, such as a request for age-restricted content, rather than testing the method in isolation. Unit tests on the method alone leave the interaction between the model and the view untested, which is the thing you set out to verify.",
+  "topic": "Testing & code quality",
+  "corrected": "Key changed from A to C. A explicitly skipped integration testing, contradicting what the question asked for."
  },
  {
   "q": "What steps should you take to ensure that GitHub Copilot is used responsibly?",
@@ -6061,7 +5927,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies regularly review the AI-generated code for potential biases and ensure that sensitive data, such as gender, race, or age, is not being unnecessarily handled by the AI suggestions.",
+  "explanation": "Responsible use is an ongoing review practice: check generated code for bias, and pay particular attention to code that touches sensitive attributes such as gender, race, or age. Assuming the model is bias-free, accepting suggestions unmodified, or waiting for users to report problems all skip the human accountability step.",
   "topic": "Responsible AI"
  },
  {
@@ -6088,7 +5954,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can generate code for calculations, but it relies on the logic you provide in the prompt and does not inherently understand or guarantee the accuracy of the calculations.",
+  "explanation": "Copilot generates code from patterns; it does not evaluate expressions or verify numerical results. If the logic you describe is wrong, the generated implementation will be wrong in the same way and will still look plausible, so computational code needs independent verification.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -6120,7 +5986,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot generates real-time code suggestions without storing the actual code snippets provided by users; and gitHub Copilot's AI model is primarily trained on public data and open-source repositories, not private user data.",
+  "explanation": "Two accurate statements: the general models are trained on public code and open-source repositories rather than private user data, and Copilot generates suggestions in real time from context sent for that request rather than retaining your code snippets. Private repository content is not harvested to improve the shared model.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6144,12 +6010,12 @@
    }
   ],
   "correct": [
-   "C",
-   "B"
+   "C"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify copilot accesses your local code, sends the data to the cloud, processes it, and trains the model in real time using your inputs; and as you type, Copilot sends the code context to the cloud-based model, which processes the input using pre-trained data and returns….",
-  "topic": "Data handling & architecture"
+  "multi": false,
+  "explanation": "The pipeline is client-side context gathering, transmission to the cloud service, generation by a pre-trained model, and a suggestion returned to the editor. The model is not being trained in real time on your input, and inference does not run locally on your machine.",
+  "topic": "Data handling & architecture",
+  "corrected": "Key reduced from B and C to C alone. B claimed the model is trained in real time on your input, which contradicts C and is false."
  },
  {
   "q": "You are optimizing a function that processes large arrays of user-provided data. Which GitHub Copilot suggestion is most appropriate for improving performance while preserving input validation and security?",
@@ -6175,7 +6041,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies suggesting the use of caching for previously processed results.",
+  "explanation": "Caching previously computed results improves throughput without touching the code paths that validate and sanitize input. The other options trade away correctness or security for speed, which is not an optimization but a regression.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -6202,7 +6068,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot generates suggestions based on both public code repositories and your local environment, such as the open files in your IDE, but does not use your private code to retrain the model.",
+  "explanation": "Both parts matter. Suggestions are shaped by the pre-trained public-code model and by your immediate local context, the open files and code around the cursor, which is why they fit your project. That local context is used to serve the request; it is not used to retrain the underlying model.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6229,7 +6095,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies write a PyTorch function to train a neural network. Here's an example of how to load data and define the network architecture.",
+  "explanation": "Few-shot prompting means the examples are in the prompt itself. Stating the task and then showing how data loading and the network architecture are done gives the model the pattern to follow. Promising examples later, or stating the task with no examples, is zero-shot prompting.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -6256,7 +6122,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies conduct thorough bias testing on the Copilot-generated code to ensure that the system does not discriminate against any particular group.",
+  "explanation": "Bias in a recruiting system has to be tested for, on the generated code and on the system's actual outputs across groups. Asking the model to avoid protected attributes does not remove proxies for them in the data, and no training set is assumed unbiased.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6288,7 +6154,7 @@
    "E"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify copilot may inadvertently suggest code that is similar to publicly available code, which could raise intellectual property concerns in…; and copilot is not designed to understand the entire context of a project, which could lead to inconsistencies or conflicting suggestions when….",
+  "explanation": "Two limitations matter on proprietary work. Suggestions are generated from patterns learned from public code, so output can resemble public code closely enough to raise intellectual property questions, which is what the public code filter is for. And Copilot works from a limited context window rather than whole-project understanding, so its suggestions can conflict with conventions established elsewhere in a large codebase.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -6315,7 +6181,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can only take into account a limited number of lines of code around the cursor due to the limited context window.",
+  "explanation": "Copilot works from a limited context window, so it uses the code near your cursor plus a bounded amount of surrounding and related context, not the whole repository. In very large files, relevant code can fall outside that window, which is exactly when suggestions start to look unrelated to what you are doing.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -6342,8 +6208,9 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use the get/org/org/Copilot/licenses endpoint: the API token needs admin org scope.",
-  "topic": "Plans, policies & administration"
+  "explanation": "Seat information for an organization is retrieved with a GET request against the organization's Copilot billing endpoints, and the token needs organization administration scope, since only owners may read seat assignments. Note that the exact paths in this item's options are garbled; the documented endpoint is GET /orgs/{org}/copilot/billing/seats.",
+  "topic": "Plans, policies & administration",
+  "review": "None of the endpoint paths in the options is real. The documented endpoint for listing seat assignments is GET /orgs/{org}/copilot/billing/seats, requiring organization admin or manage_billing:copilot scope."
  },
  {
   "q": "You want to understand how GitHub Copilot generates suggestions while safeguarding personal or sensitive data. Which answer best explains how Copilot handles user inputs and data privacy during the suggestion process?",
@@ -6369,7 +6236,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot sends user inputs to a proxy service that anonymizes the data and filters out any sensitive information before sending it to the cloud-based model for code suggestions.",
+  "explanation": "Requests pass through the Copilot proxy service, which builds the prompt, applies filtering before the request reaches the model, and post-processes the response. Processing is not local, and the proxy is exactly the component that exists so that filtering happens on both legs of the round trip.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6396,7 +6263,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies generate an authentication function using bcrypt for hashing passwords and jwt for session management.",
+  "explanation": "Naming the libraries and the security mechanism you want, bcrypt for password hashing and JWT for session management, constrains the model to current practice. A generic request lets it fall back on common patterns from its training data, which include outdated ones; SHA-1 is specifically unsuitable for password hashing.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -6423,7 +6290,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies chat interactions are sent to GitHub's servers, which then forward them to OpenAI for processing, with some chat data being stored to improve responses in future sessions.",
+  "explanation": "Chat input goes from your editor to GitHub's service, which forwards it to the model provider for inference and returns the response. Some chat context is retained within the session so follow-up questions work, subject to the retention and training policies for your plan.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6455,15 +6322,15 @@
    "C"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify provide comments within your code describing potential edge cases like negative prices or high discount rates, and let GitHub Copilot…; and prompt GitHub Copilot with the function signature and ask it to generate tests.",
+  "explanation": "Two techniques work together here: prompt with the function signature so Copilot knows the shape of what it is testing, and describe the edge cases you want covered, such as negative prices or discounts over 100 percent, in comments so they end up in the generated suite. Assuming the generated tests already cover the edge cases is the failure mode to avoid.",
   "topic": "Testing & code quality"
  },
  {
-  "q": "You are working on a government-related software project that deals with confidential citizen data. You've configured a. copilotignore file to exclude sensitive files from GitHub Copilot's context. However, your team is concerned about the limitations of content exclusions. Which of the following statements best describes a limitation of content exclusions in GitHub Copilot?",
+  "q": "You are working on a government-related software project that deals with confidential citizen data. You have configured content exclusions to keep sensitive files out of GitHub Copilot's context. However, your team is concerned about the limitations of content exclusions. Which of the following statements best describes a limitation of content exclusions in GitHub Copilot?",
   "choices": [
    {
     "label": "A",
-    "text": "Once files are excluded using. Copilot ignore, GitHub Copilot stops making code suggestions altogether for the entire project."
+    "text": "Once files are excluded, GitHub Copilot stops making code suggestions altogether for the entire project."
    },
    {
     "label": "B",
@@ -6471,19 +6338,20 @@
    },
    {
     "label": "C",
-    "text": "Content exclusions will prevent Copilot from using any sensitive code that has already been processed before adding files to. Copilot ignore."
+    "text": "Content exclusions do not undo processing of sensitive code that Copilot already used before the exclusion was configured and propagated."
    },
    {
     "label": "D",
-    "text": "After excluding files with. copilotignore, Copilot will only offer suggestions for code that is directly related to open-source projects."
+    "text": "After configuring content exclusions, Copilot will only offer suggestions for code that is directly related to open-source projects."
    }
   ],
   "correct": [
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies content exclusions will prevent Copilot from using any sensitive code that has already been processed before adding files to. Copilot ignore.",
-  "topic": "Privacy & content exclusions"
+  "explanation": "Content exclusions govern what Copilot may read from now on. They do not retroactively undo processing that already happened before the exclusion existed or before it propagated, and they do not stop Copilot suggesting general programming patterns that happen to resemble the excluded code. They also take up to about 30 minutes to take effect.",
+  "topic": "Privacy & content exclusions",
+  "corrected": "Question and options rewritten to name content exclusions instead of a \".copilotignore\" file, which is not a Copilot feature. The keyed option also stated the limitation backwards and now reads correctly."
  },
  {
   "q": "You are working as a software engineer in a company that is evaluating GitHub Copilot's plans to integrate into your development workflow. The team wants to understand the different features and plan types offered by GitHub Copilot before making a decision. As the team lead, it's your responsibility to explain the available features and plans. Which of the following statements accurately describes the features of GitHub Copilot across its available plans?",
@@ -6509,7 +6377,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot for Business includes access to advanced AI models, usage controls, and additional security features compared to individual plans.",
+  "explanation": "The managed plans add what organizations need beyond the editor experience: central control over who has a seat, policy enforcement, content exclusions, and exclusion of prompts and suggestions from training. Those governance and security features are the difference from an individual subscription.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -6536,7 +6404,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot uses public repositories to train its underlying model, but code suggestions can be influenced by private repository data during a user session, though this data is not stored for future training.",
+  "explanation": "The two halves of the answer are the ones organizations most often conflate. The shared model is trained on public repositories. During a session, your private code is legitimately used as context to make suggestions relevant, but it is not retained to train the model for anyone else.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6569,7 +6437,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify explaining why certain code produces errors and offering potential fixes; and performance optimizations based on the code context; and identifying redundant code and suggesting refactoring opportunities.",
+  "explanation": "Chat handles all three of these well: explaining why code produces a given error and proposing a fix, suggesting performance improvements for the code in context, and identifying redundancy worth refactoring. It does not manage version control for you or produce static analysis reports.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -6596,7 +6464,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies centralized administrative controls and security features like CML single sign-on and audit logging.",
+  "explanation": "What Enterprise adds for large-scale use is governance: centralized administrative control, single sign-on with the corporate identity provider, and audit logging across the organization. IDE integration and code suggestions come with every plan.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -6623,7 +6491,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use Copilot to generate code for basic feature transformations, such as creating new features based on domain knowledge, while reviewing its suggestions.",
+  "explanation": "Feature engineering depends on domain knowledge Copilot does not have: it can write the transformation code quickly once you decide what a useful feature is, but which features actually predict behavior in your data is your judgment. Use it to accelerate the implementation, then review what it produced.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6647,15 +6515,15 @@
    }
   ],
   "correct": [
-   "B",
-   "A"
+   "B"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify the Knowledge Base in GitHub Copilot Enterprise is a shared library of best practices and organization-specific code snippets used to train…; and the Knowledge Base allows you to store and share coding standards, templates, and reusable snippets that GitHub Copilot will prioritize when….",
-  "topic": "Plans, policies & administration"
+  "multi": false,
+  "explanation": "A knowledge base is an index over selected repositories, documentation, standards, and reusable patterns, that Copilot Chat retrieves from when answering. Retrieval is the mechanism: nothing about it retrains the model, in real time or otherwise.",
+  "topic": "Plans, policies & administration",
+  "corrected": "Key reduced from A and B to B alone. A claimed knowledge bases train the model in real time; they are a retrieval index over selected repositories."
  },
  {
-  "q": "A developer wants to exclude all files within a specific directory from GitHub Copilot's suggestions. Which syntax would they use in the. copilotignore file to achieve this?",
+  "q": "A developer wants to exclude all files within a specific directory from GitHub Copilot's suggestions. Which entry would they use in the content exclusion configuration to achieve this?",
   "choices": [
    {
     "label": "A",
@@ -6667,7 +6535,7 @@
    },
    {
     "label": "C",
-    "text": "directory."
+    "text": "/directory/** — the path pattern matching everything beneath that directory."
    },
    {
     "label": "D",
@@ -6678,8 +6546,9 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies directory.",
-  "topic": "Privacy & content exclusions"
+  "explanation": "Content exclusions use fnmatch-style path patterns, so a directory is excluded by naming its path, with a trailing pattern to cover everything beneath it. Comment-style directives inside files have no effect: the exclusion has to be configured in settings.",
+  "topic": "Privacy & content exclusions",
+  "corrected": "Question rewritten to name content exclusions instead of a \".copilotignore\" file, and the keyed option now gives a real fnmatch path pattern."
  },
  {
   "q": "You are using JavaScript for the project. You're on a tight deadline and need to quickly implement this logic. You decide to use GitHub Copilot to assist in generating the initial code. Which of the following statements best describes how GitHub Copilot can help you in this scenario?",
@@ -6705,7 +6574,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can provide code snippets for basic operations like calculating the total price, applying tax, and handling discounts, which can save the developer time by automating repetitive coding tasks.",
+  "explanation": "Copilot's contribution here is speed on the mechanical parts, the arithmetic for totals, tax, and discounts, which you then check against your actual business rules. It does not know your jurisdiction's tax law or your discount policy, and its generated tests do not guarantee edge case coverage.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -6732,7 +6601,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies install the GitHub Copilot CLI via npm, run the Copilot setup command, and authenticate using a personal access token.",
+  "explanation": "The current Copilot CLI is a standalone npm package: install it globally with npm install -g @github/copilot, then authenticate, either interactively with /login or by setting a personal access token with the Copilot Requests permission in the environment.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -6759,7 +6628,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies manually review the suggested code to understand its logic before integrating it.",
+  "explanation": "Never integrate code you do not understand. Reading the suggestion until you can explain what it does, and why, is what keeps you able to maintain and debug it later, and it is where you catch subtle problems Copilot's output can contain. Deferring the review until after the feature is done is how unreviewed code ships.",
   "topic": "Developer productivity"
  },
  {
@@ -6786,7 +6655,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot temporarily logs user code inputs and suggestions to improve AI model performance, but deletes them after a short period.",
+  "explanation": "Data sent for a suggestion is handled under a defined retention window rather than kept permanently, and prompts and suggestions are excluded from training by default on Business and Enterprise plans. \"Nothing is ever retained\" overstates it; \"stored permanently\" understates the protections.",
   "topic": "Data handling & architecture"
  },
  {
@@ -6813,7 +6682,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies non-GitHub customers have... B. Non-GitHub customers have access to Copilot's basic features, but certain advanced features like team code review suggestions and compliance tools are only available to GitHub Enterprise users.",
+  "explanation": "Core completions and chat work regardless of where your code is hosted, so a team on another platform gets the day-to-day experience. What they cannot get are the features that live on GitHub.com, such as pull request summaries, knowledge bases, and the compliance tooling tied to GitHub Enterprise.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -6840,7 +6709,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use GitHub Copilot's settings to block specific repositories from contributing to Copilot's training data.",
+  "explanation": "Configuring content exclusions for the paths holding secrets is the only mechanism that actually stops Copilot reading them; on Business and Enterprise it is set in repository, organization, or enterprise settings. Adding files to .gitignore keeps them out of version control but says nothing to Copilot about a file already on disk, and neither comments nor obscure filenames have any effect on what goes into the prompt.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -6864,11 +6733,12 @@
    }
   ],
   "correct": [
-   "D"
+   "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot uses real-time data analysis to calculate potential code outputs directly from mathematical formulas.",
-  "topic": "Developer productivity"
+  "explanation": "Copilot is a large language model applied to code: it interprets your natural language prompt and the surrounding context, then predicts a likely continuation based on patterns learned in training. It is not doing arithmetic, optimization, or lookup into a snippet database, which is also why it is unreliable at genuine computation.",
+  "topic": "Developer productivity",
+  "corrected": "Key changed from D to C. D described calculating outputs from mathematical formulas; C describes a pre-trained language model predicting from learned patterns."
  },
  {
   "q": "You want GitHub Copilot to improve an Express route that handles POST requests but lacks validation and error handling. Which approach best follows the prompt process flow to refine the prompt?",
@@ -6894,7 +6764,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies write an Express Route in Node. js to handle POST requests, validating input data and including error handling.",
+  "explanation": "Iterating on a prompt means adding the dimensions that were missing rather than rewording it. This version names the runtime and framework (an Express route in Node.js), the operation (handle POST), and both behaviors required (validate input and handle errors), so nothing is left implicit.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -6921,35 +6791,8 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies allow Copilot to suggest code but ensure all suggestions are logged and reviewed during code audits to maintain transparency and ensure accountability.",
+  "explanation": "In a high-stakes domain such as lending, transparency and accountability come from a record: keep the AI-assisted changes visible and put them through logged review and audit, so a person is answerable for every decision the system encodes. Assuming generated code is compliant because it came from a model is precisely the assumption responsible AI practice rejects.",
   "topic": "Responsible AI"
- },
- {
-  "q": "Which of the following is the correct approach to use the GitHub Productivity API for tracking Copilot's impact on developer productivity?",
-  "choices": [
-   {
-    "label": "A",
-    "text": "Add an entry for the file or directory in the settings. json of Visual Studio Code."
-   },
-   {
-    "label": "B",
-    "text": "Create a Copilot. json file in the root of the repository and list the files or directories to be ignored."
-   },
-   {
-    "label": "C",
-    "text": "Rely solely on GitHub activity logs to analyze developer productivity without needing to integrate with the Productivity API."
-   },
-   {
-    "label": "D",
-    "text": "Track the number of pull requests submitted and use the Productivity API to infer Copilot's impact based on changes in the frequency of commits."
-   }
-  ],
-  "correct": [
-   "D"
-  ],
-  "multi": false,
-  "explanation": "This answer is correct because it identifies track the number of pull requests submitted and use the Productivity API to infer Copilot's impact based on changes in the frequency of commits.",
-  "topic": "Developer productivity"
  },
  {
   "q": "Which feature in GitHub Copilot Business is designed to enhance code security within organizational projects?",
@@ -6975,7 +6818,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enabling administrators to configure whether Copilot suggestions retain telemetry data for security insights.",
+  "explanation": "What the managed plans give a security-conscious organization is administrative control over Copilot's behavior and data handling: policy enforcement, content exclusions, the public code filter, and exclusion of prompts and suggestions from training. Copilot itself does not scan your code for vulnerabilities.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7002,7 +6845,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enabling Copilot's data privacy settings to exclude files with sensitive content from training models.",
+  "explanation": "The effective control is configuring exclusions so files holding sensitive content are never read as context, combined with the policy that keeps prompts and suggestions out of model training. Comments asking Copilot to avoid a file do nothing, and removing the tool entirely gives up the benefit when a targeted exclusion would do.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -7029,7 +6872,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies provides step-by-step explanations for suggested code snippets.",
+  "explanation": "The defining feature is that Chat explains: it walks through what suggested code does and why, step by step, which is what separates it from inline completion. Note that generating tests from a prompt is also a genuine Chat capability, so this item's single-answer framing is a little narrow.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7056,7 +6899,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot sends your code input to remote servers, where sensitive data is automatically filtered, and none of the input is stored after generating suggestions.",
+  "explanation": "Context is sent to GitHub's service for inference, where filtering is applied on the way in and out, and it is not retained to train the models on the managed plans. Copilot does not reliably identify secrets in your code, which is why content exclusions exist as a separate control.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7083,7 +6926,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies using GitHub Copilot to propose potential code improvements or suggest more efficient algorithms during code reviews, which reviewers can then evaluate.",
+  "explanation": "The productive pattern in review is Copilot as a first-pass reviewer proposing improvements and alternatives, with human reviewers evaluating each one. Automatically accepting changes or letting it fix code without oversight removes the review, and limiting it to whitespace and naming wastes most of its value.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7110,7 +6953,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies ensure that your prompt and the surrounding JavaScript code are specific and relevant to the JavaScript task, so Copilot recognizes the language switch.",
+  "explanation": "Copilot infers language and intent from the immediate context. When suggestions drift toward another language you were just working in, the fix is to make the current context unambiguous: write in the JavaScript file, keep the relevant JavaScript around the cursor, and state the language in the prompt. Closing unrelated files also helps, but a specific prompt is the direct remedy.",
   "topic": "Data handling & architecture"
  },
  {
@@ -7137,7 +6980,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies you can directly accept, modify, or reject the code suggestions provided by Copilot Chat.",
+  "explanation": "A chat suggestion is a proposal. You can accept it, edit it before applying, or discard it, and applying it is an explicit action. Nothing is committed to your repository on your behalf.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7164,7 +7007,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot supports multiple languages and contexts, and it can generate full-stack code across front-end and back-end technologies.",
+  "explanation": "Copilot supports a wide range of languages and file types, including markup and styling languages, and it can work across a full stack in one project. Quality does vary: languages with less representation in the training data produce weaker suggestions than heavily represented ones like Python and JavaScript.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -7188,12 +7031,12 @@
    }
   ],
   "correct": [
-   "D",
-   "A"
+   "D"
   ],
-  "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot does not filter or process prompts and suggestions, allowing any code to be generated and returned directly to the user…; and the code prompt is processed by a filtering system to ensure that the suggestions do not contain personal data, then sent to the machine….",
-  "topic": "Data handling & architecture"
+  "multi": false,
+  "explanation": "There is processing on both legs. The prompt is assembled and filtered on the way in, including checks for personal data, then the model generates a suggestion, which is filtered again on the way out for harmful content and, when the policy is enabled, for matches against public code.",
+  "topic": "Data handling & architecture",
+  "corrected": "Key reduced from A and D to D alone. A claimed there is no filtering or oversight at all, which is false and contradicted D."
  },
  {
   "q": "You are working as a software developer, and your team has started using GitHub Copilot to assist in code writing. A team member is concerned about how Copilot uses private repositories for training purposes. You have been asked to clarify how GitHub Copilot interacts with user code and explain how it handles data security. Which of the following statements is correct regarding how GitHub Copilot works and handles data?",
@@ -7219,7 +7062,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot does not store code or use your private repository data to retrain the underlying models.",
+  "explanation": "The reassurance a team needs is precise: Copilot sends context to GitHub's service for inference, but it does not retain your code or use private repository content to retrain the underlying models. Claiming nothing leaves the machine would be wrong, and claiming private repositories feed training would be wrong in the other direction.",
   "topic": "Data handling & architecture"
  },
  {
@@ -7246,7 +7089,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies ask GitHub Copilot to generate security-focused test cases by writing comments that indicate potential security issues, like SQL injection and XSS.",
+  "explanation": "Copilot generates what you point it at. Naming the specific threat classes you want exercised, SQL injection, cross-site scripting, and similar, in comments or the prompt produces security-focused cases. Generic functional tests do not probe for those, and a performance refactor of a query says nothing about whether it is injectable.",
   "topic": "Testing & code quality"
  },
  {
@@ -7273,7 +7116,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies create a Python function to find the maximum value in a list of numbers.",
+  "explanation": "The effective prompt names the language, the operation, and the data it operates on. \"Create a Python function to find the maximum value in a list of numbers\" specifies all three, so there is nothing left to infer; the others omit the language, describe a different operation, or are too vague to constrain the result.",
   "topic": "Developer productivity"
  },
  {
@@ -7300,7 +7143,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies code explanations that help understand complex code segments in natural language.",
+  "explanation": "Code explanation is the feature: ask about a complex segment and Chat describes it in natural language, in the editor, without leaving your work. Syntax highlighting is an editor feature, inline completion is a different Copilot capability, and Copilot does not provide multi-user live editing.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7327,7 +7170,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot Business Plan.",
+  "explanation": "A team that needs central seat management, policy enforcement, and the security controls that come with them wants Business rather than individual seats. Note that neither plan provides vulnerability detection as such; Copilot can comment on insecure patterns, but code scanning is a separate product.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7354,7 +7197,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot's suggestions are often based on syntactic patterns rather than deep semantic understanding of code, leading to potentially incorrect or unsafe code in certain cases.",
+  "explanation": "The model predicts likely token sequences from patterns; it has no semantic model of your program, no type checker, and no execution. That is why output can be syntactically plausible and still wrong, unsafe, or subtly inconsistent with the rest of the codebase.",
   "topic": "Data handling & architecture"
  },
  {
@@ -7381,7 +7224,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies start typing the beginning of a try-except block and let GitHub Copilot auto-suggest code for exception handling.",
+  "explanation": "The most direct trigger for inline help is to start writing the construct: type the beginning of the try block and Copilot completes the exception handling in place, using the surrounding code for context. Chat also works, but it moves you out of the flow for something this local.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -7408,7 +7251,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies add more specific details to the prompt such as function to calculate total cost of order with 10% tax and 5% discount.",
+  "explanation": "The first prompt failed because it never said what the discount was. Adding the specific rates, the tax percentage and the discount percentage, gives the model the missing requirement. Naming the language helps but was not what was missing here.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -7435,7 +7278,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies slash explain.",
+  "explanation": "/explain is the slash command that asks Copilot Chat to describe the code you have selected or are editing. The other strings in this question are not real commands.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7462,7 +7305,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies disable GitHub Copilot for specific files or repositories containing sensitive data.",
+  "explanation": "Turning Copilot off for the specific files and directories holding regulated data is the targeted control: it stops both suggestions inside those files and their use as context elsewhere. Anonymizing or encrypting the data changes your application rather than what Copilot reads, and neither is a practical way to keep records out of the prompt.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -7489,7 +7332,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enable Copilot exclusion rules in the repository settings specifying the files and directories containing sensitive information.",
+  "explanation": "Content exclusions are configured in settings, at repository, organization, or enterprise level, by listing the paths that must not be read. Repository visibility is unrelated: Copilot reads the code open in your editor regardless of whether the repository is private. Comment directives and .gitignore entries have no effect on Copilot's context.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -7516,7 +7359,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies train developers to carefully review AI-generated code for security vulnerabilities, licenses, and ensure compliance with internal policies before using it in production.",
+  "explanation": "The mitigation for both copyright and security exposure is trained human review before code reaches production, backed by policy: check licenses, check for vulnerabilities, and confirm compliance. Copilot's public code filter and content filters reduce risk but do not eliminate it, so relying on them alone leaves the organization exposed. Restricting the tool to senior developers is a staffing rule, not a control.",
   "topic": "Responsible AI"
  },
  {
@@ -7543,7 +7386,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enable repository level exclusion rules for files and directories that contain proprietary code or patient data.",
+  "explanation": "Repository-level content exclusion rules let you name exactly the files and directories holding patient data and proprietary algorithms, so Copilot keeps working everywhere else. Disabling Copilot for the whole repository sacrifices the tool unnecessarily, private visibility does not restrict what Copilot reads, and .gitignore governs Git, not Copilot.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -7570,7 +7413,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies using Copilot to generate code, but reviewing all AL generated code, especially sections dealing with sensitive data handling and encryption before using it in production. C. Allowing Copilot to suggest code for all areas of the….",
+  "explanation": "Copilot suggestions are probabilistic output trained on public code, so anything touching regulated data or cryptography needs human review before production. Cryptographic implementations especially should come from vetted libraries rather than generated code, and legal or compliance review belongs in the loop for sensitive data handling.",
   "topic": "Responsible AI"
  },
  {
@@ -7597,7 +7440,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies central centralized administrative controls for managing user access and license allocation within an organization.",
+  "explanation": "Centralized administrative control, managing who has a seat, enforcing policy, and applying content exclusions, is what distinguishes the organizational plans. Code suggestions, language coverage, and IDE support are the same experience on either.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7624,7 +7467,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot is available for individual developers as well as organizations with differences in pricing and feature sets.",
+  "explanation": "Copilot is sold both to individuals and to organizations, with different prices and feature sets, and there is a free tier alongside the paid plans. It works with repositories hosted anywhere and across many IDEs.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7651,7 +7494,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies supervised learning using a data set of correctly structured SQL queries and corresponding data models.",
+  "explanation": "Supervised learning on labeled examples, well-formed queries paired with the schemas and data models they run against, is what teaches a model the mapping you want. Unsupervised learning finds structure without target outputs, and reinforcement learning by trial execution is impractical and unsafe against real data.",
   "topic": "Data handling & architecture"
  },
  {
@@ -7678,7 +7521,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot can incorporate teamsp specific patterns and architecture, reducing the need for redundant explanations of common design choices.",
+  "explanation": "A custom model is fine-tuned on your organization's own repositories, so suggestions arrive already shaped by your internal patterns, libraries, and architectural conventions. That reduces how much project-specific context you have to restate in every prompt. It does not make output correct or complete documentation on its own.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7711,7 +7554,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify detailed explanations of complex code snippets directly within the IDE; and context aware coding suggestions based on the current file and project; and ability to ask questions about the codebase and receive AIdriven answers.",
+  "explanation": "Three genuine capabilities: explaining complex code in the IDE, generating context-aware suggestions from the current file and project, and answering questions about the codebase. Copilot does not provide shared real-time collaboration, and it does not automatically detect and correct bugs without you asking.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7738,7 +7581,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies review the suggested code for security vulnerabilities and bugs.",
+  "explanation": "Review before accepting, specifically for security weaknesses and bugs. Generated code reproduces patterns from training data, including insecure ones, so the review step is what keeps those out of your codebase. Disabling your linting tools removes a check that catches exactly this kind of problem.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7765,7 +7608,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot suggest manually triggers a code suggestion in the terminal based on the current code context.",
+  "explanation": "The CLI's suggest verb is the manual trigger: you describe the command or code you want and Copilot proposes it for review. There is no continuous background suggestion mode in the terminal, which is deliberate, since terminal commands have side effects.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -7792,7 +7635,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies analyze the code generated by Copilot to ensure that it follows best practices for handling PII such as data encryption and anonymization before implementing it.",
+  "explanation": "The responsible step is to review the suggestion against your obligations before it ships: check how it handles the personal data, whether it encrypts or anonymizes appropriately, and whether it meets your compliance requirements. Copilot output has not been reviewed for regulatory compliance, and automated scanners catch only some classes of problem.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -7819,7 +7662,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot for enterprise.",
+  "explanation": "A team spanning public and private work that needs enterprise-grade compliance and security controls is describing Copilot Enterprise: centralized governance, audit logging, single sign-on, and the GitHub.com features such as knowledge bases and pull request summaries.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7835,7 +7678,7 @@
    },
    {
     "label": "C",
-    "text": "Configuring. copilotignore file and listing directories or files that contain PII to ensure they are excluded from Copilot's suggestions."
+    "text": "Configuring content exclusions in repository or organization settings, listing the directories or files that contain PII so they are excluded from Copilot's suggestions."
    },
    {
     "label": "D",
@@ -7846,8 +7689,9 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies configuring. copilotignore file and listing directories or files that contain PII to ensure they are excluded from Copilot's suggestions.",
-  "topic": "Privacy & content exclusions"
+  "explanation": "The mechanism for keeping specific paths out of Copilot's context is content exclusions, configured in repository, organization, or enterprise settings. Comments in files, branch layout, and access controls on who may use Copilot all leave the sensitive files readable in the editor, so none of them prevents the content reaching the prompt.",
+  "topic": "Privacy & content exclusions",
+  "corrected": "Keyed option rewritten to name content exclusions configured in repository or organization settings, instead of a \".copilotignore\" file that does not exist."
  },
  {
   "q": "You are advising a software development company on the key differences between GitHub Copilot individual and GitHub Copilot business to help them decide which plan is more suitable for their development team. Which of the following is a key difference between the two plans?",
@@ -7873,7 +7717,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot business includes IP indemnity and corporate data exclusions while Copilot individual does not.",
+  "explanation": "The commercial difference that matters to a company is that the managed plans carry GitHub's IP indemnity commitment, conditional on the public code filter being enabled, and exclude corporate prompts and suggestions from model training by default. Central billing and management also sit with the organizational plans, not the individual one.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -7900,7 +7744,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot uses a single model trained on multiple programming languages, identifying matching code by recognizing syntax patterns and context across languages.",
+  "explanation": "One model handles many languages. It infers which language you are in from the file, syntax, and surrounding context, which is also how it produces coherent suggestions across a full-stack project without per-language setup or model switching.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -7932,7 +7776,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify gitHub Copilot may generate code that does not always compile correctly or fit within the specific syntax rules of a language; and gitHub Copilot can generate code based on patterns, but cannot ensure that the suggested code is optimal for performance.",
+  "explanation": "Two accurate limitations: generated code does not always compile or conform to the language's rules, and it is generated from patterns with no guarantee of being performant. Copilot does not know your business logic or long-term architecture, and its output always needs testing before production.",
   "topic": "Data handling & architecture"
  },
  {
@@ -7959,7 +7803,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies when learning a new programming language and needing explanations for syntax and code patterns.",
+  "explanation": "Learning a new language is where Chat's explanation ability pays off most directly: it can explain unfamiliar syntax, idioms, and errors on demand, in the context of code you are actually writing. Multi-cloud deployment and database migration depend on environment specifics it does not have.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -7986,7 +7830,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use GitHub Copilot to suggest refactoring improvements for small isolated pieces of code. Then manually evaluate and test the changes before integrating them.",
+  "explanation": "The workable approach with legacy code is incremental: refactor small, isolated pieces, then evaluate and test each change before moving on. Copilot cannot see the whole dependency graph, so wholesale automatic rewriting of a legacy codebase is where its context limits do the most damage.",
   "topic": "Developer productivity"
  },
  {
@@ -8013,7 +7857,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot for business.",
+  "explanation": "A five-person team that wants central control over cost and policy, and wants to limit exposure to third-party code, wants Business: seats are managed centrally, the public code filter can be enforced for everyone, and prompts and suggestions are excluded from training by default.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -8040,7 +7884,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies copilot does not access or use the code from private repositories to train models or suggest it to others.",
+  "explanation": "Private repository code is not used to train Copilot's models and is not surfaced to other users. Context from your repository is sent for inference so suggestions fit your code, so the claim that nothing leaves your machine is also incorrect.",
   "topic": "Data handling & architecture"
  },
  {
@@ -8067,7 +7911,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies centralized management of seat licenses and policy enforcement for large teams.",
+  "explanation": "The defining Business feature is centralized administration: seat allocation and policy enforcement across the organization. Copilot Chat is available on individual plans too, so it is not what distinguishes Business.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -8094,7 +7938,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies disable GitHub Copilot only for specific files or directories that contain sensitive information.",
+  "explanation": "Content exclusions are path-scoped by design: name the files and directories holding keys and proprietary algorithms, and Copilot stops suggesting inside them and stops using them as context, while remaining available for the rest of the project. Comments and obfuscation do not affect what is sent, and disabling Copilot project-wide is heavier than the situation requires.",
   "topic": "Privacy & content exclusions"
  },
  {
@@ -8121,8 +7965,9 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies use Copilot in private mode to limit data sharing and exclude sensitive data files from Copilot's context.",
-  "topic": "Privacy & content exclusions"
+  "explanation": "The safeguard that works is keeping sensitive files out of Copilot's context through content exclusions, together with the policy that prevents prompts and suggestions being used for training. Encryption in the codebase does not change what is read from the editor, and GitHub cannot retroactively remove data from a trained model on request.",
+  "topic": "Privacy & content exclusions",
+  "review": "The keyed answer refers to a Copilot \"private mode\", which is not a feature name. The rest of the option, excluding sensitive files from Copilot's context, is the correct control."
  },
  {
   "q": "You are a software engineer working on a complex codebase and start using GitHub Copilot to suggest code snippets. You want to understand how Copilot generates suggestions in real time and how it aligns with your project's context. What best describes how GitHub Copilot works to provide relevant code suggestions?",
@@ -8148,7 +7993,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot uses AI trained on open-source and licensed repositories to predict code based on the context in the editor.",
+  "explanation": "Copilot is a model trained on large volumes of public code, generating predictions conditioned on your editor context, the current file, related files, and the code around the cursor. It is not retrieving snippets by keyword or replaying suggestions you accepted before.",
   "topic": "Copilot in the IDE & CLI"
  },
  {
@@ -8175,7 +8020,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies write a JavaScript function to process payments using a payment API. Handle API errors and log transaction ID on success.",
+  "explanation": "The strongest prompt states the language, the operation, and every behavior required, processing the payment, handling API errors, and logging the transaction ID on success. Naming the error handling and logging explicitly is what makes the difference, since the model will not infer them from a bare description of the happy path.",
   "topic": "Developer productivity"
  },
  {
@@ -8202,7 +8047,7 @@
    "B"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies gitHub Copilot analyzes the surrounding code and comments within the file to understand the context of the prompt, generating suggestions based on the patterns and structure in the visible part of the file.",
+  "explanation": "Copilot builds context primarily from what is visible around your work: the code and comments in the current file, plus related and open files, up to the limits of the context window. That is why generated getters and setters follow the style of the file you are in and can diverge from conventions established elsewhere in the project.",
   "topic": "Developer productivity"
  },
  {
@@ -8229,7 +8074,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies enhanced security and compliance features.",
+  "explanation": "Enterprise is positioned around governance at scale: the security and compliance controls, centralized policy, audit logging, and identity integration that large organizations require, alongside the GitHub.com features such as knowledge bases. Code review suggestions are available more broadly.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -8256,7 +8101,7 @@
    "C"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies write a Python function that reads a CSV file and returns the average of a specified column, handling missing data and file errors.",
+  "explanation": "The improved prompt names the language, the input, the exact return value, and the two failure modes the first attempt missed: missing data and file errors. Stating the edge cases you care about is what makes the difference, since the model will not infer them from a one-line request.",
   "topic": "Prompt engineering & context"
  },
  {
@@ -8284,7 +8129,7 @@
    "D"
   ],
   "multi": true,
-  "explanation": "Together, the selected answers identify detailed analysis of GitHub Copilot suggestions versus manual coding; and insights into the programming languages where GitHub Copilot is most helpful.",
+  "explanation": "The metrics API supports two kinds of analysis: comparing accepted Copilot suggestions against manually written code to gauge how much of the output the tool contributes, and breaking engagement down by language and editor to see where it is actually helping. It reports usage, not documentation or debugging statistics.",
   "topic": "Plans, policies & administration"
  },
  {
@@ -8311,7 +8156,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies provide clear explanations about the content the AI filters and how it reaches its conclusions.",
+  "explanation": "Transparency means telling users what the system does and how it reaches its conclusions, in terms they can understand. Choosing a reputable vendor, tuning the algorithm, or measuring satisfaction may all be good practice, but none of them makes the system's behavior understandable to the people it affects.",
   "topic": "Responsible AI"
  },
  {
@@ -8338,7 +8183,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies by analyzing the codebase and suggesting more efficient algorithms or data structures.",
+  "explanation": "Copilot can read the code in context and suggest a more efficient algorithm or a better-suited data structure, which you then evaluate and measure. It does not profile your application, produce performance reports, or rewrite the codebase on its own.",
   "topic": "General"
  },
  {
@@ -8365,7 +8210,7 @@
    "A"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies interactive chat with an AI assistant that provides context-aware code suggestions, explanations, and troubleshooting advice.",
+  "explanation": "The distinguishing feature is interactive assistance grounded in your context: ask a question, get an explanation, a suggestion, or a diagnosis based on the code you are working in, then iterate. It is not a collaboration tool, a task manager, or something that pushes and merges code.",
   "topic": "Chat, agents & MCP"
  },
  {
@@ -8392,7 +8237,7 @@
    "D"
   ],
   "multi": false,
-  "explanation": "This answer is correct because it identifies a specific operating system.",
+  "explanation": "Copilot needs a GitHub account, an entitlement through a plan or free eligibility, and a supported editor with the extension installed. It is not tied to any particular operating system.",
   "topic": "Plans, policies & administration"
  }
 ]

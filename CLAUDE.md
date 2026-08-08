@@ -71,6 +71,7 @@ PY
   "multi": false,
   "topic": "Prompt engineering & context",
   "explanation": "Zero-shot prompting gives the model the task with no worked examples.",
+  "corrected": "Optional. Present when this repo changed the answer key or the question text.",
   "review": "Optional. Present only when the stored answer is disputed."
 }
 ```
@@ -88,9 +89,18 @@ PY
 - `explanation` — optional. Shown in practice mode under the verdict on **both**
   correct and incorrect answers, and again in the answer review. Omit the field
   rather than setting `""`; the build rejects an empty string.
+- `corrected` — optional. **Provenance marker: present whenever this repo
+  changed the answer key or the question text from what the bank shipped.** It
+  says what was changed and why, renders as an "Answer corrected" block in the
+  accent color wherever the explanation renders, and must never be deleted to
+  tidy up — it is the audit trail for edits that were not in the source
+  material. Same empty-string rule.
 - `review` — optional. Present only when the stored answer is doubtful. Renders
   as a "Needs review" caution block wherever the explanation renders. Same
   empty-string rule.
+
+`corrected` and `review` mean opposite things: `corrected` says "this was wrong
+and has been fixed", `review` says "this looks wrong and has *not* been fixed".
 
 The file is written as `json.dumps(qs, indent=1, ensure_ascii=False) + "\n"`.
 
@@ -189,7 +199,10 @@ safe.
 
 ⚠️ It rebuilds a fresh object from a fixed key list, so **any key not listed
 there is silently dropped.** Adding a field to the schema means adding it to
-`prep` too, or it will exist in the JSON and never reach the screen.
+`prep` too, or it will exist in the JSON and never reach the screen. The list is
+currently `q, topic, choices, correct, multi, explanation, review, corrected` —
+`corrected` was added later and needed exactly this, plus a render branch in
+both `render()` and the results review.
 
 ### Other key functions
 
@@ -277,12 +290,13 @@ file, no source citation, and no verification metadata came with it, and none is
 in this repo. Nothing has been checked against the official study guide. Treat
 it as community-quality material.
 
-**The explanations are not independent.** Almost every one is a mechanical
+**The explanations have been replaced.** As shipped, every one was a mechanical
 restatement of the stored answer key — "This answer is correct because it
-identifies …", "Together, the selected answers identify …". They were generated
-from the answer, so **an explanation agreeing with its answer confirms
-nothing.** Where a question is wrong, its explanation is confidently wrong in
-the same direction.
+identifies …", "Together, the selected answers identify …" — generated from the
+answer, and therefore worthless as confirmation of it. All of them were rewritten
+against primary sources (see below). The answer keys themselves were **not**
+touched, so an explanation and its key can still disagree; where they do, the
+question carries a `review` flag saying so.
 
 **Transcription artifacts.** The text shows signs of speech-to-text or OCR
 capture: stray periods mid-sentence ("Use a. gitignore file"), doubled
@@ -306,17 +320,50 @@ These are cosmetic and were left alone; the answer keys are what matter.
   - "How is GitHub Copilot Individual billed?" appeared twice with identical
     choices and the same answer; the copy with the malformed
     "((Choose two.).)." tail was dropped.
-- **Two answers were flagged, not corrected.** Both carry a `review` field:
-  - "How can GitHub Copilot assist with code refactoring tasks?" — the stored
-    answer is "fix syntax errors without user input"; the option describing
-    refactoring suggestions is the plausible one.
-  - "Which of the following is not a feature of GitHub Copilot?" — the stored
-    answer says code review is not a Copilot feature. Copilot code review ships
-    and appears in the published skills measured, so the item reads as stale.
+- **Every explanation was rewritten** against primary sources: the Microsoft
+  Learn GH-300 study guide, the GitHub Copilot documentation (plans, content
+  exclusion, code referencing, prompt engineering, code review, CLI, the
+  responsible-use application cards), the Copilot REST API reference, and the
+  Microsoft Learn responsible AI module. Each says *why* the keyed answer is
+  right and, where it earns its place, why the tempting distractor is wrong.
+  Question text, choices, and `correct` arrays were **not** modified.
+- **33 bad answer keys were found, and 31 of them resolved.** Rewriting the
+  explanations meant reading every item against the documentation, which
+  surfaced far more bad keys than the duplicate audit had. The
+  [Microsoft Learn study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)
+  is the authority on scope; the Copilot product documentation is the authority
+  on behavior. What was done:
 
-  They were flagged rather than rewritten because there is no independent source
-  in this repo to correct them against. Anyone with the official study guide
-  should resolve them and remove the flags.
+  **Every edit is marked in the data.** All 25 changed questions carry a
+  `corrected` field naming what was changed and why, which the app shows as an
+  "Answer corrected" block next to the explanation. Nothing was altered
+  silently, and a reader can always see where this repo departs from the source
+  material. The six dropped questions are listed below rather than in the data,
+  since there is no record left to attach a field to.
+
+  - **19 keys corrected.** Eleven were corrupt multi-answer keys — every option
+    marked correct, or two keyed options contradicting each other — collapsed to
+    the defensible answer. (This is why the multi-answer count dropped from 57
+    to 46; those were never real multi-answer questions.) The other eight
+    contradicted the documentation: Copilot *does* suggest deprecated functions,
+    it does *not* identify sensitive data, prompt collection is an
+    individual-plan setting, and so on.
+  - **6 questions edited.** Two had the wrong answer count in the stem. Three
+    were built on `.copilotignore`, which is not a feature, and were rewritten
+    to name content exclusions and their path patterns; one of those also stated
+    its limitation backwards. One named a "GitHub Copilot for Azure DevOps"
+    plan, corrected to Copilot Business.
+  - **6 questions dropped** as unanswerable, leaving 299: one with no question
+    text at all, one asking which item is *not* a Copilot feature where all four
+    listed are features, and four where no option was correct (few-shot
+    prompting, a chat slash command, Copilot Individual billing, and a
+    "GitHub Productivity API" that does not exist).
+  - **2 left flagged.** Both have a defensible keyed answer wrapped in wrong
+    wording: one invents a Copilot "private mode", the other garbles the REST
+    endpoint paths. Correcting them would mean rewriting the options into a
+    different question, so they carry `review` notes instead. **A flagged
+    question still grades against its stored key** — the app does not know the
+    key is suspect.
 
 **Duplicates that were kept.** `--dupes` reports around 390 candidate pairs.
 Most are an artifact of the `answer` signal: dozens of plan questions have
@@ -332,7 +379,17 @@ plan names or responsible-AI principles.
 
 **The lexical ceiling still applies.** Questions testing one fact in genuinely
 different words are not reachable by `--dupes` at any threshold. Reading the
-bank grouped by topic is the only way to find those, and that has not been done.
+bank grouped by topic is the only way to find those. That reading has now
+happened once, during the explanation rewrite, and it turned up the contradictory
+pairs recorded above — but it was done for explanation accuracy, not as a
+systematic duplicate hunt.
+
+**What is still unverified.** The 272 questions without a `review` flag were
+read against the documentation and their keys looked defensible, which is weaker
+than saying each was confirmed against a citation. Product naming is the
+likeliest source of residual error: the bank predates the plan rename (Copilot
+Individual is now Copilot Pro) and the January 2026 feature additions, so items
+about plans and features can be stale without being wrong in their own frame.
 
 ---
 
