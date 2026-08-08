@@ -277,12 +277,13 @@ file, no source citation, and no verification metadata came with it, and none is
 in this repo. Nothing has been checked against the official study guide. Treat
 it as community-quality material.
 
-**The explanations are not independent.** Almost every one is a mechanical
+**The explanations have been replaced.** As shipped, every one was a mechanical
 restatement of the stored answer key — "This answer is correct because it
-identifies …", "Together, the selected answers identify …". They were generated
-from the answer, so **an explanation agreeing with its answer confirms
-nothing.** Where a question is wrong, its explanation is confidently wrong in
-the same direction.
+identifies …", "Together, the selected answers identify …" — generated from the
+answer, and therefore worthless as confirmation of it. All 305 were rewritten
+against primary sources (see below). The answer keys themselves were **not**
+touched, so an explanation and its key can still disagree; where they do, the
+question carries a `review` flag saying so.
 
 **Transcription artifacts.** The text shows signs of speech-to-text or OCR
 capture: stray periods mid-sentence ("Use a. gitignore file"), doubled
@@ -306,17 +307,36 @@ These are cosmetic and were left alone; the answer keys are what matter.
   - "How is GitHub Copilot Individual billed?" appeared twice with identical
     choices and the same answer; the copy with the malformed
     "((Choose two.).)." tail was dropped.
-- **Two answers were flagged, not corrected.** Both carry a `review` field:
-  - "How can GitHub Copilot assist with code refactoring tasks?" — the stored
-    answer is "fix syntax errors without user input"; the option describing
-    refactoring suggestions is the plausible one.
-  - "Which of the following is not a feature of GitHub Copilot?" — the stored
-    answer says code review is not a Copilot feature. Copilot code review ships
-    and appears in the published skills measured, so the item reads as stale.
+- **All 305 explanations were rewritten** against primary sources: the Microsoft
+  Learn GH-300 study guide, the GitHub Copilot documentation (plans, content
+  exclusion, code referencing, prompt engineering, code review, CLI, the
+  responsible-use application cards), the Copilot REST API reference, and the
+  Microsoft Learn responsible AI module. Each says *why* the keyed answer is
+  right and, where it earns its place, why the tempting distractor is wrong.
+  Question text, choices, and `correct` arrays were **not** modified.
+- **33 answers are flagged, not corrected.** Rewriting the explanations meant
+  reading every item against the documentation, which surfaced far more bad keys
+  than the first pass found. They fall into four groups:
+  - **Corrupt multi-answer keys** — every option keyed correct, or two keyed
+    options that contradict each other (e.g. "GitHub Copilot can generate:"
+    keys both "Only comments" and "code, comments, and documentation").
+  - **Keys that contradict the documentation** — the refactoring and "not a
+    feature" items found earlier, plus items keying a plan or behavior the docs
+    assign elsewhere.
+  - **Questions built on features that do not exist** — `.copilotignore`
+    (content exclusions are configured in settings), a `/define` chat command, a
+    "GitHub Productivity API", a "GitHub Copilot for Azure DevOps" plan,
+    fabricated REST endpoint paths.
+  - **Internal contradictions** — two items ask the same question with the same
+    options and key different answers; another keys Enterprise as the plan that
+    collects prompts while a second item keys Enterprise as one that excludes
+    them.
 
-  They were flagged rather than rewritten because there is no independent source
-  in this repo to correct them against. Anyone with the official study guide
-  should resolve them and remove the flags.
+  Nothing was silently corrected. The flags render as "Needs review" blocks in
+  practice mode and each one names the specific problem, so a reader with the
+  official study guide can resolve it and delete the flag. **A flagged question
+  still grades against its stored key** — the app does not know the key is
+  suspect.
 
 **Duplicates that were kept.** `--dupes` reports around 390 candidate pairs.
 Most are an artifact of the `answer` signal: dozens of plan questions have
@@ -332,7 +352,17 @@ plan names or responsible-AI principles.
 
 **The lexical ceiling still applies.** Questions testing one fact in genuinely
 different words are not reachable by `--dupes` at any threshold. Reading the
-bank grouped by topic is the only way to find those, and that has not been done.
+bank grouped by topic is the only way to find those. That reading has now
+happened once, during the explanation rewrite, and it turned up the contradictory
+pairs recorded above — but it was done for explanation accuracy, not as a
+systematic duplicate hunt.
+
+**What is still unverified.** The 272 questions without a `review` flag were
+read against the documentation and their keys looked defensible, which is weaker
+than saying each was confirmed against a citation. Product naming is the
+likeliest source of residual error: the bank predates the plan rename (Copilot
+Individual is now Copilot Pro) and the January 2026 feature additions, so items
+about plans and features can be stale without being wrong in their own frame.
 
 ---
 
