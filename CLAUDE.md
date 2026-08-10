@@ -298,12 +298,14 @@ against primary sources (see below). The answer keys themselves were **not**
 touched, so an explanation and its key can still disagree; where they do, the
 question carries a `review` flag saying so.
 
-**Transcription artifacts.** The text shows signs of speech-to-text or OCR
-capture: stray periods mid-sentence ("Use a. gitignore file"), doubled
+**Transcription artifacts.** The text showed heavy signs of speech-to-text or
+OCR capture: stray periods mid-sentence ("Use a. gitignore file"), doubled
 boilerplate ("((Choose two.).)"), inconsistent capitalization of product names
-("GitHub Copilot business"), and at least one choice with fragments of the
-option list embedded in it (`[184]`, "code. b. c. by deleting existing tests.").
-These are cosmetic and were left alone; the answer keys are what matter.
+("GitHub Copilot business"), OCR corruptions of ordinary words (`idees` for
+IDEs, `CML` for SAML, `HIPPA`, `AL generated`, `Iwways`, `New General Public
+License` for GNU), and several choices with fragments of the option list
+embedded in them. **These have now been copy-edited** — see the copy pass
+below. The answer keys were never what was wrong with them.
 
 **What was changed here, and only this:**
 
@@ -334,12 +336,13 @@ These are cosmetic and were left alone; the answer keys are what matter.
   is the authority on scope; the Copilot product documentation is the authority
   on behavior. What was done:
 
-  **Every edit is marked in the data.** All 25 changed questions carry a
-  `corrected` field naming what was changed and why, which the app shows as an
-  "Answer corrected" block next to the explanation. Nothing was altered
-  silently, and a reader can always see where this repo departs from the source
-  material. The six dropped questions are listed below rather than in the data,
-  since there is no record left to attach a field to.
+  **Every edit is marked in the data.** All 25 questions changed by this step
+  carry a `corrected` field naming what was changed and why, which the app
+  shows as an "Answer corrected" block next to the explanation. Nothing was
+  altered silently, and a reader can always see where this repo departs from
+  the source material. The six dropped questions are listed below rather than
+  in the data, since there is no record left to attach a field to. (The later
+  copy pass added 13 more `corrected` entries, for 38 in total.)
 
   - **19 keys corrected.** Eleven were corrupt multi-answer keys — every option
     marked correct, or two keyed options contradicting each other — collapsed to
@@ -364,6 +367,36 @@ These are cosmetic and were left alone; the answer keys are what matter.
     different question, so they carry `review` notes instead. **A flagged
     question still grades against its stored key** — the app does not know the
     key is suspect.
+
+- **The whole bank was copy-edited.** Every stem and every choice was read and
+  reworded where the writing was broken: 123 stems and 477 choices changed.
+  **No answer key, choice label, explanation, or `review` flag was touched** —
+  that invariant is checked by diffing against the pre-edit commit, and it is
+  the check to re-run after any future copy pass. The work was:
+
+  - **A mechanical pass** for defects with one right answer: 158 choices that
+    began lowercase, `,.` and `..` tails, `((Select two.).)` boilerplate,
+    `. gitignore` / `GitHub. com` spacing, plan-name casing (`GitHub Copilot
+    business` → `Business`), and a few missing hyphens.
+  - **A reading pass** for everything else: OCR corruptions, options whose
+    parallelism was broken, stems that ran two sentences together, prompts
+    written as bare text where quoting makes the question legible, and
+    `(Select two.)` counts that had drifted from the key.
+  - **13 questions carry a new `corrected` field** (taking the total from 25 to
+    38), because the edit went beyond copy-editing. Four had the previous
+    question's answer pasted onto the front of the stem (`[156]`, `[161]`,
+    `[176]`, `[178]`). Four had option-list fragments embedded inside a choice
+    (`[179]`, `[241]`, `[268]`, `[290]`) — in `[290]` this had made the
+    distractor longer and more detailed than the keyed answer, and in `[268]`
+    one choice carried a full copy of two others. Five had a stem that referred
+    to a scenario it never described — "this requirement", "this behavior",
+    "this code refactoring task" — leaving the question unanswerable; the
+    scenario was restored from the question's own explanation or options
+    (`[73]`, `[111]`, `[237]`, `[272]`, `[283]`).
+
+  Pure copy-editing is deliberately **not** marked with `corrected`. The field
+  means the meaning of the question or its key changed, not that the prose was
+  tidied; marking 600 wording fixes would bury the 38 entries that matter.
 
 **Duplicates that were kept.** `--dupes` reports around 390 candidate pairs.
 Most are an artifact of the `answer` signal: dozens of plan questions have
