@@ -1,0 +1,4151 @@
+[
+ {
+  "q": "Which GitHub Copilot capability is designed to handle a multi-step coding task by determining relevant files, making edits, running tools, and iterating on the result?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Inline suggestions"
+   },
+   {
+    "label": "B",
+    "text": "Agent mode"
+   },
+   {
+    "label": "C",
+    "text": "Public code matching"
+   },
+   {
+    "label": "D",
+    "text": "Copilot usage metrics"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Agent mode is intended for agentic, multi-step development work. It can reason about the task, choose relevant context and tools, make changes, and iterate based on results rather than merely completing the current line.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the primary purpose of Model Context Protocol (MCP) when used with GitHub Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To retrain Copilot on an organization's repositories"
+   },
+   {
+    "label": "B",
+    "text": "To provide a standardized way for Copilot to access external tools and data sources"
+   },
+   {
+    "label": "C",
+    "text": "To replace GitHub Actions"
+   },
+   {
+    "label": "D",
+    "text": "To block suggestions that match public code"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "MCP extends Copilot by exposing external tools and data sources through a standardized protocol, allowing agentic workflows to reach systems beyond the immediate editor or repository.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An organization has configured content exclusions for sensitive files. Which statement is important when developers use Agent mode in Copilot Chat?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Content exclusions are always enforced by Agent mode"
+   },
+   {
+    "label": "B",
+    "text": "Agent mode does not support content exclusion, so exclusions should not be the only protection for sensitive content"
+   },
+   {
+    "label": "C",
+    "text": "Agent mode automatically converts exclusions into .gitignore entries"
+   },
+   {
+    "label": "D",
+    "text": "Agent mode is disabled for the entire repository"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "GitHub documents that Agent mode in Copilot Chat in IDEs does not support content exclusion. Organizations should therefore use repository permissions and other security controls rather than treating content exclusions as a universal access-control boundary.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which GitHub Copilot interfaces currently do NOT support content exclusion? Choose three.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "GitHub Copilot CLI"
+   },
+   {
+    "label": "B",
+    "text": "Copilot cloud agent"
+   },
+   {
+    "label": "C",
+    "text": "Agent mode in Copilot Chat in IDEs"
+   },
+   {
+    "label": "D",
+    "text": "Standard inline suggestions in supported IDEs"
+   },
+   {
+    "label": "E",
+    "text": "Standard Copilot Chat where content exclusion is supported"
+   }
+  ],
+  "correct": [
+   "A",
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "GitHub specifically identifies Copilot CLI, Copilot cloud agent, and Agent mode in Copilot Chat in IDEs as not supporting content exclusion.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "What is GitHub Copilot CLI primarily intended to provide?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A terminal-native AI coding agent that can answer questions, work with code, and interact with GitHub"
+   },
+   {
+    "label": "B",
+    "text": "A replacement for Git version control"
+   },
+   {
+    "label": "C",
+    "text": "A graphical pull request editor"
+   },
+   {
+    "label": "D",
+    "text": "A local LLM that never communicates with external services"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The current Copilot CLI is a terminal-native AI agent. It can answer questions, write and debug code, perform project tasks, and interact with GitHub without requiring the developer to leave the terminal.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which command starts an interactive session in the current GitHub Copilot CLI?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "gh copilot suggest"
+   },
+   {
+    "label": "B",
+    "text": "copilot"
+   },
+   {
+    "label": "C",
+    "text": "github copilot --chat"
+   },
+   {
+    "label": "D",
+    "text": "copilot start-agent"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "The current standalone GitHub Copilot CLI starts an interactive session with the `copilot` command. Older material centered on `gh copilot suggest` describes the legacy GitHub CLI extension.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which option allows GitHub Copilot CLI to receive a prompt non-interactively and then exit when the task is complete?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "-p or --prompt"
+   },
+   {
+    "label": "B",
+    "text": "--interactive-only"
+   },
+   {
+    "label": "C",
+    "text": "--fim"
+   },
+   {
+    "label": "D",
+    "text": "--workspace"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The `-p` or `--prompt` option provides a prompt directly on the command line, enabling programmatic use in terminals, scripts, and automation.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which command is a documented cross-platform way to install the current GitHub Copilot CLI?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "npm install -g @github/copilot"
+   },
+   {
+    "label": "B",
+    "text": "npm install -g gh-copilot-chat"
+   },
+   {
+    "label": "C",
+    "text": "git install copilot"
+   },
+   {
+    "label": "D",
+    "text": "gh extension install microsoft/copilot"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "GitHub documents `npm install -g @github/copilot` as a cross-platform installation method. The npm installation requires a supported Node.js version.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What happens the first time Copilot CLI is started in a project directory?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It automatically commits all uncommitted changes"
+   },
+   {
+    "label": "B",
+    "text": "It can ask you to confirm that you trust the files in the current directory"
+   },
+   {
+    "label": "C",
+    "text": "It uploads the entire repository into a public knowledge base"
+   },
+   {
+    "label": "D",
+    "text": "It disables Git hooks"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Copilot CLI uses trusted-directory controls. On startup it can ask whether you trust the files in and below the directory from which the CLI was launched.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Why should a developer be cautious about granting Copilot CLI broad automatic tool permissions?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It prevents Copilot from reading source files"
+   },
+   {
+    "label": "B",
+    "text": "Copilot may be able to run shell commands and modify files with the same access available to the user without asking each time"
+   },
+   {
+    "label": "C",
+    "text": "It permanently disables authentication"
+   },
+   {
+    "label": "D",
+    "text": "It makes all repository content public"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Broad approval options can allow the agent to use tools, modify files, and execute commands without repeated confirmation. Permission scope should therefore be granted deliberately.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is the purpose of plan mode in GitHub Copilot CLI?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To build and refine a structured implementation plan before writing code"
+   },
+   {
+    "label": "B",
+    "text": "To estimate Copilot subscription costs"
+   },
+   {
+    "label": "C",
+    "text": "To create GitHub Projects automatically"
+   },
+   {
+    "label": "D",
+    "text": "To disable agentic capabilities"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Plan mode analyzes a request, can ask clarifying questions, and produces a structured implementation plan before code is written, helping the developer catch misunderstandings early.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "What does the @ shortcut do in an interactive GitHub Copilot CLI session?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Mentions files to include in context"
+   },
+   {
+    "label": "B",
+    "text": "Assigns a GitHub issue"
+   },
+   {
+    "label": "C",
+    "text": "Approves all tools"
+   },
+   {
+    "label": "D",
+    "text": "Starts Agent mode in the IDE"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "In Copilot CLI, `@` is used to mention files and bring them explicitly into the session context.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is the purpose of subagents in agentic Copilot workflows?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To permanently replace the main agent"
+   },
+   {
+    "label": "B",
+    "text": "To offload specialized work into separate context so the main agent's context is not unnecessarily cluttered"
+   },
+   {
+    "label": "C",
+    "text": "To bypass repository permissions"
+   },
+   {
+    "label": "D",
+    "text": "To train new foundation models"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Subagents can perform specialized tasks with their own context, helping preserve the main agent's context window while delegating work to an agent suited to the task.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which scenario is the best fit for a custom subagent?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A specialized security reviewer with a restricted set of tools"
+   },
+   {
+    "label": "B",
+    "text": "Changing the GitHub billing owner"
+   },
+   {
+    "label": "C",
+    "text": "Replacing repository branch protection"
+   },
+   {
+    "label": "D",
+    "text": "Increasing an LLM's context-window size"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Custom agents can be tailored to a specialized role and given an appropriate toolset. A reviewer, for example, can be configured to analyze code without receiving tools that modify files.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which statement best describes Copilot Edits compared with simple inline completion?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It is intended to help make coordinated edits rather than only predict the next text at the cursor"
+   },
+   {
+    "label": "B",
+    "text": "It only changes GitHub account settings"
+   },
+   {
+    "label": "C",
+    "text": "It disables repository context"
+   },
+   {
+    "label": "D",
+    "text": "It is the public-code duplication filter"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot Edits is aimed at making requested code changes across relevant files, while inline completion primarily predicts code at the current editing location.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the main benefit of GitHub Copilot Spaces?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They provide a curated collection of context that Copilot can use for a particular project or topic"
+   },
+   {
+    "label": "B",
+    "text": "They create isolated Git branches for every prompt"
+   },
+   {
+    "label": "C",
+    "text": "They replace organization permissions"
+   },
+   {
+    "label": "D",
+    "text": "They permanently fine-tune the underlying model"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot Spaces let users collect relevant sources and instructions so conversations can be grounded in context for a particular task, project, or subject.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which types of sources can be added to a Copilot Space? Choose three.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "GitHub repositories or individual files"
+   },
+   {
+    "label": "B",
+    "text": "GitHub issues and pull requests"
+   },
+   {
+    "label": "C",
+    "text": "Uploaded or free-text content"
+   },
+   {
+    "label": "D",
+    "text": "Only compiled executable binaries"
+   },
+   {
+    "label": "E",
+    "text": "Only content already included in the model's training data"
+   }
+  ],
+  "correct": [
+   "A",
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Spaces can include GitHub repositories/files, links to GitHub issues and pull requests, uploaded files, and free-text material to provide useful context.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "When an entire repository is attached to a Copilot Space, how is it generally used as context?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The entire repository is inserted into every prompt"
+   },
+   {
+    "label": "B",
+    "text": "Copilot searches the repository and retrieves content relevant to the question"
+   },
+   {
+    "label": "C",
+    "text": "The repository is fine-tuned into a new model"
+   },
+   {
+    "label": "D",
+    "text": "Only the README is available"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Attaching a repository does not mean every file is loaded into each prompt. Copilot retrieves relevant content from the repository based on the user's question.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "What is a repository-wide custom instructions file commonly used by GitHub Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": ".github/copilot-instructions.md"
+   },
+   {
+    "label": "B",
+    "text": ".github/copilot-ignore"
+   },
+   {
+    "label": "C",
+    "text": "copilot.config.exe"
+   },
+   {
+    "label": "D",
+    "text": ".git/copilot-policy"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "`.github/copilot-instructions.md` can contain repository-wide natural-language guidance that helps Copilot follow project conventions and expectations.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the purpose of path-specific custom instruction files?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To apply different Copilot guidance to particular files or directories"
+   },
+   {
+    "label": "B",
+    "text": "To hide files from Git"
+   },
+   {
+    "label": "C",
+    "text": "To change repository ownership"
+   },
+   {
+    "label": "D",
+    "text": "To grant Copilot administrator privileges"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Path-specific instructions allow teams to provide guidance that applies only to matching files or directories, which is useful when different parts of a repository follow different conventions.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "In a path-specific `*.instructions.md` file, what is the purpose of the `applyTo` frontmatter field?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It uses glob patterns to identify which files or directories the instructions apply to"
+   },
+   {
+    "label": "B",
+    "text": "It specifies the Copilot subscription plan"
+   },
+   {
+    "label": "C",
+    "text": "It chooses the foundation model used for training"
+   },
+   {
+    "label": "D",
+    "text": "It assigns pull request reviewers"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The `applyTo` field uses glob patterns to scope instructions to relevant files, such as TypeScript files or a particular application directory.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Why should custom instructions generally be clear and concise?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Long or vague instructions can consume useful context and may be followed less reliably"
+   },
+   {
+    "label": "B",
+    "text": "GitHub charges per character in instruction files"
+   },
+   {
+    "label": "C",
+    "text": "Instruction files cannot contain natural language"
+   },
+   {
+    "label": "D",
+    "text": "Copilot automatically deletes instructions longer than one line"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot has finite context and non-deterministic behavior. Clear, specific instructions reduce ambiguity and avoid wasting context on irrelevant guidance.",
+  "topic": "General"
+ },
+ {
+  "q": "What is a prompt file useful for in GitHub Copilot workflows?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Reusing a well-defined prompt so similar tasks can be performed consistently"
+   },
+   {
+    "label": "B",
+    "text": "Storing Copilot billing information"
+   },
+   {
+    "label": "C",
+    "text": "Disabling authentication"
+   },
+   {
+    "label": "D",
+    "text": "Replacing source-control commits"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Reusable prompt files help standardize frequently repeated interactions, preserving useful task instructions instead of requiring developers to recreate the same prompt each time.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which statement best describes GitHub Copilot code review?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It reviews code changes and can provide comments and suggested fixes"
+   },
+   {
+    "label": "B",
+    "text": "It automatically approves every pull request it reviews"
+   },
+   {
+    "label": "C",
+    "text": "It replaces required human reviewers"
+   },
+   {
+    "label": "D",
+    "text": "It only works with JavaScript"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot code review analyzes changes and provides feedback, often including suggested changes that developers can apply.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What type of pull request review does Copilot code review leave on GitHub?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Approve"
+   },
+   {
+    "label": "B",
+    "text": "Request changes"
+   },
+   {
+    "label": "C",
+    "text": "Comment"
+   },
+   {
+    "label": "D",
+    "text": "Dismissed"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Copilot code review leaves a Comment review. It does not submit Approve or Request changes reviews.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Does a Copilot code review satisfy a branch rule requiring an approving pull request review?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Yes, always"
+   },
+   {
+    "label": "B",
+    "text": "Yes, but only on private repositories"
+   },
+   {
+    "label": "C",
+    "text": "No; Copilot's review does not count as a required approval"
+   },
+   {
+    "label": "D",
+    "text": "Only if the repository has no human contributors"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Copilot code review provides comments rather than an approving review, so it does not count toward required approvals and does not replace human approval requirements.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "After pushing substantial new changes to a pull request that Copilot already reviewed, what may be necessary?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Request a re-review unless automatic review of new pushes is configured"
+   },
+   {
+    "label": "B",
+    "text": "Delete and recreate the repository"
+   },
+   {
+    "label": "C",
+    "text": "Disable custom instructions"
+   },
+   {
+    "label": "D",
+    "text": "Retrain Copilot"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot does not necessarily re-review later pushes automatically. A developer can request a re-review, or the repository can be configured to review new pushes automatically.",
+  "topic": "General"
+ },
+ {
+  "q": "What does the 'Fix with Copilot' workflow allow a developer to do from eligible Copilot code-review feedback?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Delegate implementation of the suggested fix to Copilot"
+   },
+   {
+    "label": "B",
+    "text": "Mark the Copilot review as a legally required approval"
+   },
+   {
+    "label": "C",
+    "text": "Retrain the model using the pull request"
+   },
+   {
+    "label": "D",
+    "text": "Disable branch protection"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Eligible review comments can be handed to Copilot so an agent can implement the requested fix, after which the resulting changes still need to be reviewed.",
+  "topic": "General"
+ },
+ {
+  "q": "Which statement best describes automatic Copilot code review?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It can be configured to trigger reviews automatically at selected points in the pull request lifecycle"
+   },
+   {
+    "label": "B",
+    "text": "It automatically merges every pull request that passes review"
+   },
+   {
+    "label": "C",
+    "text": "It bypasses repository rulesets"
+   },
+   {
+    "label": "D",
+    "text": "It only runs when a developer types /fix"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Repositories and organizations can configure automatic Copilot reviews so feedback is generated without manually requesting Copilot on every eligible pull request.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which feature predicts likely subsequent edits based on the changes a developer is making, rather than only completing text at the current cursor position?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Next edit suggestions"
+   },
+   {
+    "label": "B",
+    "text": "Audit log"
+   },
+   {
+    "label": "C",
+    "text": "Content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Spaces"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Next edit suggestions anticipate where and how the developer is likely to edit next, extending assistance beyond ordinary inline completion at the current cursor.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "For a Copilot Business or Enterprise user, what may be required before next edit suggestions can be used when the feature is governed as an editor preview?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The providing organization or enterprise must enable the relevant Editor preview features policy"
+   },
+   {
+    "label": "B",
+    "text": "The repository must be public"
+   },
+   {
+    "label": "C",
+    "text": "Public-code matching must be disabled"
+   },
+   {
+    "label": "D",
+    "text": "The user must own the organization"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Managed Copilot plans can control preview functionality through policy. GitHub documents the Editor preview features setting as relevant to next edit suggestions.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which statement best distinguishes Copilot coding assistance from Copilot code review?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Coding assistance helps create or modify code, while code review analyzes changes and provides review feedback"
+   },
+   {
+    "label": "B",
+    "text": "Code review is only for billing administrators"
+   },
+   {
+    "label": "C",
+    "text": "Coding assistance cannot use repository context"
+   },
+   {
+    "label": "D",
+    "text": "There is no functional difference"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Coding assistance focuses on helping produce and modify code, whereas Copilot code review evaluates code changes and surfaces potential issues or improvements.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants Copilot to use an external issue tracker during an agentic workflow. Which capability is most directly relevant?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "MCP server integration"
+   },
+   {
+    "label": "B",
+    "text": "Public code filtering"
+   },
+   {
+    "label": "C",
+    "text": "FIM completion"
+   },
+   {
+    "label": "D",
+    "text": "Audit log retention"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP can expose external services such as issue trackers to Copilot as tools or data sources, allowing an agent to incorporate them into a workflow.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "An enterprise does not want developers connecting arbitrary MCP servers to Copilot. What type of control should administrators examine?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The organization's or enterprise's Copilot MCP policy"
+   },
+   {
+    "label": "B",
+    "text": "The repository's .gitignore file"
+   },
+   {
+    "label": "C",
+    "text": "Git commit signing"
+   },
+   {
+    "label": "D",
+    "text": "The user's browser history"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP availability can be governed through Copilot policy for organizations and enterprises. MCP is an extension point with security implications and should be managed accordingly.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why can MCP integrations increase the security impact of an agentic Copilot session?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They can give Copilot access to additional external tools, systems, and data"
+   },
+   {
+    "label": "B",
+    "text": "They make all LLM output deterministic"
+   },
+   {
+    "label": "C",
+    "text": "They remove the need for authentication"
+   },
+   {
+    "label": "D",
+    "text": "They prevent the agent from using tools"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP expands what an agent can reach and do. Administrators and developers should therefore consider the trustworthiness, permissions, and data exposure associated with each MCP server.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer asks Copilot to implement an issue and Copilot creates changes on a branch and opens a pull request. Which principle still applies?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The generated changes should be reviewed and validated before merging"
+   },
+   {
+    "label": "B",
+    "text": "Agent-created pull requests are automatically trustworthy"
+   },
+   {
+    "label": "C",
+    "text": "Human review is prohibited for agent-created work"
+   },
+   {
+    "label": "D",
+    "text": "The pull request bypasses normal repository controls"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agentic automation does not remove the need for validation. Copilot's output should be reviewed, tested, and handled through normal repository controls.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "What is an Agent Session in GitHub Copilot primarily used for?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Tracking and interacting with an ongoing agentic task"
+   },
+   {
+    "label": "B",
+    "text": "Storing a permanent copy of the foundation model"
+   },
+   {
+    "label": "C",
+    "text": "Replacing a GitHub organization"
+   },
+   {
+    "label": "D",
+    "text": "Configuring public-code matching"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agent sessions provide a way to observe and interact with agentic work, including monitoring progress and steering the agent while a task is underway.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "While an agent session is running, what is a useful way to correct or narrow the agent's direction?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Steer the session with additional instructions"
+   },
+   {
+    "label": "B",
+    "text": "Delete the Git history"
+   },
+   {
+    "label": "C",
+    "text": "Disable all repository permissions permanently"
+   },
+   {
+    "label": "D",
+    "text": "Change the organization's billing cycle"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agentic workflows are steerable. Additional instructions can redirect or refine the work without requiring the user to discard the entire task.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which task is better suited to ordinary inline suggestions than to an autonomous agentic workflow?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Completing a small function body while the developer is typing"
+   },
+   {
+    "label": "B",
+    "text": "Implementing a feature across many files and running tests"
+   },
+   {
+    "label": "C",
+    "text": "Investigating a failing build and iterating on fixes"
+   },
+   {
+    "label": "D",
+    "text": "Delegating an issue that requires multiple coordinated changes"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Inline suggestions are efficient for local, immediate completions. Multi-file, iterative tasks are better candidates for agentic capabilities.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which task is best suited to Agent mode rather than a single inline completion?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Renaming one local variable as you type"
+   },
+   {
+    "label": "B",
+    "text": "Implementing a feature that requires edits in several files and running tests to validate the result"
+   },
+   {
+    "label": "C",
+    "text": "Completing the next parameter name"
+   },
+   {
+    "label": "D",
+    "text": "Accepting the next word of a suggestion"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Agent mode is designed for multi-step tasks where Copilot must plan, edit multiple locations, use tools, and react to test or command output.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which of the following is the best reason to use a reusable prompt file?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A team repeatedly performs the same kind of task and wants consistent instructions"
+   },
+   {
+    "label": "B",
+    "text": "A team wants to bypass access controls"
+   },
+   {
+    "label": "C",
+    "text": "A developer wants to hide code from Git"
+   },
+   {
+    "label": "D",
+    "text": "An administrator wants to assign Copilot seats"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Prompt files are useful when a task or workflow is repeated. They make successful prompt structure reusable and reduce variation between repeated requests.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is a key difference between providing context and giving instructions to Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Context supplies relevant information; instructions describe how Copilot should approach or format the task"
+   },
+   {
+    "label": "B",
+    "text": "Context and instructions are always identical"
+   },
+   {
+    "label": "C",
+    "text": "Instructions can only contain source code"
+   },
+   {
+    "label": "D",
+    "text": "Context permanently retrains the model"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Context grounds Copilot with relevant material, while instructions guide behavior, constraints, conventions, or expected output. Effective prompts often use both.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "A developer gives Copilot a large number of unrelated files while asking about one function. What is a likely consequence?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Irrelevant context can compete with useful context and reduce response quality"
+   },
+   {
+    "label": "B",
+    "text": "Copilot permanently learns all files"
+   },
+   {
+    "label": "C",
+    "text": "The context window becomes unlimited"
+   },
+   {
+    "label": "D",
+    "text": "Copilot automatically deletes unrelated files"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "More context is not automatically better. Relevant, targeted context helps the model focus, while unrelated material can consume context capacity and distract from the task.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Which workflow best demonstrates responsible use of Copilot for legacy-code modernization?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Ask Copilot for modernization changes, review the proposed changes, run tests, and validate behavior"
+   },
+   {
+    "label": "B",
+    "text": "Accept every generated migration without testing"
+   },
+   {
+    "label": "C",
+    "text": "Assume newer syntax guarantees equivalent behavior"
+   },
+   {
+    "label": "D",
+    "text": "Disable version control before modernization"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate modernization, but generated migrations can alter behavior or introduce errors. Review and testing remain necessary.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "How can Copilot help when creating tests for existing code? Choose three.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Generate unit or integration test scaffolding"
+   },
+   {
+    "label": "B",
+    "text": "Suggest edge cases"
+   },
+   {
+    "label": "C",
+    "text": "Help write assertions"
+   },
+   {
+    "label": "D",
+    "text": "Guarantee complete test coverage"
+   },
+   {
+    "label": "E",
+    "text": "Prove the implementation has no defects"
+   }
+  ],
+  "correct": [
+   "A",
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Copilot can accelerate test creation by generating tests, surfacing edge cases, and suggesting assertions, but it cannot guarantee complete coverage or defect-free code.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A Copilot-generated security fix appears plausible. What is the appropriate next step?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Validate the change with testing, review, and appropriate security tooling or guidance"
+   },
+   {
+    "label": "B",
+    "text": "Merge immediately because Copilot identified it as a security fix"
+   },
+   {
+    "label": "C",
+    "text": "Disable branch protection"
+   },
+   {
+    "label": "D",
+    "text": "Assume the generated code cannot introduce a new vulnerability"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can suggest security improvements, but generated output remains probabilistic and must be independently reviewed and validated.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Which statement about preview features and the GH-300 exam is most accurate according to Microsoft's study guide?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The exam can never contain preview features"
+   },
+   {
+    "label": "B",
+    "text": "Most questions focus on generally available features, but commonly used preview features may appear"
+   },
+   {
+    "label": "C",
+    "text": "Every question is about preview functionality"
+   },
+   {
+    "label": "D",
+    "text": "Preview features are tested only in renewal assessments"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Microsoft states that most exam questions cover generally available features, while commonly used preview features may also appear.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which current GH-300 objective explicitly appears in the August 7, 2026 study guide?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use Agent Mode, Copilot Edits, and MCP to streamline development and workflows"
+   },
+   {
+    "label": "B",
+    "text": "Train a new foundation model from scratch"
+   },
+   {
+    "label": "C",
+    "text": "Administer Kubernetes clusters with Copilot"
+   },
+   {
+    "label": "D",
+    "text": "Replace GitHub Actions with Copilot"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The August 7, 2026 objectives explicitly call out Agent Mode, Copilot Edits, and MCP, along with agent sessions and delegation to subagents.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which current GH-300 objective was added to the Copilot CLI section of the August 7, 2026 skills outline?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use Copilot CLI interactively and in sessions"
+   },
+   {
+    "label": "B",
+    "text": "Build a custom Linux kernel"
+   },
+   {
+    "label": "C",
+    "text": "Configure Azure subscriptions"
+   },
+   {
+    "label": "D",
+    "text": "Create a GitHub Enterprise Server appliance"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The updated skills outline specifically covers defining Copilot CLI, installing it, understanding key commands, using it interactively and in sessions, and using it for scripts and file management.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which group of features is explicitly named in the August 7, 2026 GH-300 objectives under GitHub Copilot features and capabilities?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Spaces, Spark, pull request summaries, and customizable review standards through instruction files"
+   },
+   {
+    "label": "B",
+    "text": "GitHub Pages, Dependabot billing, and Codespaces port forwarding only"
+   },
+   {
+    "label": "C",
+    "text": "Azure Boards, Azure Pipelines, and Microsoft Teams only"
+   },
+   {
+    "label": "D",
+    "text": "Git LFS, submodules, and release assets only"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The current skills outline explicitly names Spaces, Spark, pull request summaries, and customizable review standards using instruction files.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the purpose of GitHub Spark in the context of current Copilot capabilities?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To help create and iterate on applications using natural-language-driven development"
+   },
+   {
+    "label": "B",
+    "text": "To manage Git object compression"
+   },
+   {
+    "label": "C",
+    "text": "To configure organization audit logs"
+   },
+   {
+    "label": "D",
+    "text": "To replace the Copilot public-code filter"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Spark is part of GitHub's AI-assisted application-building experience and is explicitly named among the current GH-300 Copilot capabilities.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which statement about organization-wide Copilot policy is most accurate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Administrators can govern feature availability, including features in IDEs and on GitHub.com"
+   },
+   {
+    "label": "B",
+    "text": "Every developer can override enforced enterprise policy"
+   },
+   {
+    "label": "C",
+    "text": "Copilot policy can only be configured in .gitignore"
+   },
+   {
+    "label": "D",
+    "text": "Policies affect only public repositories"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Current GH-300 objectives include organization-wide policy management, enabling Copilot code review policies, and managing feature availability across IDE and GitHub.com experiences.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is a useful role of organization audit-log events in Copilot administration?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Provide accountability for administrative and policy-related actions"
+   },
+   {
+    "label": "B",
+    "text": "Store every generated code completion verbatim"
+   },
+   {
+    "label": "C",
+    "text": "Automatically approve Copilot pull requests"
+   },
+   {
+    "label": "D",
+    "text": "Fine-tune the Copilot model"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Audit logs are used to track relevant administrative events and configuration changes, supporting governance and accountability rather than storing the content of every suggestion.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "A developer receives a plausible Copilot-generated authentication routine. What should they do before using it in production?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Review, test, and validate it against security requirements"
+   },
+   {
+    "label": "B",
+    "text": "Assume it is secure because Copilot generated it"
+   },
+   {
+    "label": "C",
+    "text": "Merge it directly if it compiles"
+   },
+   {
+    "label": "D",
+    "text": "Disable code review to avoid conflicting feedback"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot output requires human review and validation, especially for security-sensitive code.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which risk is most directly associated with treating generative AI output as authoritative?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Hallucinated or inaccurate output can be accepted without verification"
+   },
+   {
+    "label": "B",
+    "text": "The IDE will stop compiling code"
+   },
+   {
+    "label": "C",
+    "text": "Git will delete the repository"
+   },
+   {
+    "label": "D",
+    "text": "Copilot will always expose private repositories"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Generative models can produce confident but incorrect output, so verification is a core responsible-use practice.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "A team wants to reduce bias in an AI-assisted workflow. Which approach is most appropriate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use diverse evaluation data and human oversight"
+   },
+   {
+    "label": "B",
+    "text": "Use the largest possible prompt regardless of relevance"
+   },
+   {
+    "label": "C",
+    "text": "Remove all testing"
+   },
+   {
+    "label": "D",
+    "text": "Assume model output is neutral"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Diverse evaluation and human oversight help identify and mitigate unfair or biased behavior.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "Which statement best reflects transparency in responsible AI use?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Users should understand important limitations and when AI is being used"
+   },
+   {
+    "label": "B",
+    "text": "AI output should never be reviewed"
+   },
+   {
+    "label": "C",
+    "text": "Model limitations should be hidden"
+   },
+   {
+    "label": "D",
+    "text": "Every suggestion should be accepted automatically"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Transparency includes making AI use and meaningful limitations understandable to users.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "Why is human oversight still important when Copilot can run multi-step agentic tasks?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Autonomy increases the scope of possible mistakes, so results and actions still need supervision"
+   },
+   {
+    "label": "B",
+    "text": "Agentic systems are deterministic"
+   },
+   {
+    "label": "C",
+    "text": "Agents cannot modify code"
+   },
+   {
+    "label": "D",
+    "text": "Human review is only required for free plans"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agentic workflows can take broader actions, which makes appropriate oversight and validation more important.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "What is the safest interpretation of a Copilot-generated explanation of unfamiliar code?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Treat it as a hypothesis to verify against the code and tests"
+   },
+   {
+    "label": "B",
+    "text": "Treat it as definitive documentation"
+   },
+   {
+    "label": "C",
+    "text": "Assume it reflects the original author's intent"
+   },
+   {
+    "label": "D",
+    "text": "Use it to bypass code review"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Generated explanations can be incomplete or wrong and should be checked against authoritative evidence.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Copilot proposes a dependency version that does not exist. What type of GenAI limitation does this illustrate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Hallucination"
+   },
+   {
+    "label": "B",
+    "text": "Deterministic execution"
+   },
+   {
+    "label": "C",
+    "text": "Content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Duplicate detection"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "A fabricated but plausible dependency is an example of hallucination.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which action best protects intellectual property when Copilot returns code similar to public code?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use public-code matching/reference information and review licensing implications"
+   },
+   {
+    "label": "B",
+    "text": "Assume all generated code is license-free"
+   },
+   {
+    "label": "C",
+    "text": "Disable repository permissions"
+   },
+   {
+    "label": "D",
+    "text": "Commit the code without review"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Public-code controls and references help developers evaluate matching code and licensing implications.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A generated unit test passes, but it only tests the happy path. What should the developer do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Add meaningful edge and failure cases based on requirements"
+   },
+   {
+    "label": "B",
+    "text": "Assume passing means coverage is complete"
+   },
+   {
+    "label": "C",
+    "text": "Delete existing tests"
+   },
+   {
+    "label": "D",
+    "text": "Disable Copilot"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Generated tests can miss important cases; developers remain responsible for adequate test design.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Which principle is most relevant when ensuring an AI-assisted feature works for people with different abilities?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Inclusiveness"
+   },
+   {
+    "label": "B",
+    "text": "Commit frequency"
+   },
+   {
+    "label": "C",
+    "text": "Branch naming"
+   },
+   {
+    "label": "D",
+    "text": "Token counting"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Inclusiveness focuses on designing systems that empower and accommodate people with diverse needs.",
+  "topic": "General"
+ },
+ {
+  "q": "A developer wants Copilot to focus on one specific file that is not currently open. What should they do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Explicitly add or reference that file as context"
+   },
+   {
+    "label": "B",
+    "text": "Rename the repository"
+   },
+   {
+    "label": "C",
+    "text": "Increase Git history depth"
+   },
+   {
+    "label": "D",
+    "text": "Disable inline suggestions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Explicitly supplying relevant context is more reliable than expecting Copilot to infer an unopened file.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Why can keeping unrelated files open sometimes reduce the usefulness of automatically gathered context?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Irrelevant context can compete with information relevant to the task"
+   },
+   {
+    "label": "B",
+    "text": "Copilot permanently trains on open tabs"
+   },
+   {
+    "label": "C",
+    "text": "Open tabs disable the LLM"
+   },
+   {
+    "label": "D",
+    "text": "Git ignores open files"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Context should be relevant and focused; unrelated material can distract the model.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "Which is the best prompt for generating a function?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Implement parseDate(input) in TypeScript; return null for invalid ISO dates and include tests for leap years"
+   },
+   {
+    "label": "B",
+    "text": "Write code"
+   },
+   {
+    "label": "C",
+    "text": "Make this better"
+   },
+   {
+    "label": "D",
+    "text": "Do something with dates"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "A specific goal, language, behavior, constraints, and success criteria produce better results.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "What is the main value of next edit suggestions?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They anticipate likely edits beyond the current cursor based on recent changes"
+   },
+   {
+    "label": "B",
+    "text": "They approve pull requests"
+   },
+   {
+    "label": "C",
+    "text": "They change Copilot billing"
+   },
+   {
+    "label": "D",
+    "text": "They block public code"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Next edit suggestions predict likely subsequent edits, extending assistance beyond ordinary completion.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants to accept only part of an inline suggestion. What capability is relevant?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Partial acceptance of a suggestion"
+   },
+   {
+    "label": "B",
+    "text": "MCP configuration"
+   },
+   {
+    "label": "C",
+    "text": "Audit logs"
+   },
+   {
+    "label": "D",
+    "text": "Content exclusion"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Supported editors allow developers to accept portions of suggestions rather than the entire completion.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which context is most useful when asking Copilot to fix a failing function?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The function, relevant error output, and related tests"
+   },
+   {
+    "label": "B",
+    "text": "Every file in every repository you own"
+   },
+   {
+    "label": "C",
+    "text": "Only the repository name"
+   },
+   {
+    "label": "D",
+    "text": "Your editor theme"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Relevant code, errors, and tests provide strong grounding for a debugging request.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "A Copilot response keeps referring to a previous task in the same chat. What is a reasonable remedy?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Start a fresh conversation or remove stale context"
+   },
+   {
+    "label": "B",
+    "text": "Add more unrelated history"
+   },
+   {
+    "label": "C",
+    "text": "Disable Git"
+   },
+   {
+    "label": "D",
+    "text": "Change the repository license"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Stale conversation history can bias responses toward an earlier task.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the benefit of giving Copilot examples of desired input and output?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They clarify expected behavior and format"
+   },
+   {
+    "label": "B",
+    "text": "They guarantee correctness"
+   },
+   {
+    "label": "C",
+    "text": "They increase repository permissions"
+   },
+   {
+    "label": "D",
+    "text": "They disable hallucinations"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Examples reduce ambiguity and are a form of few-shot prompting.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "Which prompt-engineering approach breaks a complex task into smaller, verifiable requests?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prompt decomposition"
+   },
+   {
+    "label": "B",
+    "text": "Zero-shot omission"
+   },
+   {
+    "label": "C",
+    "text": "Public-code filtering"
+   },
+   {
+    "label": "D",
+    "text": "Model retirement"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Decomposing a complex task can improve focus and make intermediate results easier to verify.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "A developer asks Copilot to 'optimize this' without identifying goals. Why is the prompt weak?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Optimization is ambiguous without criteria such as speed, memory, readability, or complexity"
+   },
+   {
+    "label": "B",
+    "text": "Copilot cannot edit code"
+   },
+   {
+    "label": "C",
+    "text": "Optimization requires a public repository"
+   },
+   {
+    "label": "D",
+    "text": "The prompt is too long"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Clear success criteria tell Copilot what kind of optimization is actually desired.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Agent mode runs tests after editing code and sees a failure. What behavior makes it agentic?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It can use the failure as feedback and iterate on the implementation"
+   },
+   {
+    "label": "B",
+    "text": "It must stop after the first edit"
+   },
+   {
+    "label": "C",
+    "text": "It permanently retrains itself"
+   },
+   {
+    "label": "D",
+    "text": "It bypasses repository permissions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agentic workflows can take actions, inspect results, and iterate toward the goal.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which task is most appropriate to delegate to a coding agent?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A well-scoped issue requiring coordinated code changes and tests"
+   },
+   {
+    "label": "B",
+    "text": "Choosing an employee's salary"
+   },
+   {
+    "label": "C",
+    "text": "Approving legal terms without review"
+   },
+   {
+    "label": "D",
+    "text": "Changing enterprise ownership"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Coding agents are suited to scoped software tasks that can be reviewed through normal development workflows.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What should a developer do when an agent proposes a shell command with destructive potential?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Inspect the command and deny or modify the action if it is unsafe"
+   },
+   {
+    "label": "B",
+    "text": "Approve it because the agent generated it"
+   },
+   {
+    "label": "C",
+    "text": "Disable version control first"
+   },
+   {
+    "label": "D",
+    "text": "Give the agent administrator access"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Tool actions should be reviewed according to their impact and granted only appropriate permissions.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Why are well-scoped tasks generally better for coding agents?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Clear boundaries improve planning, verification, and review"
+   },
+   {
+    "label": "B",
+    "text": "Agents cannot read text"
+   },
+   {
+    "label": "C",
+    "text": "Large tasks are always free"
+   },
+   {
+    "label": "D",
+    "text": "Scope has no effect on agent behavior"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Specific goals and boundaries make agentic work easier to execute and validate.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An agent has misunderstood a requirement midway through a task. What is preferable to silently accepting the result?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Steer it with corrective instructions"
+   },
+   {
+    "label": "B",
+    "text": "Merge immediately"
+   },
+   {
+    "label": "C",
+    "text": "Delete the issue"
+   },
+   {
+    "label": "D",
+    "text": "Disable tests"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agent sessions can be steered with additional instructions when the work is heading in the wrong direction.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is a practical advantage of delegating specialized investigation to a subagent?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It can isolate specialized context and return focused findings to the main workflow"
+   },
+   {
+    "label": "B",
+    "text": "It grants unlimited permissions"
+   },
+   {
+    "label": "C",
+    "text": "It removes the need for review"
+   },
+   {
+    "label": "D",
+    "text": "It changes the subscription plan"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Subagents can handle focused tasks without overloading the main agent's context.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A custom agent is intended only to review code. What is a sensible design choice?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Give it only the tools needed for read/review work"
+   },
+   {
+    "label": "B",
+    "text": "Give it unrestricted write and deployment access"
+   },
+   {
+    "label": "C",
+    "text": "Disable repository permissions"
+   },
+   {
+    "label": "D",
+    "text": "Make it an enterprise owner"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Least-privilege tool access reduces unnecessary risk.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the difference between agentic execution and ordinary chat advice?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Agentic execution can take tool-driven actions and iterate, while ordinary chat may only return guidance"
+   },
+   {
+    "label": "B",
+    "text": "Chat always has more permissions"
+   },
+   {
+    "label": "C",
+    "text": "Agentic execution never uses context"
+   },
+   {
+    "label": "D",
+    "text": "There is no difference"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agents can perform actions through tools, not merely describe what a developer could do.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why should agent-generated changes still pass CI?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Automated validation helps detect regressions and errors in generated changes"
+   },
+   {
+    "label": "B",
+    "text": "Agents make CI unnecessary"
+   },
+   {
+    "label": "C",
+    "text": "CI only applies to human code"
+   },
+   {
+    "label": "D",
+    "text": "Agent output is guaranteed to compile"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Generated changes should go through the same quality gates as human-authored changes.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An agent creates a pull request for an assigned issue. Who remains responsible for deciding whether the changes are acceptable?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The repository's developers/reviewers under normal governance"
+   },
+   {
+    "label": "B",
+    "text": "The language model alone"
+   },
+   {
+    "label": "C",
+    "text": "The issue author automatically"
+   },
+   {
+    "label": "D",
+    "text": "No one, because agent PRs merge themselves"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Agent-created work remains subject to human and repository governance.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What does an MCP server expose to an AI client such as Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Tools and/or contextual resources through a standardized interface"
+   },
+   {
+    "label": "B",
+    "text": "A new Git branch"
+   },
+   {
+    "label": "C",
+    "text": "A replacement LLM"
+   },
+   {
+    "label": "D",
+    "text": "A public-code license"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP standardizes how AI clients discover and use external tools and contextual resources.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Before enabling an unfamiliar third-party MCP server, what should an organization evaluate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Trust, permissions, data access, and the actions the server can perform"
+   },
+   {
+    "label": "B",
+    "text": "Only its logo"
+   },
+   {
+    "label": "C",
+    "text": "Only its programming language"
+   },
+   {
+    "label": "D",
+    "text": "Whether it uses Git branches"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP servers can extend data and action access, so their security properties matter.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why is least privilege relevant to MCP tools?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Tools should receive only the access necessary for their intended tasks"
+   },
+   {
+    "label": "B",
+    "text": "MCP requires administrator access"
+   },
+   {
+    "label": "C",
+    "text": "Least privilege disables authentication"
+   },
+   {
+    "label": "D",
+    "text": "It increases model size"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Restricting permissions limits the impact of mistakes or misuse.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A Copilot agent needs current information from an internal service that is not part of the repository. What can MCP provide?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A standardized integration to retrieve or act on that service's data"
+   },
+   {
+    "label": "B",
+    "text": "A new training run"
+   },
+   {
+    "label": "C",
+    "text": "A Git merge strategy"
+   },
+   {
+    "label": "D",
+    "text": "A public-code filter"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP can connect Copilot to external systems and data sources.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which statement about MCP and repository permissions is correct?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "MCP does not eliminate the need for appropriate access controls"
+   },
+   {
+    "label": "B",
+    "text": "MCP automatically grants access to every repository"
+   },
+   {
+    "label": "C",
+    "text": "MCP replaces authentication"
+   },
+   {
+    "label": "D",
+    "text": "MCP makes all repositories public"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "External integrations supplement rather than replace normal authentication and authorization.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An MCP tool can create tickets in an external system. What new capability does that give an agent?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The ability to perform an external side effect, subject to permissions"
+   },
+   {
+    "label": "B",
+    "text": "The ability to retrain the LLM"
+   },
+   {
+    "label": "C",
+    "text": "The ability to bypass all policy"
+   },
+   {
+    "label": "D",
+    "text": "The ability to change Git history automatically"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Tools can enable agents to take actions outside the codebase, which is why permissions matter.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why might an enterprise restrict which MCP servers are allowed?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "To control security, data exposure, and external actions"
+   },
+   {
+    "label": "B",
+    "text": "To increase hallucinations"
+   },
+   {
+    "label": "C",
+    "text": "To remove all context"
+   },
+   {
+    "label": "D",
+    "text": "To force public repositories"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Governance over integrations reduces the risk of untrusted servers or excessive access.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What should a developer assume about data sent to an MCP-connected service?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It may be handled by that external service according to its configuration and policies"
+   },
+   {
+    "label": "B",
+    "text": "It never leaves the local machine"
+   },
+   {
+    "label": "C",
+    "text": "It automatically becomes public"
+   },
+   {
+    "label": "D",
+    "text": "It cannot contain context"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "External integrations can involve separate systems, so their data handling must be understood.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "Which is NOT the purpose of MCP?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Fine-tuning the underlying Copilot model on every connected service"
+   },
+   {
+    "label": "B",
+    "text": "Standardizing tool integrations"
+   },
+   {
+    "label": "C",
+    "text": "Providing external context"
+   },
+   {
+    "label": "D",
+    "text": "Allowing agent access to supported capabilities"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP is an integration protocol, not a model fine-tuning mechanism.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team connects a production database through an MCP server. What is the most important initial design concern?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Restrict permissions and prefer safe, narrowly scoped operations"
+   },
+   {
+    "label": "B",
+    "text": "Give the agent unrestricted write access"
+   },
+   {
+    "label": "C",
+    "text": "Disable auditability"
+   },
+   {
+    "label": "D",
+    "text": "Remove authentication"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Sensitive systems should be exposed with carefully limited permissions and operations.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants Copilot assistance without leaving the terminal. Which current product is designed for this?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "GitHub Copilot CLI"
+   },
+   {
+    "label": "B",
+    "text": "GitHub Pages"
+   },
+   {
+    "label": "C",
+    "text": "Dependabot alerts"
+   },
+   {
+    "label": "D",
+    "text": "GitHub Discussions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot CLI provides terminal-native AI assistance.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which command can be used in Copilot CLI to request a review of code changes?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "/review"
+   },
+   {
+    "label": "B",
+    "text": "/merge-now"
+   },
+   {
+    "label": "C",
+    "text": "/train"
+   },
+   {
+    "label": "D",
+    "text": "/billing"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "GitHub documents the `/review` slash command for agentic code review in Copilot CLI.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "When Copilot CLI proposes running a command during a review, what should the user do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Review the proposed command and explicitly allow or decline it as appropriate"
+   },
+   {
+    "label": "B",
+    "text": "Assume it is safe and always approve"
+   },
+   {
+    "label": "C",
+    "text": "Disable Git first"
+   },
+   {
+    "label": "D",
+    "text": "Publish the repository"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Tool execution should be reviewed before approval.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Why is non-interactive prompt execution useful in Copilot CLI?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It supports scripts and automated workflows"
+   },
+   {
+    "label": "B",
+    "text": "It permanently trains the model"
+   },
+   {
+    "label": "C",
+    "text": "It bypasses policy"
+   },
+   {
+    "label": "D",
+    "text": "It requires no authentication"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Prompt flags can make CLI assistance usable programmatically.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is a trusted-directory control intended to mitigate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Risk from allowing an agent to operate on files in an untrusted working directory"
+   },
+   {
+    "label": "B",
+    "text": "Public-code matches"
+   },
+   {
+    "label": "C",
+    "text": "Model deprecation"
+   },
+   {
+    "label": "D",
+    "text": "Subscription renewal"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Trust prompts help users avoid inadvertently granting an agent access to malicious or unfamiliar project content.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which statement about current Copilot CLI and older `gh copilot` material is most accurate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Current study should distinguish the standalone Copilot CLI from older GitHub CLI extension workflows"
+   },
+   {
+    "label": "B",
+    "text": "They are guaranteed to be identical forever"
+   },
+   {
+    "label": "C",
+    "text": "The current CLI cannot run interactively"
+   },
+   {
+    "label": "D",
+    "text": "The old extension is the only exam-relevant CLI"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The product has evolved, so current commands and workflows should be learned from current documentation.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is a good use of Copilot CLI plan mode?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Understanding and refining an implementation approach before code changes begin"
+   },
+   {
+    "label": "B",
+    "text": "Changing the GitHub invoice"
+   },
+   {
+    "label": "C",
+    "text": "Disabling all tools"
+   },
+   {
+    "label": "D",
+    "text": "Creating an LLM"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Planning before execution helps clarify complex tasks.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Why should a user avoid granting blanket permission for every shell command unless necessary?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It increases the impact of an incorrect or unsafe agent action"
+   },
+   {
+    "label": "B",
+    "text": "It makes prompts shorter"
+   },
+   {
+    "label": "C",
+    "text": "It disables model selection"
+   },
+   {
+    "label": "D",
+    "text": "It prevents file access"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Broad permissions reduce opportunities for human review of consequential commands.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A CLI agent asks to inspect `git diff` during code review. Why is this reasonable?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The diff provides the changes that need to be reviewed"
+   },
+   {
+    "label": "B",
+    "text": "It changes billing"
+   },
+   {
+    "label": "C",
+    "text": "It retrains the model"
+   },
+   {
+    "label": "D",
+    "text": "It disables branch protection"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Inspecting the diff is directly relevant context for reviewing code changes.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "After Copilot CLI returns code-review feedback, what should the developer do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Evaluate the feedback and apply appropriate changes in the codebase"
+   },
+   {
+    "label": "B",
+    "text": "Assume every comment is correct"
+   },
+   {
+    "label": "C",
+    "text": "Merge without tests"
+   },
+   {
+    "label": "D",
+    "text": "Delete the working tree"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "AI review feedback is advisory and requires developer judgment.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A repository has a naming convention Copilot repeatedly misses. What is a scalable way to communicate it?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Add clear repository custom instructions"
+   },
+   {
+    "label": "B",
+    "text": "Put the rule in .gitignore"
+   },
+   {
+    "label": "C",
+    "text": "Change the repository visibility"
+   },
+   {
+    "label": "D",
+    "text": "Disable tests"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Repository instructions can communicate persistent project conventions to Copilot.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A monorepo uses different testing conventions in frontend and backend directories. What customization is most appropriate?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Path-specific instructions for the relevant directories"
+   },
+   {
+    "label": "B",
+    "text": "One vague global instruction saying 'write good tests'"
+   },
+   {
+    "label": "C",
+    "text": "A public-code filter"
+   },
+   {
+    "label": "D",
+    "text": "An audit-log export"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Path-specific instructions can apply different guidance to different areas of a repository.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "What should repository custom instructions contain?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Concise, broadly applicable project guidance"
+   },
+   {
+    "label": "B",
+    "text": "Passwords and API keys"
+   },
+   {
+    "label": "C",
+    "text": "Every line of source code"
+   },
+   {
+    "label": "D",
+    "text": "Billing information"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Instructions should provide useful, reusable guidance and should not contain secrets.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Why might a team use a Copilot Space for onboarding?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It can curate relevant repositories, documentation, issues, and guidance around the project"
+   },
+   {
+    "label": "B",
+    "text": "It automatically grants repository ownership"
+   },
+   {
+    "label": "C",
+    "text": "It replaces source control"
+   },
+   {
+    "label": "D",
+    "text": "It makes every file public"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "A Space can gather useful project context into a focused knowledge environment.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "A Space contains an issue, design document, and repository. What is the intended benefit?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot can answer questions using a curated set of relevant project context"
+   },
+   {
+    "label": "B",
+    "text": "Copilot retrains permanently on those sources"
+   },
+   {
+    "label": "C",
+    "text": "The issue is automatically closed"
+   },
+   {
+    "label": "D",
+    "text": "The repository becomes public"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Spaces organize relevant sources so Copilot can ground conversations in them.",
+  "topic": "General"
+ },
+ {
+  "q": "What happens if a user loses permission to a GitHub resource included in a shared context experience?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Access controls should continue to govern whether that resource can be used"
+   },
+   {
+    "label": "B",
+    "text": "The Space overrides all permissions"
+   },
+   {
+    "label": "C",
+    "text": "The user becomes an organization owner"
+   },
+   {
+    "label": "D",
+    "text": "The resource becomes public"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot context features are not intended to bypass underlying access permissions.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "A team has a standard pull-request review checklist it wants Copilot to consider. Which mechanism is directly relevant?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Instruction files that describe review standards"
+   },
+   {
+    "label": "B",
+    "text": "A .gitignore rule"
+   },
+   {
+    "label": "C",
+    "text": "A repository rename"
+   },
+   {
+    "label": "D",
+    "text": "A model temperature setting exposed in Git"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The current blueprint explicitly includes customizable review standards through instruction files.",
+  "topic": "General"
+ },
+ {
+  "q": "Why use a reusable prompt file for a recurring migration task?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It preserves a tested set of instructions and constraints for repeated use"
+   },
+   {
+    "label": "B",
+    "text": "It guarantees every migration is correct"
+   },
+   {
+    "label": "C",
+    "text": "It grants admin access"
+   },
+   {
+    "label": "D",
+    "text": "It replaces CI"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Reusable prompts improve consistency for repeated tasks while still requiring review.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the main difference between a Copilot Space and repository custom instructions?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A Space curates contextual sources for a topic; custom instructions provide persistent behavioral/project guidance"
+   },
+   {
+    "label": "B",
+    "text": "They are identical features"
+   },
+   {
+    "label": "C",
+    "text": "Instructions store binaries only"
+   },
+   {
+    "label": "D",
+    "text": "Spaces are only for billing"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Spaces focus on curated context, while instructions tell Copilot how to approach work.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which information should NOT be placed casually into custom instructions or prompts?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Secrets such as credentials or private keys"
+   },
+   {
+    "label": "B",
+    "text": "Coding conventions"
+   },
+   {
+    "label": "C",
+    "text": "Testing requirements"
+   },
+   {
+    "label": "D",
+    "text": "Framework preferences"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Secrets should be protected rather than embedded into AI instructions or prompts.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Copilot code review leaves several comments on a pull request. What should reviewers do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Treat them as review input and independently decide which findings are valid"
+   },
+   {
+    "label": "B",
+    "text": "Assume all comments are blocking"
+   },
+   {
+    "label": "C",
+    "text": "Count them as mandatory human approvals"
+   },
+   {
+    "label": "D",
+    "text": "Disable CI"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot review is advisory and does not replace reviewer judgment.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why does Copilot code review not replace required human approvals?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Its review is a comment-style review rather than an approving review"
+   },
+   {
+    "label": "B",
+    "text": "Copilot cannot read code"
+   },
+   {
+    "label": "C",
+    "text": "It only works on issues"
+   },
+   {
+    "label": "D",
+    "text": "It changes branch protection automatically"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot feedback does not satisfy a branch rule that requires an approving review.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A pull request changes significantly after Copilot's initial review. What is sensible?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Request another review or rely on configured automatic re-review behavior"
+   },
+   {
+    "label": "B",
+    "text": "Assume the old review covers new code"
+   },
+   {
+    "label": "C",
+    "text": "Delete the pull request"
+   },
+   {
+    "label": "D",
+    "text": "Disable branch rules"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Substantial new changes may need fresh analysis.",
+  "topic": "General"
+ },
+ {
+  "q": "What is the value of automatic Copilot code review?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It can provide consistent AI review feedback at configured points without a manual request each time"
+   },
+   {
+    "label": "B",
+    "text": "It automatically merges code"
+   },
+   {
+    "label": "C",
+    "text": "It removes the need for CI"
+   },
+   {
+    "label": "D",
+    "text": "It approves compliance"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Automatic review can make AI feedback more consistently available.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Copilot suggests a fix from a review comment. What remains necessary?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Review and test the resulting change"
+   },
+   {
+    "label": "B",
+    "text": "Assume the fix is correct"
+   },
+   {
+    "label": "C",
+    "text": "Bypass branch protection"
+   },
+   {
+    "label": "D",
+    "text": "Disable unit tests"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Suggested fixes are generated code and need normal validation.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Which is a realistic Copilot code-review use case?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Spotting potential bugs, maintainability concerns, or improvements in a diff"
+   },
+   {
+    "label": "B",
+    "text": "Legally certifying regulatory compliance"
+   },
+   {
+    "label": "C",
+    "text": "Guaranteeing zero vulnerabilities"
+   },
+   {
+    "label": "D",
+    "text": "Replacing all human architecture decisions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "AI review can surface potential issues but cannot guarantee correctness or compliance.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Why should a team combine Copilot-generated tests with coverage analysis and human test design?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Generated tests may omit important behaviors and edge cases"
+   },
+   {
+    "label": "B",
+    "text": "Copilot tests are always complete"
+   },
+   {
+    "label": "C",
+    "text": "Coverage tools retrain Copilot"
+   },
+   {
+    "label": "D",
+    "text": "Human tests cannot run in CI"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Multiple validation approaches reduce gaps in test coverage.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A generated refactor is shorter but harder to understand. Which metric matters?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Maintainability and project requirements, not merely fewer lines"
+   },
+   {
+    "label": "B",
+    "text": "Only token count"
+   },
+   {
+    "label": "C",
+    "text": "Only generation speed"
+   },
+   {
+    "label": "D",
+    "text": "Only whether Copilot proposed it"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Refactoring should improve meaningful quality attributes rather than optimize for superficial brevity.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "What is the role of static analysis alongside Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Provide deterministic checks that complement probabilistic AI suggestions"
+   },
+   {
+    "label": "B",
+    "text": "Replace version control"
+   },
+   {
+    "label": "C",
+    "text": "Train the LLM automatically"
+   },
+   {
+    "label": "D",
+    "text": "Disable code review"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Static analysis and AI assistance provide different kinds of feedback and work well together.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which workflow best uses Copilot for debugging?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Provide the error, relevant code, reproduction details, and tests; evaluate proposed fixes iteratively"
+   },
+   {
+    "label": "B",
+    "text": "Ask 'fix everything' with no context"
+   },
+   {
+    "label": "C",
+    "text": "Accept the first answer without running it"
+   },
+   {
+    "label": "D",
+    "text": "Delete logs before prompting"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Focused evidence and iterative validation improve debugging results.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Who typically controls Copilot policies for users receiving Copilot through an organization?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Organization or enterprise administrators according to the plan and hierarchy"
+   },
+   {
+    "label": "B",
+    "text": "Any anonymous GitHub visitor"
+   },
+   {
+    "label": "C",
+    "text": "The repository README"
+   },
+   {
+    "label": "D",
+    "text": "The compiler"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Managed Copilot plans provide centralized policy controls.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "An enterprise enforces a Copilot policy. Can an organization beneath it freely override that enforced value?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "No, enforced enterprise policy takes precedence"
+   },
+   {
+    "label": "B",
+    "text": "Yes, always"
+   },
+   {
+    "label": "C",
+    "text": "Only through .gitignore"
+   },
+   {
+    "label": "D",
+    "text": "Only by renaming the repository"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Enterprise-level enforcement can constrain organization-level configuration.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is the purpose of content exclusion?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prevent specified content from being used by supported Copilot features"
+   },
+   {
+    "label": "B",
+    "text": "Delete files from Git history"
+   },
+   {
+    "label": "C",
+    "text": "Make repositories private"
+   },
+   {
+    "label": "D",
+    "text": "Block every AI feature universally"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Content exclusion limits use of specified content in features that support the control.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "Why is content exclusion not a substitute for repository permissions?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Some Copilot modes do not support exclusions, and access control should protect sensitive content at the source"
+   },
+   {
+    "label": "B",
+    "text": "Repository permissions only affect billing"
+   },
+   {
+    "label": "C",
+    "text": "Exclusions grant admin access"
+   },
+   {
+    "label": "D",
+    "text": "Permissions make Copilot slower"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Underlying access control remains the stronger security boundary.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "Which managed plans support configuring content exclusions?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot Business and Copilot Enterprise"
+   },
+   {
+    "label": "B",
+    "text": "Only Copilot Free"
+   },
+   {
+    "label": "C",
+    "text": "Only GitHub Pages"
+   },
+   {
+    "label": "D",
+    "text": "No Copilot plan"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Content exclusion is an administrative feature for managed Business and Enterprise use.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "What does the public-code matching policy primarily address?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Suggestions that match code found in public repositories"
+   },
+   {
+    "label": "B",
+    "text": "Private branch naming"
+   },
+   {
+    "label": "C",
+    "text": "Organization billing"
+   },
+   {
+    "label": "D",
+    "text": "MCP authentication"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The policy governs how Copilot handles suggestions matching public code.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Why are audit logs useful to Copilot administrators?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They provide a record of relevant administrative and policy events"
+   },
+   {
+    "label": "B",
+    "text": "They reveal every private prompt to every user"
+   },
+   {
+    "label": "C",
+    "text": "They guarantee code quality"
+   },
+   {
+    "label": "D",
+    "text": "They replace authentication"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Audit events support governance and accountability for administrative changes.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "A company wants to prevent use of an experimental Copilot feature for managed users. What should it check first?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Available organization/enterprise Copilot policy controls"
+   },
+   {
+    "label": "B",
+    "text": "Each developer's .gitignore"
+   },
+   {
+    "label": "C",
+    "text": "The repository license"
+   },
+   {
+    "label": "D",
+    "text": "Git commit timestamps"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Managed plans expose feature and preview controls through policy.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "Which statement about prompts and generated suggestions on managed Copilot plans is most appropriate for exam study?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Understand GitHub's documented data-handling and training policies for Business/Enterprise rather than assuming consumer defaults"
+   },
+   {
+    "label": "B",
+    "text": "Assume all plans have identical data handling"
+   },
+   {
+    "label": "C",
+    "text": "Assume every prompt is public"
+   },
+   {
+    "label": "D",
+    "text": "Ignore privacy because Copilot is an IDE feature"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Plan-specific privacy and data handling are explicit GH-300 objectives.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "What is the best administrative response to a sensitive repository that should not be accessible to a developer at all?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use repository access permissions to remove access, rather than relying only on Copilot exclusions"
+   },
+   {
+    "label": "B",
+    "text": "Add a comment asking Copilot not to read it"
+   },
+   {
+    "label": "C",
+    "text": "Rename the files"
+   },
+   {
+    "label": "D",
+    "text": "Change editor themes"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Authorization should be enforced by repository permissions at the source.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "What is GitHub Spark primarily intended to help users do?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Create and iterate on applications with AI-assisted natural-language workflows"
+   },
+   {
+    "label": "B",
+    "text": "Configure Git object storage"
+   },
+   {
+    "label": "C",
+    "text": "Manage Copilot billing only"
+   },
+   {
+    "label": "D",
+    "text": "Replace GitHub Actions runners"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Spark is an AI-assisted application-building capability named in the current GH-300 blueprint.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "How can Copilot improve onboarding to an unfamiliar codebase?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Explain code, answer repository-grounded questions, and help locate relevant implementation areas"
+   },
+   {
+    "label": "B",
+    "text": "Guarantee the architecture is defect-free"
+   },
+   {
+    "label": "C",
+    "text": "Replace all documentation"
+   },
+   {
+    "label": "D",
+    "text": "Grant missing repository permissions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate understanding, while developers still verify explanations.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "Which use of Copilot is appropriate during documentation work?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Drafting documentation from code and context, followed by review for accuracy"
+   },
+   {
+    "label": "B",
+    "text": "Publishing generated docs without checking them"
+   },
+   {
+    "label": "C",
+    "text": "Embedding secrets into examples"
+   },
+   {
+    "label": "D",
+    "text": "Deleting source comments automatically"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate documentation but generated text should be verified.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "How can Copilot assist with technical debt?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Identify candidate refactors and help implement scoped improvements"
+   },
+   {
+    "label": "B",
+    "text": "Guarantee removal of all technical debt"
+   },
+   {
+    "label": "C",
+    "text": "Automatically rewrite every repository safely"
+   },
+   {
+    "label": "D",
+    "text": "Replace architectural decision-making"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate analysis and refactoring, but prioritization and validation remain human responsibilities.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "Which task benefits most from a repository-aware Copilot conversation?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Understanding how a feature is implemented across related project files"
+   },
+   {
+    "label": "B",
+    "text": "Checking the weather"
+   },
+   {
+    "label": "C",
+    "text": "Changing an unrelated SaaS invoice"
+   },
+   {
+    "label": "D",
+    "text": "Editing a photo"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Repository context is valuable for questions about project-specific implementation.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Why is Copilot useful for boilerplate code?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Common patterns are often predictable, allowing developers to spend more time on higher-level logic"
+   },
+   {
+    "label": "B",
+    "text": "Boilerplate never needs review"
+   },
+   {
+    "label": "C",
+    "text": "It guarantees secure defaults"
+   },
+   {
+    "label": "D",
+    "text": "It eliminates all repetitive work"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Pattern-based generation can accelerate routine code, though review remains necessary.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "A developer wants a pull request summary. What is Copilot helping with?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Synthesizing the purpose and changes in the pull request"
+   },
+   {
+    "label": "B",
+    "text": "Approving the pull request"
+   },
+   {
+    "label": "C",
+    "text": "Changing repository permissions"
+   },
+   {
+    "label": "D",
+    "text": "Training a custom foundation model"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "PR summaries help reviewers quickly understand the scope and intent of changes.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "What is the main productivity benefit of using Copilot to generate initial test cases?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It reduces time spent on test scaffolding while leaving validation and coverage decisions to developers"
+   },
+   {
+    "label": "B",
+    "text": "It proves the software is correct"
+   },
+   {
+    "label": "C",
+    "text": "It removes the need for requirements"
+   },
+   {
+    "label": "D",
+    "text": "It automatically deploys the application"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate test creation but cannot establish complete correctness.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A developer asks Copilot to translate a function from Python to Java. What should they verify afterward?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Behavioral equivalence, library differences, edge cases, and tests"
+   },
+   {
+    "label": "B",
+    "text": "Only indentation"
+   },
+   {
+    "label": "C",
+    "text": "Nothing if it compiles"
+   },
+   {
+    "label": "D",
+    "text": "Only the file name"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Cross-language translation can introduce semantic or ecosystem differences.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "Which is a good way to use Copilot when learning an unfamiliar API?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Ask for an explanation and example, then verify against current authoritative documentation"
+   },
+   {
+    "label": "B",
+    "text": "Assume generated method names exist"
+   },
+   {
+    "label": "C",
+    "text": "Use generated code without checking versions"
+   },
+   {
+    "label": "D",
+    "text": "Ignore deprecation warnings"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can accelerate learning, but current documentation should verify APIs and versions.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "Which capability is explicitly included in the current GH-300 objective covering agentic development workflows?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Delegation to subagents"
+   },
+   {
+    "label": "B",
+    "text": "Training a foundation model from scratch"
+   },
+   {
+    "label": "C",
+    "text": "Managing DNS zones"
+   },
+   {
+    "label": "D",
+    "text": "Creating physical runners"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The updated blueprint includes agentic workflows such as Agent Mode and delegation to subagents.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which area remains a significant part of GH-300 even though the August 7 update made no major change to it?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Privacy, content exclusions, and safeguards"
+   },
+   {
+    "label": "B",
+    "text": "Linux kernel administration"
+   },
+   {
+    "label": "C",
+    "text": "Database certification"
+   },
+   {
+    "label": "D",
+    "text": "Network cabling"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Privacy, content exclusions, and safeguards remain an explicit exam domain.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "Why does the context window matter when working with Copilot?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Only a finite amount of context can be considered at once, so relevance matters"
+   },
+   {
+    "label": "B",
+    "text": "It controls repository billing"
+   },
+   {
+    "label": "C",
+    "text": "It sets branch protection"
+   },
+   {
+    "label": "D",
+    "text": "It determines Git object hashes"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Context capacity is finite, making focused context selection important.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "What best describes the role of context gathering before an LLM response?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Relevant user, editor, repository, and conversation information can be assembled to ground the request"
+   },
+   {
+    "label": "B",
+    "text": "The model is permanently retrained"
+   },
+   {
+    "label": "C",
+    "text": "Every GitHub repository is downloaded"
+   },
+   {
+    "label": "D",
+    "text": "The compiler generates the response"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Copilot can enrich a request with relevant context before model inference.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "Copilot suddenly stops providing suggestions in one file but works elsewhere. What should you check?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Whether a content exclusion or file/language-specific setting applies"
+   },
+   {
+    "label": "B",
+    "text": "Whether Git has any tags"
+   },
+   {
+    "label": "C",
+    "text": "Whether the monitor is HDR"
+   },
+   {
+    "label": "D",
+    "text": "Whether the repository has releases"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "File-specific exclusions and support/settings are plausible causes when Copilot works elsewhere.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "Copilot is unavailable across the IDE. Which is a reasonable first troubleshooting check?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Authentication, entitlement, network connectivity, extension status, and service availability"
+   },
+   {
+    "label": "B",
+    "text": "Delete the repository"
+   },
+   {
+    "label": "C",
+    "text": "Rewrite the application"
+   },
+   {
+    "label": "D",
+    "text": "Disable version control"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Basic connectivity, authentication, entitlement, extension, and service checks are appropriate first steps.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "What is few-shot prompting?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Providing one or more examples that demonstrate the desired input/output pattern"
+   },
+   {
+    "label": "B",
+    "text": "Providing no examples"
+   },
+   {
+    "label": "C",
+    "text": "Disabling context"
+   },
+   {
+    "label": "D",
+    "text": "Asking Copilot to use fewer tokens only"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Few-shot prompting supplies examples to help the model infer the desired pattern.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "What is zero-shot prompting?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Requesting a task without providing worked examples"
+   },
+   {
+    "label": "B",
+    "text": "Providing many worked examples"
+   },
+   {
+    "label": "C",
+    "text": "Training a new model"
+   },
+   {
+    "label": "D",
+    "text": "Using no natural language"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Zero-shot prompting gives the task without example demonstrations.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Why should an administrator understand the difference between Business and Enterprise Copilot capabilities?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Feature availability, governance, and organization-specific capabilities can differ by plan"
+   },
+   {
+    "label": "B",
+    "text": "The plans use different Git protocols"
+   },
+   {
+    "label": "C",
+    "text": "Business cannot use code"
+   },
+   {
+    "label": "D",
+    "text": "Enterprise cannot use IDEs"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "GH-300 expects candidates to understand Copilot features and controls across plans.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "What is the best response when Copilot produces an answer that conflicts with authoritative project documentation?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prefer the authoritative source and correct or regenerate the AI output"
+   },
+   {
+    "label": "B",
+    "text": "Assume Copilot is newer"
+   },
+   {
+    "label": "C",
+    "text": "Delete the documentation"
+   },
+   {
+    "label": "D",
+    "text": "Merge both answers"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "AI output is not authoritative; verified project documentation should take precedence.",
+  "topic": "Developer productivity"
+ }
+]

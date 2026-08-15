@@ -1,9 +1,16 @@
 # GH-300 practice app
 
 A static, single-page practice and mock-exam tool for the **GH-300 GitHub
-Copilot** certification. The question bank is baked into the page: no server, no
-dependencies, no network calls. It is published with GitHub Pages and also works
-by double-clicking `index.html` offline.
+Copilot** certification. The question banks are baked into the page: no server,
+no dependencies, no network calls. It is published with GitHub Pages and also
+works by double-clicking `index.html` offline.
+
+**Two banks, never mixed.** A tab strip on the setup screen picks between the
+**Legacy bank** (299 questions, the original material) and the **Supplemental**
+bank (153 questions, added for the recent exam update). A session draws from
+exactly one of them; nothing in the app or the build ever concatenates the two.
+Both banks offer all three modes, and the active bank's name is shown in the
+sticky bar during a session and in the results header afterwards.
 
 **Unofficial.** Not affiliated with, endorsed by, or reviewed by GitHub or
 Microsoft. The bank is community-quality material of unverified provenance —
@@ -25,34 +32,37 @@ Three modes:
 
 | File | Role |
 | --- | --- |
-| `questions.json` | **Source of truth for the question bank.** Humans edit this. |
-| `index.html` | The whole app: markup, CSS, JS, and a generated copy of the bank. |
-| `build.py` | Validates `questions.json` and injects it into `index.html`. |
+| `questions.json` | **Source of truth for the legacy bank** (299 q). Humans edit this. |
+| `supplemental.json` | **Source of truth for the supplemental bank** (153 q), added for the post-August-2026 exam update. |
+| `index.html` | The whole app: markup, CSS, JS, and a generated copy of each bank. |
+| `build.py` | Validates both banks and injects them into `index.html`. |
 | `CLAUDE.md` | This file. |
 | `EXAM-APP-TEMPLATE.md` | The spec this repo was built from, for porting to another exam. |
 | `.gitignore` | `__pycache__/`, `*.pyc`, `.DS_Store`, `Thumbs.db`, `.vscode/`, `.idea/` |
 
 ### The one rule
 
-`index.html` contains a generated copy of the bank on a single line starting
-`const BANK = `. **Never hand-edit that line.** Edit `questions.json`, then run
-`python3 build.py`.
+`index.html` contains a generated copy of each bank on a single line — `const
+BANK = ` for the legacy bank, `const BANK_SUPP = ` for the supplemental one.
+**Never hand-edit those lines.** Edit the `.json`, then run `python3 build.py`.
 
-Both files are committed — `index.html` has to carry the data so the page stays
-self-contained, and `questions.json` is what humans actually edit. Any change to
-the bank is a two-file commit; a diff that touches `questions.json` and not
+All three files are committed — `index.html` has to carry the data so the page
+stays self-contained, and the `.json` files are what humans actually edit. Any
+change to a bank is a two-file commit; a diff that touches a `.json` and not
 `index.html` means the build step was skipped.
 
-`python3 build.py --check` validates `questions.json` only. It never opens
-`index.html`, so it **cannot** tell you the two have drifted. A plain
+`python3 build.py --check` validates the `.json` files only. It never opens
+`index.html`, so it **cannot** tell you they have drifted. A plain
 `python3 build.py` is what reconciles them. To prove they match:
 
 ```bash
 python3 - <<'PY'
 import json, re, pathlib
-src = json.loads(pathlib.Path("questions.json").read_text())
-line = re.search(r"^const BANK = (.*);$", pathlib.Path("index.html").read_text(), re.M).group(1)
-print("in sync" if json.loads(line) == src else "DRIFTED")
+page = pathlib.Path("index.html").read_text()
+for src, const in (("questions.json", "BANK"), ("supplemental.json", "BANK_SUPP")):
+    line = re.search(r"^const %s = (.*);$" % const, page, re.M).group(1)
+    ok = json.loads(line) == json.loads(pathlib.Path(src).read_text())
+    print(f"{src}: {'in sync' if ok else 'DRIFTED'}")
 PY
 ```
 
@@ -112,17 +122,29 @@ Python 3 standard library only — `json, re, sys, collections, pathlib,
 difflib`. No `package.json`, no bundler, ever.
 
 ```bash
-python3 build.py                          # validate, tag, write both files
+python3 build.py                          # validate, tag, write every bank + index.html
 python3 build.py --check                  # validate only, write nothing, exit 1 on problems
 python3 build.py --import raw.json        # merge a raw extraction batch, then build
 python3 build.py --explanations raw.json  # backfill explanations and review flags
 python3 build.py --dupes                  # audit for near-duplicate questions, write nothing
+python3 build.py --bank supplemental ...  # scope any of the above to one bank
 ```
 
+A `Bank` object pairs a source `.json` with the `const` it is injected into;
+`BANKS` lists them. Commands cover every bank unless `--bank NAME` narrows them,
+except `--import` and `--explanations`, which act on one bank and default to
+`legacy`.
+
 Pipeline order: `read → (--import) → (--explanations) → normalize → validate →
-dedupe → report → write`. Validation runs after normalizing so derived fields
-exist, and before writing so a malformed bank never reaches disk. Any problem
-prints every issue found and exits 1 without writing.
+dedupe → report → write`, run per bank. Validation runs after normalizing so
+derived fields exist, and **every bank is validated before any of them is
+written**, so a problem in one leaves all files untouched. Any problem prints
+every issue found, prefixed with the bank name, and exits 1 without writing.
+
+`dedupe()` and `--dupes` both work strictly within a bank. A supplemental
+question restating a legacy one is not a duplicate — the banks are separate
+study material, and one question ("What is zero-shot prompting?") already
+appears in both with consistent answers.
 
 `--dupes` only ever prints. `dedupe()` inside a normal build drops questions
 whose normalized text matches **exactly**; the audit is the wider net, scoring
@@ -175,20 +197,40 @@ const LETTERS = "ABCDEFGHIJ";
 const MOCK_N = 65, MOCK_SEC = 100 * 60;
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-let cfg = { mode:'practice', count:20, shufQ:true, shufC:true, onlyMulti:false };
+const BANKS = [ { label, qs, note }, … ];        // BANK and BANK_SUPP, in tab order
+let cfg = { bank:0, mode:'practice', count:20, shufQ:true, shufC:true, onlyMulti:false };
 let S = null;
+
+const bank = () => BANKS[cfg.bank];              // the only way to reach a bank
 ```
 
 Session state:
 
 ```js
-S = { qs, i, picks, graded, t0, lastI, limit, tick }
+S = { qs, i, picks, graded, t0, lastI, limit, tick, bank }
 ```
 
 - `qs` — the prepared questions for this run (shuffled, relabeled)
 - `picks[i]` — array of chosen labels for question `i`
 - `graded[i]` — practice mode only; true once the answer has been checked
 - `limit` — countdown seconds; `0` means count up instead
+- `bank` — the active bank's label, captured at `start()` so the sticky bar and
+  the results header keep naming the right one
+
+### Keeping the banks apart
+
+`bank()` is the single accessor, and `$('startBtn')` is the only place a pool is
+drawn — from `bank().qs`, never from a concatenation. `refreshBank()` repoints
+the entire setup screen (stats, length chips, multi-answer count, blurb, tab
+state) at the active bank, so nothing on screen can describe a bank the session
+will not use. The tab strip only exists on the setup screen, so a bank cannot be
+switched mid-session, and "Practice what I missed" re-runs questions already in
+`S.qs`, which came from one bank by construction.
+
+If you add a third bank, add it to `BANKS` in `build.py`, add a `const` line and
+a `<button class="tab" data-bank="N">` to `index.html`, and everything else
+follows — the length chips are computed as `[10,20,30,50].filter(n => n < N)`
+plus the bank total, so a bank of any size gets sensible options.
 
 ### `prep(src)` — the important one
 
@@ -237,6 +279,12 @@ your answer against the correct one. Correct **and** picked → `.correct`, gutt
 missed → `.missed`, gutter `+` in a lighter treatment. Untouched → keeps its
 letter. Keep it if you restyle — it is the one distinctive idea in the layout
 and it carries the grading semantics.
+
+The bank tab strip (`.tabs` / `.tab`) is the one place that uses an underline
+for selected state rather than the accent-tinted fill the mode cards and length
+chips use — tabs are navigation, and reusing the pressed-chip treatment made
+them compete with the Mode selector directly below. It reuses existing tokens
+only, so it needed no new variables.
 
 **Never hard-code a color** in markup or JS; add a variable to `:root`. Anything
 added there needs a dark counterpart **in the same commit** — the `--warn` trio
@@ -423,6 +471,33 @@ than saying each was confirmed against a citation. Product naming is the
 likeliest source of residual error: the bank predates the plan rename (Copilot
 Individual is now Copilot Pro) and the January 2026 feature additions, so items
 about plans and features can be stale without being wrong in their own frame.
+
+### The supplemental bank
+
+Everything above describes the **legacy** bank. The supplemental bank
+(`supplemental.json`, 153 questions) arrived separately, covering the material
+the recent exam update brought into scope — agent mode, MCP, Copilot CLI,
+Spaces, custom instructions, and Copilot code review.
+
+**Its provenance is also unknown**, and it has had **none** of the verification
+work described above: no explanation rewrite against primary sources, no answer
+key audit, no copy pass. Every entry ships with an explanation, and no entry
+carries `review` or `corrected`, which reflects *that nothing has been checked*,
+not that everything checked out. Treat it as less verified than the legacy bank,
+not more, despite covering newer material.
+
+The only change made to it here: **topics were re-derived.** It shipped with 33
+free-form topic labels of its own (`Agent mode`, `MCP`, `CLI`, `Copilot Spaces`,
+`Post-August-7 exam objectives`, …), which would have made the results meters
+useless and would have meant the two banks describing themselves in different
+vocabularies. Every `topic` was removed so `auto_topic()` could tag it into the
+same nine buckets, which it does cleanly — only 7 of 153 fall to `General`.
+Question text, choices, `correct`, and explanations were not touched.
+
+Note that this flattens some distinctions the bank exists to teach: agent mode,
+MCP, Spaces, and code review all land in `Chat, agents & MCP`, which takes 49 of
+the 153. If those deserve their own meters, the fix is to add buckets to
+`TOPIC_RULES` — shared by both banks — rather than to pin topics per question.
 
 ---
 

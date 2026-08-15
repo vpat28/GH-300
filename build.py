@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """
-Sync questions.json into index.html.
+Sync the question banks into index.html.
 
-    python3 build.py                 # validate, tag, inject into index.html
+    python3 build.py                 # validate, tag, inject every bank into index.html
     python3 build.py --check         # validate only, change nothing (exit 1 on problems)
     python3 build.py --import raw.json         # merge a raw screenshot-format batch, then build
     python3 build.py --explanations raw.json   # backfill explanations and review flags onto the bank
     python3 build.py --dupes                  # audit for near-duplicate questions, write nothing
+    python3 build.py --bank supplemental ...  # scope any of the above to one bank
 
-questions.json is the source of truth. index.html carries a generated copy of it
-so the page stays a single self-contained file. Never hand-edit the copy.
+There are two banks and they are kept strictly separate — the app never mixes
+them in a session, and neither does this script: validation, deduping and the
+duplicate audit all run per bank. `--bank` scopes a command to one of them;
+without it, build/check/dupes cover every bank, while --import and
+--explanations default to the legacy bank they were written for.
+
+Each bank's .json is the source of truth. index.html carries a generated copy of
+each so the page stays a single self-contained file. Never hand-edit a copy.
 
 Requires nothing but the Python 3 standard library.
 """
@@ -17,9 +24,38 @@ Requires nothing but the Python 3 standard library.
 import json, re, sys, collections, pathlib, difflib
 
 ROOT = pathlib.Path(__file__).parent
-BANK = ROOT / "questions.json"
 PAGE = ROOT / "index.html"
-ANCHOR = re.compile(r"^const BANK = .*;$", re.M)
+
+
+class Bank:
+    """One question bank: a source file and the `const` it is injected into."""
+
+    def __init__(self, name, filename, const):
+        self.name = name
+        self.path = ROOT / filename
+        self.const = const
+        self.anchor = re.compile(r"^const %s = .*;$" % re.escape(const), re.M)
+
+    def read(self):
+        return json.loads(self.path.read_text(encoding="utf-8"))
+
+    def write(self, qs):
+        self.path.write_text(json.dumps(qs, indent=1, ensure_ascii=False) + "\n",
+                             encoding="utf-8")
+
+    def inject(self, page, qs):
+        if len(self.anchor.findall(page)) != 1:
+            print(f"\nCould not find exactly one `const {self.const} = ...;` line "
+                  f"in index.html — aborting.")
+            sys.exit(1)
+        line = f"const {self.const} = " + json.dumps(qs, ensure_ascii=False) + ";"
+        return self.anchor.sub(lambda m: line, page, count=1)
+
+
+BANKS = [
+    Bank("legacy", "questions.json", "BANK"),
+    Bank("supplemental", "supplemental.json", "BANK_SUPP"),
+]
 
 # ---------------------------------------------------------------- topics
 # Scored keyword match: question text counts triple, answer choices single.
@@ -308,69 +344,100 @@ def backfill_notes(qs, raw):
 
 
 # ---------------------------------------------------------------- main
+def select_banks(args, default_one=None):
+    """Resolve --bank NAME. Without it: every bank, or the named default."""
+    if "--bank" in args:
+        want = args[args.index("--bank") + 1]
+        hit = [b for b in BANKS if b.name == want]
+        if not hit:
+            print(f"unknown bank {want!r} — expected one of "
+                  f"{', '.join(b.name for b in BANKS)}")
+            sys.exit(1)
+        return hit
+    if default_one:
+        return [b for b in BANKS if b.name == default_one]
+    return list(BANKS)
+
+
 def main():
     args = sys.argv[1:]
     check_only = "--check" in args
     dupes_only = "--dupes" in args
 
-    qs = json.loads(BANK.read_text(encoding="utf-8"))
-    before = len(qs)
-
     if dupes_only:
-        report_duplicates(qs)
+        for bank in select_banks(args):
+            print(f"\n=== {bank.name} ({bank.path.name}) ===")
+            report_duplicates(bank.read())
         return
 
-    if "--import" in args:
-        path = pathlib.Path(args[args.index("--import") + 1])
-        raw = json.loads(path.read_text(encoding="utf-8"))
-        added, skipped = convert_raw(raw)
-        print(f"import: {len(added)} usable, {len(skipped)} skipped from {path.name}")
-        for s in skipped:
-            print("   skipped:", s)
-        qs += added
+    # --import and --explanations act on one bank; they default to the legacy one.
+    edited = select_banks(args, default_one="legacy")[0] if (
+        "--import" in args or "--explanations" in args) else None
 
-    if "--explanations" in args:
-        path = pathlib.Path(args[args.index("--explanations") + 1])
-        raw = json.loads(path.read_text(encoding="utf-8"))
-        filled, missing = backfill_notes(qs, raw)
-        print(f"from {path.name}: {filled['explanation']} explanations, "
-              f"{filled['review']} review flags · {missing} bank questions had no match")
+    # Process every bank in full before writing anything, so a problem in one
+    # bank leaves both files untouched.
+    staged, problems = [], []
+    for bank in select_banks(args):
+        qs = bank.read()
+        before = len(qs)
 
-    qs = normalize(qs)
-    problems = validate(qs)
+        if edited is bank and "--import" in args:
+            path = pathlib.Path(args[args.index("--import") + 1])
+            raw = json.loads(path.read_text(encoding="utf-8"))
+            added, skipped = convert_raw(raw)
+            print(f"import: {len(added)} usable, {len(skipped)} skipped from {path.name}")
+            for s in skipped:
+                print("   skipped:", s)
+            qs += added
+
+        if edited is bank and "--explanations" in args:
+            path = pathlib.Path(args[args.index("--explanations") + 1])
+            raw = json.loads(path.read_text(encoding="utf-8"))
+            filled, missing = backfill_notes(qs, raw)
+            print(f"from {path.name}: {filled['explanation']} explanations, "
+                  f"{filled['review']} review flags · {missing} bank questions had no match")
+
+        qs = normalize(qs)
+        problems += [f"{bank.name}: {p}" for p in validate(qs)]
+        staged.append((bank, qs, before))
+
     if problems:
         print(f"\n{len(problems)} problem(s) — nothing was written:\n")
         for p in problems:
             print("  ", p)
         sys.exit(1)
 
-    qs, dropped = dedupe(qs)
-    for d in dropped:
-        print("   duplicate dropped:", d)
+    deduped = []
+    for bank, qs, before in staged:
+        # Deduping is per bank on purpose: the two banks are kept separate, and a
+        # supplemental question restating a legacy one is not a duplicate here.
+        qs, dropped = dedupe(qs)
+        deduped.append((bank, qs, before))
+        for d in dropped:
+            print("   duplicate dropped:", d)
 
-    counts = collections.Counter(q["topic"] for q in qs)
-    explained = sum(1 for q in qs if q.get("explanation"))
-    flagged = sum(1 for q in qs if q.get("review"))
-    corrected = sum(1 for q in qs if q.get("corrected"))
-    print(f"\n{len(qs)} questions ({before} before) · {sum(q['multi'] for q in qs)} multi-answer"
-          f" · {explained} with explanations · {flagged} flagged for review"
-          f" · {corrected} with corrected answers")
-    for t, n in counts.most_common():
-        print(f"   {n:4}  {t}")
+        explained = sum(1 for q in qs if q.get("explanation"))
+        flagged = sum(1 for q in qs if q.get("review"))
+        corrected = sum(1 for q in qs if q.get("corrected"))
+        print(f"\n{bank.name}: {len(qs)} questions ({before} before) · "
+              f"{sum(q['multi'] for q in qs)} multi-answer"
+              f" · {explained} with explanations · {flagged} flagged for review"
+              f" · {corrected} with corrected answers")
+        for t, n in collections.Counter(q["topic"] for q in qs).most_common():
+            print(f"   {n:4}  {t}")
 
+    staged = deduped
     if check_only:
         print("\n--check: valid, nothing written")
         return
 
-    BANK.write_text(json.dumps(qs, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-
     page = PAGE.read_text(encoding="utf-8")
-    if len(ANCHOR.findall(page)) != 1:
-        print("\nCould not find exactly one `const BANK = ...;` line in index.html — aborting.")
-        sys.exit(1)
-    line = "const BANK = " + json.dumps(qs, ensure_ascii=False) + ";"
-    PAGE.write_text(ANCHOR.sub(lambda m: line, page, count=1), encoding="utf-8")
-    print(f"\nwrote questions.json and injected into index.html ({PAGE.stat().st_size // 1024} KB)")
+    for bank, qs, _ in staged:
+        bank.write(qs)
+        page = bank.inject(page, qs)
+    PAGE.write_text(page, encoding="utf-8")
+    print(f"\nwrote {', '.join(b.path.name for b, _, _ in staged)} and injected into "
+          f"index.html ({PAGE.stat().st_size // 1024} KB)")
 
 
 if __name__ == "__main__":
