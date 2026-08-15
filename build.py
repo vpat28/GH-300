@@ -55,6 +55,7 @@ class Bank:
 BANKS = [
     Bank("legacy", "questions.json", "BANK"),
     Bank("supplemental", "supplemental.json", "BANK_SUPP"),
+    Bank("refactored", "questions-refactored.json", "BANK_REFAC"),
 ]
 
 # ---------------------------------------------------------------- topics

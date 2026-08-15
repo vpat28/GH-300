@@ -5,12 +5,15 @@ Copilot** certification. The question banks are baked into the page: no server,
 no dependencies, no network calls. It is published with GitHub Pages and also
 works by double-clicking `index.html` offline.
 
-**Two banks, never mixed.** A tab strip on the setup screen picks between the
-**Legacy bank** (299 questions, the original material) and the **Supplemental**
-bank (153 questions, added for the recent exam update). A session draws from
-exactly one of them; nothing in the app or the build ever concatenates the two.
-Both banks offer all three modes, and the active bank's name is shown in the
-sticky bar during a session and in the results header afterwards.
+**Three banks, never mixed.** A tab strip on the setup screen picks between
+**Legacy** (299 questions, the original material), **Supplemental** (153, added
+for the recent exam update), and **Refactored** (299, a revision of the legacy
+bank). A session draws from exactly one of them; nothing in the app or the build
+ever concatenates them. Every bank offers all three modes, and the active bank's
+name is shown in the sticky bar during a session and in the results header.
+
+Legacy and Refactored overlap heavily on purpose — see "The refactored bank"
+below before assuming they are independent study material.
 
 **Unofficial.** Not affiliated with, endorsed by, or reviewed by GitHub or
 Microsoft. The bank is community-quality material of unverified provenance —
@@ -34,8 +37,9 @@ Three modes:
 | --- | --- |
 | `questions.json` | **Source of truth for the legacy bank** (299 q). Humans edit this. |
 | `supplemental.json` | **Source of truth for the supplemental bank** (153 q), added for the post-August-2026 exam update. |
+| `questions-refactored.json` | **Source of truth for the refactored bank** (299 q), a revision of the legacy bank. |
 | `index.html` | The whole app: markup, CSS, JS, and a generated copy of each bank. |
-| `build.py` | Validates both banks and injects them into `index.html`. |
+| `build.py` | Validates every bank and injects them into `index.html`. |
 | `CLAUDE.md` | This file. |
 | `EXAM-APP-TEMPLATE.md` | The spec this repo was built from, for porting to another exam. |
 | `.gitignore` | `__pycache__/`, `*.pyc`, `.DS_Store`, `Thumbs.db`, `.vscode/`, `.idea/` |
@@ -43,10 +47,11 @@ Three modes:
 ### The one rule
 
 `index.html` contains a generated copy of each bank on a single line — `const
-BANK = ` for the legacy bank, `const BANK_SUPP = ` for the supplemental one.
+BANK = ` for legacy, `const BANK_SUPP = ` for supplemental, `const BANK_REFAC = `
+for refactored.
 **Never hand-edit those lines.** Edit the `.json`, then run `python3 build.py`.
 
-All three files are committed — `index.html` has to carry the data so the page
+All four files are committed — `index.html` has to carry the data so the page
 stays self-contained, and the `.json` files are what humans actually edit. Any
 change to a bank is a two-file commit; a diff that touches a `.json` and not
 `index.html` means the build step was skipped.
@@ -59,7 +64,8 @@ change to a bank is a two-file commit; a diff that touches a `.json` and not
 python3 - <<'PY'
 import json, re, pathlib
 page = pathlib.Path("index.html").read_text()
-for src, const in (("questions.json", "BANK"), ("supplemental.json", "BANK_SUPP")):
+for src, const in (("questions.json", "BANK"), ("supplemental.json", "BANK_SUPP"),
+                   ("questions-refactored.json", "BANK_REFAC")):
     line = re.search(r"^const %s = (.*);$" % const, page, re.M).group(1)
     ok = json.loads(line) == json.loads(pathlib.Path(src).read_text())
     print(f"{src}: {'in sync' if ok else 'DRIFTED'}")
@@ -141,10 +147,11 @@ derived fields exist, and **every bank is validated before any of them is
 written**, so a problem in one leaves all files untouched. Any problem prints
 every issue found, prefixed with the bank name, and exits 1 without writing.
 
-`dedupe()` and `--dupes` both work strictly within a bank. A supplemental
-question restating a legacy one is not a duplicate — the banks are separate
-study material, and one question ("What is zero-shot prompting?") already
-appears in both with consistent answers.
+`dedupe()` and `--dupes` both work strictly within a bank, and that matters
+more now than it reads: the refactored bank repeats 263 of the legacy bank's
+questions verbatim, and a cross-bank dedupe would gut it. Keeping banks separate
+is the whole design — one question ("What is zero-shot prompting?") appears in
+legacy and supplemental too, with consistent answers.
 
 `--dupes` only ever prints. `dedupe()` inside a normal build drops questions
 whose normalized text matches **exactly**; the audit is the wider net, scoring
@@ -227,9 +234,10 @@ will not use. The tab strip only exists on the setup screen, so a bank cannot be
 switched mid-session, and "Practice what I missed" re-runs questions already in
 `S.qs`, which came from one bank by construction.
 
-If you add a third bank, add it to `BANKS` in `build.py`, add a `const` line and
-a `<button class="tab" data-bank="N">` to `index.html`, and everything else
-follows — the length chips are computed as `[10,20,30,50].filter(n => n < N)`
+To add a bank, add it to `BANKS` in `build.py`, add a `const` line and a
+`<button class="tab" data-bank="N">` to `index.html`, plus an entry in the JS
+`BANKS` array — that is exactly how the refactored bank was added. Everything
+else follows — the length chips are computed as `[10,20,30,50].filter(n => n < N)`
 plus the bank total, so a bank of any size gets sensible options.
 
 ### `prep(src)` — the important one
@@ -498,6 +506,33 @@ Note that this flattens some distinctions the bank exists to teach: agent mode,
 MCP, Spaces, and code review all land in `Chat, agents & MCP`, which takes 49 of
 the 153. If those deserve their own meters, the fix is to add buckets to
 `TOPIC_RULES` — shared by both banks — rather than to pin topics per question.
+
+### The refactored bank
+
+`questions-refactored.json` (299 questions) is **a revision of the legacy bank,
+not independent material.** Measured against `questions.json`:
+
+- **263 questions are shared** and identical in substance — same stem, same
+  choice pool, same answer key, same explanation.
+- **36 questions differ on each side**: 36 legacy questions are absent from it,
+  and 36 questions in it are absent from legacy. They do not pair up by choice
+  pool, so these are swaps, not rewordings. The new ones lean toward custom
+  models, grounding responses in internal documentation, and "choose two"
+  capability questions.
+- It carries 31 `corrected` fields and 2 `review` flags (legacy has 38 and 2),
+  so it descends from a slightly earlier state of the legacy bank's audit work.
+
+It is exposed as its own tab because that is what was asked for, and the banks
+stay separate as always. But **drilling Legacy and Refactored both means seeing
+88% of the questions twice**, and the setup-screen blurb says so. If the intent
+is for this to supersede the legacy bank rather than sit beside it, the change
+is to point the `legacy` Bank at this file and drop the third tab — not to merge
+them.
+
+Its topics were **kept, not re-derived**: it already ships tagged into the nine
+buckets, and 22 of the 299 differ from what `auto_topic()` would produce, which
+the schema explicitly allows (a present `topic` is a pin). Nothing in the file
+was modified.
 
 ---
 
