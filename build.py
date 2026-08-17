@@ -9,9 +9,9 @@ Sync the question banks into index.html.
     python3 build.py --dupes                  # audit for near-duplicate questions, write nothing
     python3 build.py --bank supplemental ...  # scope any of the above to one bank
 
-There are two banks and they are kept strictly separate — the app never mixes
-them in a session, and neither does this script: validation, deduping and the
-duplicate audit all run per bank. `--bank` scopes a command to one of them;
+The banks are kept strictly separate — the app never mixes them in a session,
+and neither does this script: validation, deduping and the duplicate audit all
+run per bank. `--bank` scopes a command to one of them;
 without it, build/check/dupes cover every bank, while --import and
 --explanations default to the legacy bank they were written for.
 
@@ -56,6 +56,7 @@ BANKS = [
     Bank("legacy", "questions.json", "BANK"),
     Bank("supplemental", "supplemental.json", "BANK_SUPP"),
     Bank("refactored", "questions-refactored.json", "BANK_REFAC"),
+    Bank("hard", "hard-mode.json", "BANK_HARD"),
 ]
 
 # ---------------------------------------------------------------- topics
@@ -410,7 +411,7 @@ def main():
 
     deduped = []
     for bank, qs, before in staged:
-        # Deduping is per bank on purpose: the two banks are kept separate, and a
+        # Deduping is per bank on purpose: the banks are kept separate, and a
         # supplemental question restating a legacy one is not a duplicate here.
         qs, dropped = dedupe(qs)
         deduped.append((bank, qs, before))
