@@ -1,0 +1,2684 @@
+[
+ {
+  "q": "A developer wants Copilot to modify several files, run tests, inspect failures, and iterate until the implementation works.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Next edit suggestions"
+   },
+   {
+    "label": "B",
+    "text": "Agent mode"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Edits"
+   },
+   {
+    "label": "D",
+    "text": "Copilot code review"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Agent mode adds autonomous planning, tool use, and iteration.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A team needs a reusable security-review specialist with its own instructions and restricted toolset.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Custom agent"
+   },
+   {
+    "label": "B",
+    "text": "Path-specific instructions"
+   },
+   {
+    "label": "C",
+    "text": "Agent skill"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Space"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "A custom agent defines a specialist persona, instructions, and tools.",
+  "topic": "General"
+ },
+ {
+  "q": "Which TWO statements correctly describe subagents? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "They must be stored as SKILL.md"
+   },
+   {
+    "label": "B",
+    "text": "They can isolate delegated work from the main context"
+   },
+   {
+    "label": "C",
+    "text": "They can have their own context window"
+   },
+   {
+    "label": "D",
+    "text": "They permanently replace the main agent"
+   }
+  ],
+  "correct": [
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants Copilot to work asynchronously in a GitHub-hosted environment and return a pull request.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot cloud agent"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Edits"
+   },
+   {
+    "label": "C",
+    "text": "IDE Agent mode"
+   },
+   {
+    "label": "D",
+    "text": "Copilot code review"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "The cloud agent is suited to delegated asynchronous work that produces a PR.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A running agent has misunderstood a requirement halfway through its task.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Change the public-code policy"
+   },
+   {
+    "label": "B",
+    "text": "Steer the active agent session with corrective instructions"
+   },
+   {
+    "label": "C",
+    "text": "Create a Space and assume the running session switches to it"
+   },
+   {
+    "label": "D",
+    "text": "Wait and fix everything after completion"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Agent sessions can be steered while work is underway.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A repeatable database-migration procedure needs instructions, scripts, and supporting resources, but no new persona.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Custom agent"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "C",
+    "text": "Repository-wide instructions"
+   },
+   {
+    "label": "D",
+    "text": "Agent skill"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Skills package task-specific instructions, scripts, and resources.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A security scanner must run deterministically at a specific point in an agent workflow.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prompt file"
+   },
+   {
+    "label": "B",
+    "text": "Custom agent"
+   },
+   {
+    "label": "C",
+    "text": "Agent skill"
+   },
+   {
+    "label": "D",
+    "text": "Hook"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Hooks provide deterministic lifecycle command execution.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants to distribute agents, skills, hooks, and MCP configuration as one reusable package.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "AGENTS.md"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "C",
+    "text": "Prompt file"
+   },
+   {
+    "label": "D",
+    "text": "Copilot plugin"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Plugins bundle multiple CLI customization components.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants a specialist available across all their projects rather than committed to one repository.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Repository-level custom agent"
+   },
+   {
+    "label": "B",
+    "text": "Repository skill"
+   },
+   {
+    "label": "C",
+    "text": "User-level custom agent"
+   },
+   {
+    "label": "D",
+    "text": "Path-specific instruction"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "User-level custom agents can be reused across projects.",
+  "topic": "General"
+ },
+ {
+  "q": "The primary goal is to keep a large exploratory task from consuming the main agent's context.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prompt file"
+   },
+   {
+    "label": "B",
+    "text": "Content exclusion"
+   },
+   {
+    "label": "C",
+    "text": "Hook"
+   },
+   {
+    "label": "D",
+    "text": "Subagent"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Subagents isolate delegated work in their own context windows.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "The entire repository should always use xUnit for C# tests.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Agent skill"
+   },
+   {
+    "label": "B",
+    "text": "Repository-wide .github/copilot-instructions.md"
+   },
+   {
+    "label": "C",
+    "text": "Path-specific instructions"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Space"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Repository-wide instructions are standing guidance for the whole repository.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "React conventions should apply only to apps/web/**/*.tsx.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "User-level custom agent"
+   },
+   {
+    "label": "B",
+    "text": "Prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Path-specific *.instructions.md with applyTo"
+   },
+   {
+    "label": "D",
+    "text": "Repository-wide instructions"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Path-specific instructions use applyTo globs.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A recurring API-review checklist should be explicitly invoked by developers rather than injected into every prompt.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot Memory"
+   },
+   {
+    "label": "B",
+    "text": "Repository-wide instructions"
+   },
+   {
+    "label": "C",
+    "text": "Reusable prompt file"
+   },
+   {
+    "label": "D",
+    "text": "Content exclusion"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Prompt files are reusable task prompts invoked when needed.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Copilot needs architecture docs, a relevant issue, design notes, and repository context for a project discussion.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "B",
+    "text": "Custom agent"
+   },
+   {
+    "label": "C",
+    "text": "Hook"
+   },
+   {
+    "label": "D",
+    "text": "MCP server"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Spaces curate relevant contextual sources.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "Copilot needs live ticket-system data plus a standardized incident-triage procedure.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "MCP server + agent skill"
+   },
+   {
+    "label": "B",
+    "text": "Hook + prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Custom agent + content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Space + repository instructions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP supplies live external capability/data; the skill supplies the procedure.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A team wants standing rules shared across compatible AI agent tools.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "SKILL.md"
+   },
+   {
+    "label": "B",
+    "text": "AGENTS.md"
+   },
+   {
+    "label": "C",
+    "text": "mcp-config.json"
+   },
+   {
+    "label": "D",
+    "text": ".github/copilot-instructions.md only"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "AGENTS.md is intended for standing agent guidance across compatible tools.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A path-specific instruction should apply to cloud-agent work but not code review.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use excludeAgent in the instruction frontmatter"
+   },
+   {
+    "label": "B",
+    "text": "Use content exclusion"
+   },
+   {
+    "label": "C",
+    "text": "Move it to SKILL.md"
+   },
+   {
+    "label": "D",
+    "text": "Use a Space"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Path-specific instructions support excludeAgent for supported agents.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer changes repository instructions during an active Copilot CLI session and needs the new instructions applied reliably.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Exit and resume or start a new session"
+   },
+   {
+    "label": "B",
+    "text": "Run git add only"
+   },
+   {
+    "label": "C",
+    "text": "Convert them to AGENTS.md"
+   },
+   {
+    "label": "D",
+    "text": "Do nothing because every active session hot-reloads them"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "CLI instruction changes are not guaranteed to become active until a resumed/new session.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A team wants persistent repository understanding based on conventions and patterns Copilot learns while working.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "MCP server"
+   },
+   {
+    "label": "B",
+    "text": "Prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Memory"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Space"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Copilot Memory stores repository-level memories for future work.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A repository-wide instruction and a path-specific instruction conflict.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Remove the conflict rather than depend on a universal precedence rule"
+   },
+   {
+    "label": "B",
+    "text": "Assume path-specific always wins"
+   },
+   {
+    "label": "C",
+    "text": "Move both to mcp-config.json"
+   },
+   {
+    "label": "D",
+    "text": "Assume repository-wide always wins"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Applicable instructions can be combined; conflicting instructions should be avoided.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which TWO controls most directly reduce risk from destructive agent tool calls? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use the largest available model"
+   },
+   {
+    "label": "B",
+    "text": "Add unrelated context"
+   },
+   {
+    "label": "C",
+    "text": "Require approval for consequential actions"
+   },
+   {
+    "label": "D",
+    "text": "Restrict tool access to least privilege"
+   }
+  ],
+  "correct": [
+   "C",
+   "D"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "An MCP server can create deployment tickets. What changed compared with static repository context?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The agent gained a possible external side effect"
+   },
+   {
+    "label": "B",
+    "text": "The model gained a larger context window"
+   },
+   {
+    "label": "C",
+    "text": "Repository permissions were replaced"
+   },
+   {
+    "label": "D",
+    "text": "Copilot was fine-tuned"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "MCP tools can enable actions outside the repository.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants a persistent MCP server configuration for standalone Copilot CLI.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Put the server URL in copilot-instructions.md"
+   },
+   {
+    "label": "B",
+    "text": "Put it in SKILL.md only"
+   },
+   {
+    "label": "C",
+    "text": "Add it to a Space"
+   },
+   {
+    "label": "D",
+    "text": "Configure the CLI MCP configuration"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "MCP has dedicated configuration rather than being ordinary natural-language instructions.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which TWO questions are most important when evaluating an MCP server? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "What data can the MCP server access?"
+   },
+   {
+    "label": "B",
+    "text": "What language was the server written in?"
+   },
+   {
+    "label": "C",
+    "text": "What actions can its tools perform?"
+   },
+   {
+    "label": "D",
+    "text": "What editor theme does it use?"
+   }
+  ],
+  "correct": [
+   "A",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Copilot should search an external documentation service but never modify it.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Grant admin credentials and rely on instructions"
+   },
+   {
+    "label": "B",
+    "text": "Expose narrowly scoped read/search MCP tools"
+   },
+   {
+    "label": "C",
+    "text": "Use a hook instead of MCP"
+   },
+   {
+    "label": "D",
+    "text": "Expose a general remote shell"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Narrow read-only tools implement least privilege.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "A custom agent needs access to an external issue tracker only when that specialist runs.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Configure the relevant MCP server/tools for the custom agent"
+   },
+   {
+    "label": "B",
+    "text": "Put issue credentials in SKILL.md"
+   },
+   {
+    "label": "C",
+    "text": "Use content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Use next edit suggestions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Custom-agent profiles can be associated with relevant MCP tools.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants to permanently teach repository coding style.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use public-code matching"
+   },
+   {
+    "label": "B",
+    "text": "Use a deployment hook"
+   },
+   {
+    "label": "C",
+    "text": "Create an MCP server"
+   },
+   {
+    "label": "D",
+    "text": "Use custom instructions or Memory rather than MCP"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "MCP is for external tools/data, not ordinary standing coding-style guidance.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An MCP tool can delete cloud resources.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Enable content exclusion"
+   },
+   {
+    "label": "B",
+    "text": "Add more context so the model is less likely to misuse it"
+   },
+   {
+    "label": "C",
+    "text": "Omit/restrict the tool unless required and use approval controls"
+   },
+   {
+    "label": "D",
+    "text": "Use a larger model"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Permission restriction and approvals directly reduce consequential-action risk.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A PR mentions an incident ID and code review has a relevant configured MCP integration.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The MCP server becomes available to every local CLI"
+   },
+   {
+    "label": "B",
+    "text": "The incident is automatically closed"
+   },
+   {
+    "label": "C",
+    "text": "Code review may use relevant MCP context"
+   },
+   {
+    "label": "D",
+    "text": "The PR is automatically approved"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Current code review can use relevant MCP context when signals make it useful.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A trusted MCP server exposes highly privileged tools.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Automatically allow every tool because the server is trusted"
+   },
+   {
+    "label": "B",
+    "text": "Trust eliminates the need for authorization"
+   },
+   {
+    "label": "C",
+    "text": "Use content exclusion as the only safety control"
+   },
+   {
+    "label": "D",
+    "text": "Still apply least privilege and approval controls"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Trust in the server does not eliminate risks from powerful operations.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants to start the current standalone Copilot CLI interactively.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Run copilot init"
+   },
+   {
+    "label": "B",
+    "text": "Run gh copilot chat"
+   },
+   {
+    "label": "C",
+    "text": "Run copilot"
+   },
+   {
+    "label": "D",
+    "text": "Run gh copilot suggest"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "The current standalone CLI starts with `copilot`.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A script should pass a prompt to Copilot CLI non-interactively.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use ghcs"
+   },
+   {
+    "label": "B",
+    "text": "Use /new"
+   },
+   {
+    "label": "C",
+    "text": "Use copilot init"
+   },
+   {
+    "label": "D",
+    "text": "Use copilot -p/--prompt"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "The prompt flag supports programmatic invocation.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants to resume the most recently closed local CLI session.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use copilot --continue"
+   },
+   {
+    "label": "B",
+    "text": "Use /context"
+   },
+   {
+    "label": "C",
+    "text": "Use copilot init"
+   },
+   {
+    "label": "D",
+    "text": "Use gh copilot explain"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "`--continue` resumes the recent local session.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants to inspect how the CLI context window is being consumed.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use /context"
+   },
+   {
+    "label": "B",
+    "text": "Use /settings"
+   },
+   {
+    "label": "C",
+    "text": "Use /instructions"
+   },
+   {
+    "label": "D",
+    "text": "Use /review"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "`/context` reports context/token usage.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A repository has no Copilot instructions and the developer wants Copilot to infer useful build/test/architecture guidance.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Run copilot init or /init"
+   },
+   {
+    "label": "B",
+    "text": "Run /review"
+   },
+   {
+    "label": "C",
+    "text": "Run gh copilot suggest"
+   },
+   {
+    "label": "D",
+    "text": "Run --allow-all-tools"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Initialization can generate/improve repository instructions.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "Copilot CLI is opened in an unfamiliar cloned repository.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Always approve because Git already cloned it"
+   },
+   {
+    "label": "B",
+    "text": "Treat the trusted-directory check seriously before granting agent access"
+   },
+   {
+    "label": "C",
+    "text": "Disable Git hooks"
+   },
+   {
+    "label": "D",
+    "text": "Enable all tools first"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Untrusted project content can influence an agent with file/tool access.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which TWO can provide standing natural-language guidance to Copilot CLI? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "mcp-config.json"
+   },
+   {
+    "label": "B",
+    "text": "AGENTS.md"
+   },
+   {
+    "label": "C",
+    "text": ".github/copilot-instructions.md"
+   },
+   {
+    "label": "D",
+    "text": "A hook JSON file by itself"
+   }
+  ],
+  "correct": [
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer sees old training material centered on gh copilot suggest and gh copilot explain.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Ignore CLI entirely"
+   },
+   {
+    "label": "B",
+    "text": "Recognize it as legacy CLI-extension material and learn the standalone copilot CLI"
+   },
+   {
+    "label": "C",
+    "text": "Memorize it as the only current CLI"
+   },
+   {
+    "label": "D",
+    "text": "Assume both interfaces are identical"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Current GH-300 preparation should distinguish the newer standalone CLI.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants standing project guidance in the CLI.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use supported instruction files such as copilot-instructions.md or AGENTS.md"
+   },
+   {
+    "label": "B",
+    "text": "Use content exclusion"
+   },
+   {
+    "label": "C",
+    "text": "Use a hook JSON file as prose guidance"
+   },
+   {
+    "label": "D",
+    "text": "Put the rules only in mcp-config.json"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Instruction files provide standing natural-language guidance.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A CLI agent proposes a destructive shell command.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Approve because agent mode validates commands"
+   },
+   {
+    "label": "B",
+    "text": "Use a Space to make it safe"
+   },
+   {
+    "label": "C",
+    "text": "Disable Git first, then approve"
+   },
+   {
+    "label": "D",
+    "text": "Inspect it and deny/modify it unless the action is appropriate"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Human/tool approval remains important for consequential commands.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which TWO customization sources can Copilot code review use when relevant? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Only the base branch README"
+   },
+   {
+    "label": "B",
+    "text": "Repository-level agent skills"
+   },
+   {
+    "label": "C",
+    "text": "Relevant configured MCP context"
+   },
+   {
+    "label": "D",
+    "text": "Only personal IDE snippets"
+   }
+  ],
+  "correct": [
+   "B",
+   "C"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A large commit is pushed after Copilot reviewed the PR.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Request/rely on a new review unless automatic review of new pushes is configured"
+   },
+   {
+    "label": "B",
+    "text": "Copilot blocks the push"
+   },
+   {
+    "label": "C",
+    "text": "The old review becomes an approval"
+   },
+   {
+    "label": "D",
+    "text": "Assume the previous review covers the new code"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "New changes may require fresh review.",
+  "topic": "General"
+ },
+ {
+  "q": "A repository has a task-specific security-review skill and the PR gives clear security-review signals.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot code review can use the relevant repository skill"
+   },
+   {
+    "label": "B",
+    "text": "Skills are CLI-only"
+   },
+   {
+    "label": "C",
+    "text": "Only a custom agent can affect code review"
+   },
+   {
+    "label": "D",
+    "text": "The skill must first be copied into a Space"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Current code review can use relevant repository-level skills.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A PR modifies a repository skill on its head branch.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Skills are ignored until merged"
+   },
+   {
+    "label": "B",
+    "text": "Copilot code review can use the head-branch version during that PR"
+   },
+   {
+    "label": "C",
+    "text": "Only organization-level skills are usable"
+   },
+   {
+    "label": "D",
+    "text": "Only the base-branch version can be used"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Code review reads relevant skills/instructions from the head branch.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Copilot review suggests a fix.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Assume the fix is secure"
+   },
+   {
+    "label": "B",
+    "text": "Treat the resulting change as generated code that still needs review/testing"
+   },
+   {
+    "label": "C",
+    "text": "Treat it as a required human approval"
+   },
+   {
+    "label": "D",
+    "text": "Skip CI because Copilot reviewed it"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Suggested fixes remain AI-generated changes.",
+  "topic": "General"
+ },
+ {
+  "q": "The goal is to analyze an existing diff and surface likely issues without implementing the feature.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use Copilot code review"
+   },
+   {
+    "label": "B",
+    "text": "Use a cloud agent"
+   },
+   {
+    "label": "C",
+    "text": "Use Agent mode"
+   },
+   {
+    "label": "D",
+    "text": "Use Copilot Edits"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Code review is designed to evaluate changes.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants repository-wide review standards automatically considered by supported review workflows.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use repository custom instructions"
+   },
+   {
+    "label": "B",
+    "text": "Use one developer's personal prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Use a user-level CLI theme setting"
+   },
+   {
+    "label": "D",
+    "text": "Use next edit suggestions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Repository instructions are the appropriate standing shared guidance.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A team wants a specialized review procedure with supporting scripts that is loaded when relevant.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use content exclusion"
+   },
+   {
+    "label": "B",
+    "text": "Use public-code matching"
+   },
+   {
+    "label": "C",
+    "text": "Use an agent skill"
+   },
+   {
+    "label": "D",
+    "text": "Use only a Space"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Skills package task-specific instructions/scripts/resources.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A code-review comment is plausible but contradicts a verified project invariant.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Disable human review"
+   },
+   {
+    "label": "B",
+    "text": "Treat every Copilot comment as blocking"
+   },
+   {
+    "label": "C",
+    "text": "Prefer verified project evidence and evaluate the AI comment critically"
+   },
+   {
+    "label": "D",
+    "text": "Change the invariant because Copilot is newer"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "AI review is advisory and can be wrong.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "A team wants AI review on every eligible PR without manually requesting it each time.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use Agent mode in every developer IDE"
+   },
+   {
+    "label": "B",
+    "text": "Add a prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Use a Space"
+   },
+   {
+    "label": "D",
+    "text": "Configure automatic Copilot code review"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Automatic review can trigger Copilot review according to repository configuration.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An organization excludes secrets/** and a developer uses ordinary inline suggestions in an excluded file.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Only code review can use it"
+   },
+   {
+    "label": "B",
+    "text": "The exclusion applies only to public repos"
+   },
+   {
+    "label": "C",
+    "text": "The file is deleted"
+   },
+   {
+    "label": "D",
+    "text": "Inline suggestions should not be available for that file"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Supported inline suggestions honor content exclusion.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which TWO controls are stronger security measures than relying solely on prompt wording? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "A prompt asking Copilot to ignore the data"
+   },
+   {
+    "label": "B",
+    "text": "Appropriate Copilot/tool policies"
+   },
+   {
+    "label": "C",
+    "text": "A larger model"
+   },
+   {
+    "label": "D",
+    "text": "Repository authorization/access controls"
+   }
+  ],
+  "correct": [
+   "B",
+   "D"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "An excluded class defines a type used in a non-excluded file.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "IDE-provided semantic information can still be an indirect limitation"
+   },
+   {
+    "label": "B",
+    "text": "The class becomes public"
+   },
+   {
+    "label": "C",
+    "text": "The exclusion removes the class from Git"
+   },
+   {
+    "label": "D",
+    "text": "The type is guaranteed never to influence Copilot in any way"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "GitHub documents indirect semantic-information limitations.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A security team wants a developer to have no access at all to a sensitive repository.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use a skill"
+   },
+   {
+    "label": "B",
+    "text": "Use repository authorization/access controls, not Copilot exclusion alone"
+   },
+   {
+    "label": "C",
+    "text": "Use only content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Use a prompt telling Copilot not to read it"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Authorization is the actual access boundary.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A company wants centrally managed seats and policy controls without the higher Enterprise tier.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot Pro"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Free"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Business"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Max"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Business is the baseline managed organizational plan.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "An enterprise enforces a Copilot policy and an organization owner wants the opposite setting.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The enforced enterprise policy takes precedence"
+   },
+   {
+    "label": "B",
+    "text": "The repository owner wins"
+   },
+   {
+    "label": "C",
+    "text": "The organization always wins"
+   },
+   {
+    "label": "D",
+    "text": "Each user can override both"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Enterprise enforcement constrains lower-level policy.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "An administrator needs accountability for Copilot policy/configuration changes.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use a Space"
+   },
+   {
+    "label": "B",
+    "text": "Use relevant audit-log events"
+   },
+   {
+    "label": "C",
+    "text": "Use next edit suggestions"
+   },
+   {
+    "label": "D",
+    "text": "Use public-code matching"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Audit logs support administrative governance.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "A developer sees 'Copilot Individual' in old study material.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Treat it as the current official paid plan name"
+   },
+   {
+    "label": "B",
+    "text": "Treat it as Business"
+   },
+   {
+    "label": "C",
+    "text": "Treat it as legacy terminology and learn current personal-plan names"
+   },
+   {
+    "label": "D",
+    "text": "Treat it as Enterprise"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Current individual plans use names such as Free, Pro, Pro+, Max, and Student.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "A company wants to prevent arbitrary MCP use by managed users.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use .gitignore"
+   },
+   {
+    "label": "B",
+    "text": "Use relevant organization/enterprise Copilot policy controls"
+   },
+   {
+    "label": "C",
+    "text": "Use branch naming rules"
+   },
+   {
+    "label": "D",
+    "text": "Use content-exclusion globs"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "MCP availability is a managed-policy concern.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An organization uses content exclusion for eligible users.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Assume it prevents the user from opening excluded files"
+   },
+   {
+    "label": "B",
+    "text": "Assume it encrypts excluded files"
+   },
+   {
+    "label": "C",
+    "text": "Remember that it complements rather than replaces permissions and other security controls"
+   },
+   {
+    "label": "D",
+    "text": "Assume it blocks every agentic surface"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Content exclusion is feature-specific and has documented limitations.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "Which TWO types of context are most useful for a debugging request? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Related code and tests"
+   },
+   {
+    "label": "B",
+    "text": "Unrelated repositories"
+   },
+   {
+    "label": "C",
+    "text": "The developer's editor color theme"
+   },
+   {
+    "label": "D",
+    "text": "Relevant error/reproduction output"
+   }
+  ],
+  "correct": [
+   "A",
+   "D"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A debugging prompt needs stronger grounding.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Remove logs"
+   },
+   {
+    "label": "B",
+    "text": "Use only the function name"
+   },
+   {
+    "label": "C",
+    "text": "Include the error, relevant code, reproduction details, and tests"
+   },
+   {
+    "label": "D",
+    "text": "Include unrelated repositories to maximize context"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Focused evidence is high-value debugging context.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A conversation keeps biasing answers toward an earlier unrelated task.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Add more unrelated history"
+   },
+   {
+    "label": "B",
+    "text": "Increase tool permissions"
+   },
+   {
+    "label": "C",
+    "text": "Start a fresh conversation or remove stale context"
+   },
+   {
+    "label": "D",
+    "text": "Convert the chat into an MCP server"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Stale context can distort later responses.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer supplies worked input/output examples before asking Copilot to generate similar behavior.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "This is an agent hook"
+   },
+   {
+    "label": "B",
+    "text": "This is few-shot prompting"
+   },
+   {
+    "label": "C",
+    "text": "This is zero-shot prompting"
+   },
+   {
+    "label": "D",
+    "text": "This is content exclusion"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Few-shot prompting provides examples.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A complex migration keeps failing when requested as one huge task.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Disable tests"
+   },
+   {
+    "label": "B",
+    "text": "Decompose it into smaller, verifiable subtasks or a clear agent plan"
+   },
+   {
+    "label": "C",
+    "text": "Remove success criteria"
+   },
+   {
+    "label": "D",
+    "text": "Add unrelated context"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Task decomposition improves focus and verification.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "A developer attaches every file in a monorepo to a narrow question.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "The model permanently trains on the files"
+   },
+   {
+    "label": "B",
+    "text": "The context window becomes unlimited"
+   },
+   {
+    "label": "C",
+    "text": "Relevant context can be crowded out or diluted by irrelevant material"
+   },
+   {
+    "label": "D",
+    "text": "Copilot refuses all multi-file context"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Context is finite and relevance matters.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "A team switches to a different supported model provider.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Assume policy no longer applies"
+   },
+   {
+    "label": "B",
+    "text": "Assume model selection changes repository permissions"
+   },
+   {
+    "label": "C",
+    "text": "Assume every provider behaves identically"
+   },
+   {
+    "label": "D",
+    "text": "Do not assume all providers have identical data-handling/retention terms"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Provider-specific data commitments can differ.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "A generated explanation conflicts with authoritative project documentation.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Average the two answers"
+   },
+   {
+    "label": "B",
+    "text": "Prefer the verified documentation and investigate the discrepancy"
+   },
+   {
+    "label": "C",
+    "text": "Assume Copilot is authoritative"
+   },
+   {
+    "label": "D",
+    "text": "Delete the documentation"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Generated explanations require verification.",
+  "topic": "Developer productivity"
+ },
+ {
+  "q": "A generated dependency name looks plausible but cannot be found in official package sources.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Treat it as a possible hallucination"
+   },
+   {
+    "label": "B",
+    "text": "Assume it is private and install it blindly"
+   },
+   {
+    "label": "C",
+    "text": "Disable public-code matching"
+   },
+   {
+    "label": "D",
+    "text": "Increase context size"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Models can fabricate plausible names or APIs.",
+  "topic": "Responsible AI"
+ },
+ {
+  "q": "A team wants a recurring task prompt but not standing behavioral guidance.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use repository-wide instructions"
+   },
+   {
+    "label": "B",
+    "text": "Use content exclusion"
+   },
+   {
+    "label": "C",
+    "text": "Use a reusable prompt file"
+   },
+   {
+    "label": "D",
+    "text": "Use an audit log"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Prompt files are task-oriented and explicitly invoked.",
+  "topic": "Prompt engineering & context"
+ },
+ {
+  "q": "Which TWO capabilities characterize managed organizational Copilot plans? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "No administrative governance"
+   },
+   {
+    "label": "B",
+    "text": "Organization policy controls"
+   },
+   {
+    "label": "C",
+    "text": "A personal-only subscription model"
+   },
+   {
+    "label": "D",
+    "text": "Centralized seat management"
+   }
+  ],
+  "correct": [
+   "B",
+   "D"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Plans, policies & administration"
+ },
+ {
+  "q": "A developer wants predicted follow-up edits based on recent changes rather than a multi-step autonomous task.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Agent mode"
+   },
+   {
+    "label": "B",
+    "text": "Next edit suggestions"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "D",
+    "text": "Cloud agent"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Next edit suggestions anticipate likely subsequent edits.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants curated project context containing repositories, issues, PRs, notes, and files.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Agent skill"
+   },
+   {
+    "label": "B",
+    "text": "Custom agent"
+   },
+   {
+    "label": "C",
+    "text": "MCP server"
+   },
+   {
+    "label": "D",
+    "text": "Copilot Space"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Spaces curate contextual sources.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants natural-language-assisted application creation and iteration in GitHub's app-building experience.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Memory"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Edits"
+   },
+   {
+    "label": "D",
+    "text": "GitHub Spark"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Spark is GitHub's AI-assisted app-building experience.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants a specialist persona with tailored expertise and tools.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Space"
+   },
+   {
+    "label": "B",
+    "text": "Prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Agent skill"
+   },
+   {
+    "label": "D",
+    "text": "Custom agent"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Custom agents define specialist personas/tool configurations.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "Which TWO mechanisms can provide standing repository coding guidance? Choose two.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Repository-wide custom instructions"
+   },
+   {
+    "label": "B",
+    "text": "Path-specific instructions when rules differ by files"
+   },
+   {
+    "label": "C",
+    "text": "Public-code matching"
+   },
+   {
+    "label": "D",
+    "text": "Content exclusion as a style guide"
+   }
+  ],
+  "correct": [
+   "A",
+   "B"
+  ],
+  "multi": true,
+  "explanation": "Both selected answers directly match the current Copilot behavior or control described; the other options address different concerns.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A team wants live access to an external issue tracker.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Next edit suggestions"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Space"
+   },
+   {
+    "label": "C",
+    "text": "Prompt file"
+   },
+   {
+    "label": "D",
+    "text": "MCP server"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "MCP exposes external tools/data.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants deterministic shell automation at an agent lifecycle point.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Space"
+   },
+   {
+    "label": "B",
+    "text": "Hook"
+   },
+   {
+    "label": "C",
+    "text": "Skill"
+   },
+   {
+    "label": "D",
+    "text": "Subagent"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Hooks execute deterministic lifecycle commands.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants persistent learned repository conventions for future sessions.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Prompt file"
+   },
+   {
+    "label": "B",
+    "text": "Copilot Memory"
+   },
+   {
+    "label": "C",
+    "text": "MCP"
+   },
+   {
+    "label": "D",
+    "text": "Code review"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Memory stores learned repository conventions/patterns.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants to delegate context-heavy exploration without cluttering the main agent.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Custom instruction"
+   },
+   {
+    "label": "B",
+    "text": "Subagent"
+   },
+   {
+    "label": "C",
+    "text": "Space"
+   },
+   {
+    "label": "D",
+    "text": "Hook"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Subagents isolate delegated context.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A specialist reviewer needs a restricted persona, a deterministic scanner after review, and read access to a vulnerability database.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Skill + Space + prompt file"
+   },
+   {
+    "label": "B",
+    "text": "Custom agent + hook + MCP"
+   },
+   {
+    "label": "C",
+    "text": "Path instruction + subagent + content exclusion"
+   },
+   {
+    "label": "D",
+    "text": "Edits + Memory + public-code filter"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Agent, hook, and MCP each address a distinct requirement.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "An incident agent needs live ticket details, a standard triage procedure, and permission to restart only one service.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Content exclusion + Edits"
+   },
+   {
+    "label": "B",
+    "text": "Narrow MCP tools + incident skill + least-privilege credentials"
+   },
+   {
+    "label": "C",
+    "text": "Space containing credentials + repository instructions"
+   },
+   {
+    "label": "D",
+    "text": "Unrestricted shell + custom agent"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "External capability, procedural knowledge, and least privilege should be separated.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A PR adds a new security-review SKILL.md and code the skill is meant to inspect.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Copilot code review can potentially use the new head-branch skill before merge"
+   },
+   {
+    "label": "B",
+    "text": "Skills are CLI-only"
+   },
+   {
+    "label": "C",
+    "text": "The skill must be copied to a Space first"
+   },
+   {
+    "label": "D",
+    "text": "The skill is ignored until merged"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Current code review can use relevant head-branch skills.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A team has conflicting repository-wide and path-specific instructions.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Assume repository-wide always wins"
+   },
+   {
+    "label": "B",
+    "text": "Assume path-specific always wins"
+   },
+   {
+    "label": "C",
+    "text": "Remove the conflict instead of relying on assumed universal precedence"
+   },
+   {
+    "label": "D",
+    "text": "Add a third instruction to break the tie"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Applicable instructions may combine; conflicts should be avoided.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "An agent can invoke a destructive external MCP tool.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use a larger model and remove approvals"
+   },
+   {
+    "label": "B",
+    "text": "Use least privilege plus human approval for consequential calls"
+   },
+   {
+    "label": "C",
+    "text": "Add more context instead of restricting the tool"
+   },
+   {
+    "label": "D",
+    "text": "Rely only on content exclusion"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Permissions and approval gates directly address action risk.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants Copilot to review a diff and leave implementation decisions to the author.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Cloud agent"
+   },
+   {
+    "label": "B",
+    "text": "Agent mode"
+   },
+   {
+    "label": "C",
+    "text": "Copilot Edits"
+   },
+   {
+    "label": "D",
+    "text": "Copilot code review"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Code review is the analysis-oriented feature.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants the main agent to coordinate while a specialist independently explores a large subsystem.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Put source code into copilot-instructions.md"
+   },
+   {
+    "label": "B",
+    "text": "Attach the entire subsystem to every main prompt"
+   },
+   {
+    "label": "C",
+    "text": "Delegate to a subagent/custom agent with separate context"
+   },
+   {
+    "label": "D",
+    "text": "Use a hook as the specialist"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Subagent isolation preserves main-agent context.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer suggests storing an API token inside SKILL.md so a skill can call a service.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Accept if the repository is private"
+   },
+   {
+    "label": "B",
+    "text": "Accept if the skill is excluded from code review"
+   },
+   {
+    "label": "C",
+    "text": "Accept because SKILL.md is encrypted"
+   },
+   {
+    "label": "D",
+    "text": "Reject that design and use an appropriate secret/authentication mechanism"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Skill files are not secret stores.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "Which statement best captures the current security relationship between content exclusion and agentic Copilot features?",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Agent mode always honors every exclusion"
+   },
+   {
+    "label": "B",
+    "text": "Content exclusion helps supported surfaces, but access permissions and tool controls remain fundamental because exclusions have agentic limitations"
+   },
+   {
+    "label": "C",
+    "text": "Content exclusion is a complete replacement for permissions"
+   },
+   {
+    "label": "D",
+    "text": "Content exclusion prevents users from reading files themselves"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Content exclusion is useful but not a universal security boundary.",
+  "topic": "Privacy & content exclusions"
+ },
+ {
+  "q": "A developer needs project-wide coding rules, but a deployment runbook should load only when deploying.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use MCP for both"
+   },
+   {
+    "label": "B",
+    "text": "Put both in repository-wide instructions"
+   },
+   {
+    "label": "C",
+    "text": "Use repository instructions for the rules and a skill for the runbook"
+   },
+   {
+    "label": "D",
+    "text": "Put both in a Space"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Standing rules and task-specific procedures should use different mechanisms.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A reviewer agent must never modify files, even though other agents can.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use a Space"
+   },
+   {
+    "label": "B",
+    "text": "Restrict the custom agent's available tools"
+   },
+   {
+    "label": "C",
+    "text": "Use applyTo"
+   },
+   {
+    "label": "D",
+    "text": "Use next edit suggestions"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "multi": false,
+  "explanation": "Custom-agent tool restrictions implement role-specific least privilege.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants to test changed review instructions in the same PR that introduces them.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use the head-branch instructions and request Copilot review"
+   },
+   {
+    "label": "B",
+    "text": "Merge the instructions first"
+   },
+   {
+    "label": "C",
+    "text": "Copy them to a user-level prompt"
+   },
+   {
+    "label": "D",
+    "text": "Move them to content exclusions"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "multi": false,
+  "explanation": "Code review can use supported customization from the PR head branch.",
+  "topic": "Testing & code quality"
+ },
+ {
+  "q": "A CLI project has AGENTS.md and copilot-instructions.md with compatible guidance.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Expect only the shortest file to load"
+   },
+   {
+    "label": "B",
+    "text": "Expect AGENTS.md to always replace Copilot instructions"
+   },
+   {
+    "label": "C",
+    "text": "Expect both to be ignored unless referenced by a Space"
+   },
+   {
+    "label": "D",
+    "text": "Expect applicable instructions to be combined"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "Current CLI combines applicable instruction sources.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants one-session MCP access without changing persistent CLI configuration.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Edit repository-wide instructions"
+   },
+   {
+    "label": "B",
+    "text": "Use /context"
+   },
+   {
+    "label": "C",
+    "text": "Use session-specific additional MCP configuration"
+   },
+   {
+    "label": "D",
+    "text": "Create a Space"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Session-specific MCP configuration avoids persisting the server.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "An organization excludes a file from Copilot and assumes its type metadata can never indirectly influence another file's suggestions.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "It is correct only for Agent mode"
+   },
+   {
+    "label": "B",
+    "text": "It is correct only for code review"
+   },
+   {
+    "label": "C",
+    "text": "That assumption is too strong because IDE-provided semantic information is a documented limitation"
+   },
+   {
+    "label": "D",
+    "text": "That assumption is always correct"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Exclusion has documented indirect semantic-information limitations.",
+  "topic": "Copilot in the IDE & CLI"
+ },
+ {
+  "q": "A developer wants to know why a custom agent and a skill are not interchangeable.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Skills are only for Spaces"
+   },
+   {
+    "label": "B",
+    "text": "Agents cannot use scripts"
+   },
+   {
+    "label": "C",
+    "text": "Skills always have more permissions"
+   },
+   {
+    "label": "D",
+    "text": "The agent defines who/how the specialist operates; the skill defines task-specific know-how/resources"
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "multi": false,
+  "explanation": "They represent different layers of agent customization.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A team wants a compliance command to run every time at a defined lifecycle event, even if the model would otherwise forget.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use Memory"
+   },
+   {
+    "label": "B",
+    "text": "Use a prompt file"
+   },
+   {
+    "label": "C",
+    "text": "Use a hook"
+   },
+   {
+    "label": "D",
+    "text": "Use a Space"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Hooks are deterministic rather than model-discretionary.",
+  "topic": "Chat, agents & MCP"
+ },
+ {
+  "q": "A developer wants to share architecture context with teammates but not grant a new executable capability.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Use MCP"
+   },
+   {
+    "label": "B",
+    "text": "Use a hook"
+   },
+   {
+    "label": "C",
+    "text": "Use a Copilot Space"
+   },
+   {
+    "label": "D",
+    "text": "Use --allow-all-tools"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "A Space supplies curated context without inherently exposing tools.",
+  "topic": "Data handling & architecture"
+ },
+ {
+  "q": "A developer asks whether a 100% score on simple feature-definition questions proves readiness for current GH-300 scenarios.",
+  "choices": [
+   {
+    "label": "A",
+    "text": "Yes; definitions are the entire exam"
+   },
+   {
+    "label": "B",
+    "text": "Yes, if MCP is understood"
+   },
+   {
+    "label": "C",
+    "text": "No; they should also practice distinguishing adjacent features, policy limitations, and multi-step scenarios"
+   },
+   {
+    "label": "D",
+    "text": "No, because GH-300 contains only coding exercises"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "multi": false,
+  "explanation": "Scenario discrimination is a better readiness test than obvious recognition questions.",
+  "topic": "Chat, agents & MCP"
+ }
+]

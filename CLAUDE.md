@@ -5,15 +5,17 @@ Copilot** certification. The question banks are baked into the page: no server,
 no dependencies, no network calls. It is published with GitHub Pages and also
 works by double-clicking `index.html` offline.
 
-**Three banks, never mixed.** A tab strip on the setup screen picks between
+**Four banks, never mixed.** A tab strip on the setup screen picks between
 **Legacy** (299 questions, the original material), **Supplemental** (153, added
-for the recent exam update), and **Refactored** (299, a revision of the legacy
-bank). A session draws from exactly one of them; nothing in the app or the build
-ever concatenates them. Every bank offers all three modes, and the active bank's
-name is shown in the sticky bar during a session and in the results header.
+for the recent exam update), **Refactored** (299, a revision of the legacy
+bank), and **Hard mode** (99 scenario questions on the newer material). A
+session draws from exactly one of them; nothing in the app or the build ever
+concatenates them. Every bank offers all three modes, and the active bank's name
+is shown in the sticky bar during a session and in the results header.
 
 Legacy and Refactored overlap heavily on purpose — see "The refactored bank"
-below before assuming they are independent study material.
+below before assuming they are independent study material. Hard mode is the only
+bank with no text overlap with any other.
 
 **Unofficial.** Not affiliated with, endorsed by, or reviewed by GitHub or
 Microsoft. The bank is community-quality material of unverified provenance —
@@ -38,6 +40,7 @@ Three modes:
 | `questions.json` | **Source of truth for the legacy bank** (299 q). Humans edit this. |
 | `supplemental.json` | **Source of truth for the supplemental bank** (153 q), added for the post-August-2026 exam update. |
 | `questions-refactored.json` | **Source of truth for the refactored bank** (299 q), a revision of the legacy bank. |
+| `hard-mode.json` | **Source of truth for the hard-mode bank** (99 q), scenario questions on the post-update material. |
 | `index.html` | The whole app: markup, CSS, JS, and a generated copy of each bank. |
 | `build.py` | Validates every bank and injects them into `index.html`. |
 | `CLAUDE.md` | This file. |
@@ -48,10 +51,10 @@ Three modes:
 
 `index.html` contains a generated copy of each bank on a single line — `const
 BANK = ` for legacy, `const BANK_SUPP = ` for supplemental, `const BANK_REFAC = `
-for refactored.
+for refactored, `const BANK_HARD = ` for hard mode.
 **Never hand-edit those lines.** Edit the `.json`, then run `python3 build.py`.
 
-All four files are committed — `index.html` has to carry the data so the page
+All five files are committed — `index.html` has to carry the data so the page
 stays self-contained, and the `.json` files are what humans actually edit. Any
 change to a bank is a two-file commit; a diff that touches a `.json` and not
 `index.html` means the build step was skipped.
@@ -65,7 +68,8 @@ python3 - <<'PY'
 import json, re, pathlib
 page = pathlib.Path("index.html").read_text()
 for src, const in (("questions.json", "BANK"), ("supplemental.json", "BANK_SUPP"),
-                   ("questions-refactored.json", "BANK_REFAC")):
+                   ("questions-refactored.json", "BANK_REFAC"),
+                   ("hard-mode.json", "BANK_HARD")):
     line = re.search(r"^const %s = (.*);$" % const, page, re.M).group(1)
     ok = json.loads(line) == json.loads(pathlib.Path(src).read_text())
     print(f"{src}: {'in sync' if ok else 'DRIFTED'}")
@@ -154,7 +158,9 @@ is the whole design — one question ("What is zero-shot prompting?") appears in
 legacy and supplemental too, with consistent answers.
 
 `--dupes` only ever prints. `dedupe()` inside a normal build drops questions
-whose normalized text matches **exactly**; the audit is the wider net, scoring
+whose normalized text matches **exactly** — that is not hypothetical: it is what
+took the hard-mode bank from 100 to 99 on its first build. The audit is the
+wider net, scoring
 every pair on five lexical signals (`text`, `stem`, `choices`, `answer`,
 `inverted`) for a human to judge. It is lexical, so two questions testing one
 fact in different words score near zero on every signal — a clean run means "no
@@ -204,7 +210,7 @@ const LETTERS = "ABCDEFGHIJ";
 const MOCK_N = 65, MOCK_SEC = 100 * 60;
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const BANKS = [ { label, qs, note }, … ];        // BANK and BANK_SUPP, in tab order
+const BANKS = [ { label, qs, note }, … ];        // every BANK* const, in tab order
 let cfg = { bank:0, mode:'practice', count:20, shufQ:true, shufC:true, onlyMulti:false };
 let S = null;
 
@@ -234,11 +240,20 @@ will not use. The tab strip only exists on the setup screen, so a bank cannot be
 switched mid-session, and "Practice what I missed" re-runs questions already in
 `S.qs`, which came from one bank by construction.
 
-To add a bank, add it to `BANKS` in `build.py`, add a `const` line and a
-`<button class="tab" data-bank="N">` to `index.html`, plus an entry in the JS
-`BANKS` array — that is exactly how the refactored bank was added. Everything
-else follows — the length chips are computed as `[10,20,30,50].filter(n => n < N)`
-plus the bank total, so a bank of any size gets sensible options.
+To add a bank, add it to `BANKS` in `build.py`, add a `const NAME = [];`
+placeholder line and a `<button class="tab" data-bank="N">` to `index.html`,
+plus an entry in the JS `BANKS` array, then run the build to fill the
+placeholder — that is exactly how the refactored and hard-mode banks were added.
+Everything else follows — the length chips are computed as
+`[10,20,30,50].filter(n => n < N)` plus the bank total, so a bank of any size
+gets sensible options.
+
+Four tabs no longer fit a phone, so `.tabs` scrolls horizontally and `stripEdge()`
+toggles a `.more` class that fades the right edge while a tab is still off
+screen; clicking a tab scrolls it into view with `block:'nearest'` so the page
+does not jump vertically. A fifth bank needs nothing new for this — but check the
+strip at 320px, because the fade is the only thing telling a phone user that
+tabs exist past the edge.
 
 ### `prep(src)` — the important one
 
@@ -293,6 +308,11 @@ for selected state rather than the accent-tinted fill the mode cards and length
 chips use — tabs are navigation, and reusing the pressed-chip treatment made
 them compete with the Mode selector directly below. It reuses existing tokens
 only, so it needed no new variables.
+
+Its overflow fade is a `mask-image`, not a gradient painted in a background
+color, precisely so it stays token-free: a mask is colorless and therefore
+correct in both themes without a light/dark pair. Copy that approach for any
+future edge treatment rather than adding a `--fade` token per theme.
 
 **Never hard-code a color** in markup or JS; add a variable to `:root`. Anything
 added there needs a dark counterpart **in the same commit** — the `--warn` trio
@@ -533,6 +553,50 @@ Its topics were **kept, not re-derived**: it already ships tagged into the nine
 buckets, and 22 of the 299 differ from what `auto_topic()` would produce, which
 the schema explicitly allows (a present `topic` is a pin). Nothing in the file
 was modified.
+
+### The hard-mode bank
+
+`hard-mode.json` arrived with 100 questions and built to **99**; the build
+dropped an exact duplicate ("Which TWO controls most directly reduce risk from
+destructive agent tool calls?", present twice with the choices reordered and the
+same answer in substance). That is `dedupe()` doing its job, not a data loss to
+investigate.
+
+**It is the only bank with no text overlap with any other** — 0 shared stems
+against legacy, supplemental, and refactored alike. Unlike Refactored, it is
+genuinely additional drilling.
+
+Its shape is distinct enough to notice: **always exactly 4 choices**, stems
+averaging 84 characters against legacy's 154, and only 2 of 99 stems phrased as
+a question at all — the rest are scenario fragments ("A developer wants Copilot
+to modify several files, run tests, inspect failures, and iterate…") answered by
+naming a feature. Explanations average 65 characters, roughly a quarter of
+legacy's. The difficulty comes from close distractors inside one product area
+(agent mode against Copilot Edits against the coding agent), not from long
+scenarios.
+
+**Its provenance is unknown and it has had none of the verification work**
+described for the legacy bank: no explanation rewrite against primary sources,
+no answer key audit, no copy pass. It carries no `review` or `corrected` fields,
+which — as with supplemental — records that nothing was checked, not that
+everything checked out.
+
+One thing worth knowing before trusting an explanation here: **all 9 remaining
+multi-answer questions share a single templated explanation**, "Both selected
+answers directly match the current Copilot behavior or control described; the
+other options address different concerns." That is generated from the answer key
+rather than from the material — the exact failure mode that made the legacy
+bank's original explanations worthless as confirmation. The 90 single-answer
+explanations are individually written and terse but real. If this bank ever gets
+an audit, those 9 are where to start.
+
+The only change made to it here: **topics were re-derived**, exactly as for
+supplemental. It shipped with 9 free-form labels of its own (`Hard synthesis`,
+`Agent mode & agents`, `MCP & security`, `Feature distinctions`, …) which would
+have made the results meters incomparable with the other banks. Question text,
+choices, `correct`, and explanations were not touched. `auto_topic()` puts 41 of
+99 in `Chat, agents & MCP` and 4 in `General`, which is the same flattening noted
+for supplemental — the newer material largely lives in one bucket.
 
 ---
 
